@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 const Inicio = () => {
 
     return (
-        <div  className="m-auto divLogin" data-aos="slide-left" >
+        <div  className="m-auto divLogin">
             <form   className="form-group" data-aos="zoom-in">
                 <input   className="form-control" placeholder="USUARIO" type="text"/>
                 <input   className="form-control mt-3" placeholder="PASSWORD" type="password"/>

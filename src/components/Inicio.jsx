@@ -1,27 +1,18 @@
 import React from 'react'
-import {Component} from 'react'
 
-class Inicio extends Component{
-    constructor(){
-        this.img = React.createRef()
-        this.cambiarImg = this.cambiarImg.bind( this )
-    }
-    cambiarImg() {
-        this.img.current.style.margin = "0"
-    }
-    render(){
+const Inicio = () => {
+  
     return (
         <div className="containerInicio">
-            <h1>Bienvenido Patricio</h1>
+            <h1>Escoge una actividad</h1>
             <div className="divInicio">
-                <div className="cuadro " onClick={this.cambiarImg}><img className="noImg" ref={this.img} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRNMsDOmHm_JyVgjIg3ttecSe7vd5lps7duQ&usqp=CAU" alt=""/>MUSCULACION</div>
-                <div className="cuadro"></div>
-                <div className="cuadro"></div>
-                <div className="cuadro"></div>
+                <div className="cuadro cuadro2"><img className="noImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRNMsDOmHm_JyVgjIg3ttecSe7vd5lps7duQ&usqp=CAU" alt=""/><p>MUSCULACION</p></div>
+                <div className="cuadro cuadro2"><img className="noImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAonXj6ZUSxKvwSGTAz_IHLIURNAxhZ_o76A&usqp=CAU" alt=""/><p>SPINNING</p></div>
+                <div className="cuadro cuadro2"><img className="noImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgRkBpX9G-d5l-x_NvXo-sD7kXMOhBda9Qog&usqp=CAU" alt=""/><p>YOGA</p></div>
+                <div className="cuadro cuadro2"><img className="noImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQty7jjpIAo29OaBVqalXpOJEbtEhJeLqlkDw&usqp=CAU" alt=""/><p>FUNCIONAL</p></div>       
             </div>
         </div>
     )
-}
 }
 
 export default Inicio
