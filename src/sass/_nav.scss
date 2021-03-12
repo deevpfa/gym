@@ -1,0 +1,35 @@
+.containerNav {
+    position: absolute;
+    width: 60vw;
+    margin: 0 20vw 0 20vw;
+    top:0;
+    background-color: rgb(43, 34, 34);
+}
+.lista-nav{
+    display:flex;
+    margin: auto;
+    width: 100%;
+    padding-inline-start: 0;
+    padding-left: 1vw;
+    // padding-right: 20vw;
+}
+.nav-link{
+    color:white;
+    font-family: 'Roboto', sans-serif;
+    z-index: 100;
+}
+.nav-link:hover{
+    color: rgb(189, 186, 186);
+}
+.lista-nav li{
+    margin-top: auto;
+    margin-bottom:auto;  
+    list-style: none; 
+}
+.botonNav{
+    margin-left: auto;
+}
+.botonNav button{
+
+    height:100%
+}

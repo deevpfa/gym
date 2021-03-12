@@ -3,6 +3,8 @@
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover;
+    height: 100vh;
+    // position:relative;
 }
 .divInicio{
     
@@ -10,9 +12,10 @@
     display: flex;
     justify-content:space-around;
     flex-wrap: wrap;
-    height:80vh;
+    height:90vh;
     width:70%;
     align-items:center;
+    padding-top: 15vh;
 }
 h1{
     color: white;
@@ -33,11 +36,12 @@ h1{
     position: relative;
 }
 .cuadro p{
-    color: rgb(240, 57, 57);
+    color: rgb(13, 1, 53);
     font-size:20px;
     z-index: 2;
-    letter-spacing: 5px;
+    letter-spacing: 3px;
     font-weight: bold;
+    margin-block: 0px;
 }
 .cuadro2{
     overflow: hidden;
@@ -48,7 +52,7 @@ h1{
     filter:saturate(0%);
     object-fit: fill;
     position:absolute;
-    filter:blur(2px);
+    filter:blur(8px);
     -webkit-transform:scale(1.2);transform:scale(1.2);
     transition-duration: 1s; 
 }

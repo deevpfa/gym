@@ -1,0 +1,40 @@
+
+.calendar{
+    background-color: rgb(34, 33, 33);
+    width:30%;
+    position:absolute;
+    left:160px;
+    right:160px;
+    margin: 5em auto;
+    color: white;
+    &__Info{
+        display: flex;
+        align-items: center;
+        padding:  0 2em;
+        font-size: 1.2em;
+        text-transform: uppercase;
+    }
+    &__Prev, &__Next{
+        color: rgb(255, 255, 255);
+        cursor: pointer;
+        font-size: 1.4em;
+    }
+    &__Prev{
+        margin-right: auto;
+    }
+    &__Next{
+        margin-left: auto;
+    }
+    &__Day,&__Month{
+        padding: .5em 1em;
+    }
+    &__Week{
+        display:grid;
+        grid-template-columns: repeat(7,1fr);
+        grid-gap: 10px;
+    }
+    &__Item{
+        text-align: center;
+        line-height: 2;
+    }
+}
