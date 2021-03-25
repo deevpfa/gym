@@ -1,0 +1,15 @@
+.divAdmin{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 60vh;
+    width: 30em;
+}
+.divAdmin div{
+    height: 10vh;
+}
+.divAdmin div button{
+    height: 100%;
+    width: 100%;
+}

@@ -1,8 +1,8 @@
 
 .calendar{
     background-color: rgb(34, 33, 33);
-    width:30%;
-    position:absolute;
+    width:30em;
+    height:23.5em;
     left:160px;
     right:160px;
     margin: 5em auto;
@@ -15,7 +15,7 @@
         text-transform: uppercase;
     }
     &__Prev, &__Next{
-        color: rgb(255, 255, 255);
+        color: rgb(241, 240, 240);
         cursor: pointer;
         font-size: 1.4em;
     }
@@ -25,16 +25,33 @@
     &__Next{
         margin-left: auto;
     }
-    &__Day,&__Month{
+    &__Day, &__Month{
         padding: .5em 1em;
     }
-    &__Week{
+    &__Week, &__Dia{
         display:grid;
-        grid-template-columns: repeat(7,1fr);
-        grid-gap: 10px;
+        grid-template-columns: repeat(5,1fr);
+        grid-gap: 8px;
+        margin: 15px 10px 0px 10px;
+        cursor: pointer;
+        height:19em;
     }
     &__Item{
-        text-align: center;
-        line-height: 2;
+        display:flex;
+        justify-content:center;
+        margin-top: 20px;
+        display:flex;
+        flex-direction: column;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        font-size:17px;
     }
+    
 }
+.parrafo{
+    font-size: 12px;
+}
+.calendar__Item:hover {
+    box-shadow: 0 4px 8px 0 rgba(80, 79, 79, 0.2), 0 6px 20px 0 rgba(80, 79, 79, 0.19);
+    background-color: rgb(95, 93, 93);
+}
+

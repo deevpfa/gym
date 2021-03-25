@@ -15,8 +15,15 @@ a:hover {
   z-index: 100;
 }
 
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 body {
   background-color: black !important;
+  font-family: 'Roboto', sans-serif !important;
 }
 
 .containerNav {
@@ -31,6 +38,9 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   margin: auto;
   width: 100%;
   -webkit-padding-start: 0;
@@ -54,12 +64,14 @@ body {
   list-style: none;
 }
 
-.botonNav {
-  margin-left: auto;
-}
-
 .botonNav button {
   height: 100%;
+}
+
+.nombre {
+  margin: auto;
+  color: white;
+  font-family: 'Roboto', sans-serif;
 }
 
 .divLogin {
@@ -80,6 +92,37 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   z-index: -1;
+}
+
+.form-container-login {
+  width: 15em;
+}
+
+.form-container-login input {
+  font-family: 'Roboto', sans-serif;
+}
+
+.form-container-login input::-webkit-input-placeholder {
+  font-family: 'Roboto', sans-serif;
+}
+
+.form-container-login input:-ms-input-placeholder {
+  font-family: 'Roboto', sans-serif;
+}
+
+.form-container-login input::-ms-input-placeholder {
+  font-family: 'Roboto', sans-serif;
+}
+
+.form-container-login input::placeholder {
+  font-family: 'Roboto', sans-serif;
+}
+
+.invalid {
+  color: #ee3333;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
 }
 
 .containerInicio {
@@ -176,8 +219,8 @@ h1 {
 
 .calendar {
   background-color: #222121;
-  width: 30%;
-  position: absolute;
+  width: 30em;
+  height: 23.5em;
   left: 160px;
   right: 160px;
   margin: 5em auto;
@@ -197,7 +240,7 @@ h1 {
 }
 
 .calendar__Prev, .calendar__Next {
-  color: white;
+  color: #f1f0f0;
   cursor: pointer;
   font-size: 1.4em;
 }
@@ -214,16 +257,126 @@ h1 {
   padding: .5em 1em;
 }
 
-.calendar__Week {
+.calendar__Week, .calendar__Dia {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[7];
-      grid-template-columns: repeat(7, 1fr);
-  grid-gap: 10px;
+  -ms-grid-columns: (1fr)[5];
+      grid-template-columns: repeat(5, 1fr);
+  grid-gap: 8px;
+  margin: 15px 10px 0px 10px;
+  cursor: pointer;
+  height: 19em;
 }
 
 .calendar__Item {
-  text-align: center;
-  line-height: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 20px;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: 17px;
+}
+
+.parrafo {
+  font-size: 12px;
+}
+
+.calendar__Item:hover {
+  -webkit-box-shadow: 0 4px 8px 0 rgba(80, 79, 79, 0.2), 0 6px 20px 0 rgba(80, 79, 79, 0.19);
+          box-shadow: 0 4px 8px 0 rgba(80, 79, 79, 0.2), 0 6px 20px 0 rgba(80, 79, 79, 0.19);
+  background-color: #5f5d5d;
+}
+
+.divAdmin {
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  height: 60vh;
+  width: 30em;
+}
+
+.divAdmin div {
+  height: 10vh;
+}
+
+.divAdmin div button {
+  height: 100%;
+  width: 100%;
+}
+
+.form-container-user {
+  width: 50em;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  height: 60vh;
+}
+
+.checkbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: white;
+}
+
+.checkbox input {
+  margin: auto;
+  cursor: pointer;
+  width: 8% !important;
+}
+
+.checkbox p {
+  margin: auto;
+}
+
+.form-container-user input {
+  width: 70%;
+}
+
+.errorUser {
+  width: 100%;
+  color: #f50707;
+  font-size: 20px;
+  font-weight: bold;
+  height: 1.5vh;
+}
+
+.form-container-user div {
+  width: 50%;
+  height: 3em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.form-container-user button {
+  width: 80%;
 }
 /*# sourceMappingURL=index.css.map */

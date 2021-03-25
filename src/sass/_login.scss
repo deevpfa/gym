@@ -9,3 +9,18 @@
     justify-content:center;
     z-index: -1;
 }
+.form-container-login{
+    width:15em;
+}
+.form-container-login input {
+    font-family: 'Roboto', sans-serif;
+}
+.form-container-login input::placeholder {
+    font-family: 'Roboto', sans-serif;
+}
+.invalid{
+    color: rgb(238, 51, 51);
+    font-size: 15px;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;;
+}
