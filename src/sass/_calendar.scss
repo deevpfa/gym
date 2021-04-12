@@ -1,14 +1,20 @@
 
 .calendar{
     background-color: rgb(34, 33, 33);
-    width:30em;
-    height:23.5em;
+    width:100%;
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: center;
     left:160px;
     right:160px;
     margin: 5em auto;
     color: white;
+    // overflow: scroll;
+    height: auto;
     &__Info{
         display: flex;
+        justify-content: center;
+        width: 100%;
         align-items: center;
         padding:  0 2em;
         font-size: 1.2em;
@@ -26,29 +32,38 @@
         margin-left: auto;
     }
     &__Day, &__Month{
-        padding: .5em 1em;
+        padding: .5em .5em;
     }
-    &__Week, &__Dia{
-        display:grid;
-        grid-template-columns: repeat(5,1fr);
-        grid-gap: 8px;
+    &__Dia{
+        display:flex;
+        // justify-content: space-around;
+        flex-wrap: wrap;
         margin: 15px 10px 0px 10px;
         cursor: pointer;
-        height:19em;
+        // height:21em;
     }
     &__Item{
+        width: 100%;
+        margin-top: 10px;
+        height: 3.5em;
         display:flex;
-        justify-content:center;
-        margin-top: 20px;
-        display:flex;
-        flex-direction: column;
+        justify-content:space-around;
+        align-items: center;
+        text-align:left;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        font-size:17px;
+        font-size:1rem;
     }
     
 }
-.parrafo{
-    font-size: 12px;
+.parrafoCalendar{
+    width: 35%;
+    font-size: .8rem;
+    margin-top: 4px;
+    text-align: center;
+    &3{
+        margin-left: 10px;
+        width: 15%;
+    }
 }
 .calendar__Item:hover {
     box-shadow: 0 4px 8px 0 rgba(80, 79, 79, 0.2), 0 6px 20px 0 rgba(80, 79, 79, 0.19);

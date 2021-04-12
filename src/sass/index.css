@@ -21,6 +21,10 @@ a:hover {
   display: flex;
 }
 
+p {
+  margin-bottom: 0px  !important;
+}
+
 body {
   background-color: black !important;
   font-family: 'Roboto', sans-serif !important;
@@ -95,11 +99,30 @@ body {
 }
 
 .form-container-login {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   width: 15em;
+  height: 20em;
 }
 
 .form-container-login input {
   font-family: 'Roboto', sans-serif;
+}
+
+.form-container-login img {
+  height: 60%;
+  width: 100%;
 }
 
 .form-container-login input::-webkit-input-placeholder {
@@ -132,7 +155,9 @@ body {
   background-repeat: no-repeat;
   /* Do not repeat the image */
   background-size: cover;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
+  width: 100%;
 }
 
 .divInicio {
@@ -219,18 +244,30 @@ h1 {
 
 .calendar {
   background-color: #222121;
-  width: 30em;
-  height: 23.5em;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   left: 160px;
   right: 160px;
   margin: 5em auto;
   color: white;
+  height: auto;
 }
 
 .calendar__Info {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -254,40 +291,47 @@ h1 {
 }
 
 .calendar__Day, .calendar__Month {
-  padding: .5em 1em;
+  padding: .5em .5em;
 }
 
-.calendar__Week, .calendar__Dia {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (1fr)[5];
-      grid-template-columns: repeat(5, 1fr);
-  grid-gap: 8px;
-  margin: 15px 10px 0px 10px;
-  cursor: pointer;
-  height: 19em;
-}
-
-.calendar__Item {
+.calendar__Dia {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-top: 20px;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  font-size: 17px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 15px 10px 0px 10px;
+  cursor: pointer;
 }
 
-.parrafo {
-  font-size: 12px;
+.calendar__Item {
+  width: 100%;
+  margin-top: 10px;
+  height: 3.5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: left;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: 1rem;
+}
+
+.parrafoCalendar {
+  width: 35%;
+  font-size: .8rem;
+  margin-top: 4px;
+  text-align: center;
+}
+
+.parrafoCalendar3 {
+  margin-left: 10px;
+  width: 15%;
 }
 
 .calendar__Item:hover {
@@ -378,5 +422,18 @@ h1 {
 
 .form-container-user button {
   width: 80%;
+}
+
+@media screen and (min-width: 769px) {
+  .parrafoCalendar {
+    width: 30%;
+    font-size: .95rem;
+  }
+  .parrafoCalendar2 {
+    text-align: left;
+  }
+  .calendar {
+    width: 60%;
+  }
 }
 /*# sourceMappingURL=index.css.map */

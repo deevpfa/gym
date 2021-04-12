@@ -1,9 +1,13 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect} from 'react'
+import {contador,turnosCalendario} from '../utils/functions'
+import { useParams } from "react-router-dom";
 import Nav from "./Nav";
 const Calendar = () => {
+    const {clase} = useParams()
+    const [tope, setTope] = useState(0)
     useEffect(() => {
-        contador()
-        turnosCalendario()
+        contador(contadorMax,numeroMes)
+        turnosCalendario(diaTurnosApi,clase,numeroMes,horasRef,setTurno)
     }, [])
     const horasRef = useRef(null)
     const [turno, setTurno] = useState("")
@@ -12,25 +16,14 @@ const Calendar = () => {
     const hoy = new Date()
     const [nombreDia, setNombreDia] = useState(hoy.getDay())
     const [numeroDia, setNumeroDia] = useState(hoy.getDate())
+    var diaTurnosApi = hoy.getDate() 
     const [numeroMes, setNumeroMes] = useState(hoy.getMonth())
-    const [tope, setTope] = useState(0)
     let contadorMax = 1
-    function contador() {
-        if (numeroMes === 0 || numeroMes === 2 || numeroMes === 4 || numeroMes === 6 || numeroMes === 7 || numeroMes === 9 || numeroMes === 11) {
-            contadorMax = 1
-        }
-        else if (numeroMes === 3 || numeroMes === 5 || numeroMes === 8 || numeroMes === 10) {
-            contadorMax = 0
-        }
-        else {
-            contadorMax = -1
-        }
-    }
-    async function aumentarDia() {
+    function aumentarDia() {
         if (tope < 1) {
             
             setTope(tope + 1)
-            await nombreDia === 6 ? setNombreDia(1) : setNombreDia(nombreDia + 1);
+            nombreDia === 6 ? setNombreDia(1) : setNombreDia(nombreDia + 1);
             if (contadorMax === 1 && numeroDia === 31) {
                 setNumeroDia(1)
                 setNumeroMes(numeroMes + 1)
@@ -47,19 +40,21 @@ const Calendar = () => {
                 setNumeroDia(numeroDia + 2)
             }
             else {
-                await setNumeroDia(numeroDia + 1)
+                setNumeroDia(numeroDia + 1)
+                diaTurnosApi+=1
                 
             }
-
-            await turnosCalendario()
+            
+            turnosCalendario(diaTurnosApi,clase,numeroMes,horasRef,setTurno)
+            
         }
-        else { }
+        else {}
     }
-    async function retrocederDia() {
+  function retrocederDia() {
         if (tope === 1) {
 
             setTope(0)
-            await nombreDia === 1 ? setNombreDia(6) : setNombreDia(nombreDia - 1);
+            nombreDia === 1 ? setNombreDia(6) : setNombreDia(nombreDia - 1);
 
             if (contadorMax === 1 && numeroDia === 1 && numeroMes !== 2) {
                 setNumeroDia(30)
@@ -76,77 +71,20 @@ const Calendar = () => {
             else if (nombreDia === 1) {
                 setNumeroDia(numeroDia - 2)
             }
-            else {
-                await setNumeroDia(numeroDia - 1)
+            else{
+                setNumeroDia(numeroDia -1)
             }
-            await turnosCalendario()
+
+            turnosCalendario(diaTurnosApi,clase,numeroMes,horasRef,setTurno)
         }
         else { }
     }
-    console.log(numeroDia);
-    function seleccionaTurno(e) {
-        let arrayChilds = horasRef.current.childNodes
-        arrayChilds.forEach(element => {
-            element.style.background = 'transparent'
-        });
-
-        if (e.innerHTML.substr(0, 2) === "Di") {
-            e.parentNode.style.background = 'rgb(94, 93, 93)'
-            setTurno(e.parentNode)
-            return
-        }
-        e.style.background = 'rgb(94, 93, 93)'
-        setTurno(e)
-    }
-
-    function horarios() {
-        horasRef.current.innerHTML = ""
-        for (let i = 0; i < arrayTurnos.length; i++) {
-            let element = arrayTurnos[i]
-            let p = document.createElement("p")
-            let div = document.createElement('div')
-            div.classList.add("calendar__Item")
-            p.classList.add("parrafo")
-            p.innerHTML = `Disponibles: ${element.disponibles}`
-            div.innerHTML = `${element.horarios}:00 `
-            div.onclick = (e) => seleccionaTurno(e.target)
-            div.appendChild(p)
-            horasRef.current.appendChild(div)
-        }
-    }
-
-
-    /// consulta turnos
-    let arrayTurnos = []
-    var date = `${numeroDia}-${numeroMes + 1}-${hoy.getFullYear()}`
-    function turnosCalendario() {
-        var data = {
-            date: date
-        }
-        fetch(`http://localhost:5000/turnos/musculacion/consulta`, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                arrayTurnos = []
-                data.forEach(element => { arrayTurnos.push(element) })
-            })
-            .then(() => horarios())
-    }
-
-
-
     return (
 
         <div className="containerInicio flex">
 
             <Nav />
-            <div className="calendar">
+            <div className="calendar" >
                 <div className="calendar__Info">
                     <div className="calendar__Prev" onClick={() => { retrocederDia() }}>&#9664;</div>
                     <div className="calendar__Day">{dias[nombreDia - 1].substr(0, 3)}</div>

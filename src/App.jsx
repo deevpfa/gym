@@ -8,6 +8,7 @@ import Calendar from "./components/Calendar";
 import Admin from "./components/Admin";
 import CrearUsuario from "./components/CrearUsuario";
 
+
 import Aos from "aos";
 import 'aos/dist/aos.css'
 
@@ -20,7 +21,7 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/calendar" component={Calendar}></Route>
+          <Route path="/calendar/:clase" component={Calendar}></Route>
           <Route path="/admin" component={Admin}></Route>
           <Route path="/inicio" component={Inicio}></Route>
           <Route path="/crearUsuario" component={CrearUsuario}></Route>

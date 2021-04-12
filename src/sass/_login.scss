@@ -10,10 +10,21 @@
     z-index: -1;
 }
 .form-container-login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
     width:15em;
+    height: 20em;
+    // background-color: rgb(7, 7, 7);
+    // box-shadow: 0 4px 8px 0 rgba(80, 79, 79, 0.2), 0 6px 20px 0 rgba(80, 79, 79, 0.19);
 }
 .form-container-login input {
     font-family: 'Roboto', sans-serif;
+}
+.form-container-login img {
+    height: 60%;
+    width: 100%;
 }
 .form-container-login input::placeholder {
     font-family: 'Roboto', sans-serif;

@@ -3,11 +3,12 @@
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover;
-    height: 100vh;
+    height: auto;
+    min-height: 100vh;
+    width: 100%;
     // position:relative;
 }
 .divInicio{
-    
     margin: auto;
     display: flex;
     justify-content:space-around;
