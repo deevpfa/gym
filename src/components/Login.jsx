@@ -2,12 +2,12 @@ import React,{useRef,useState} from 'react'
 import {userLoggin} from '../utils/functions'
 import { useHistory } from "react-router-dom";
 const Inicio = () => {
-    const [invalid,setInvalid] = useState(false)
+    const [invalid,setInvalid] = useState("")
     async function login() {
        setInvalid(await userLoggin(usuarioRef.current.value,passwordRef.current.value))
     }
     let history = useHistory();
-    if(invalid===true) history.push("/inicio")
+    if(invalid===false) history.push("/inicio")
     const usuarioRef = useRef(null)
     const passwordRef = useRef(null)
     return (

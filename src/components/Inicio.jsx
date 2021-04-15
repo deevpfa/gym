@@ -14,7 +14,7 @@ const Inicio = () => {
             let datos = await datosClases(token.nombreUser)
             if (datos.exito) {
                 datos.exito.forEach(element => { arrayClases.push(element) })
-                crearClases(clasesRef,arrayClases) 
+                crearClases(clasesRef,arrayClases,history) 
             }
             else{
                 setError(datos.error)
@@ -24,7 +24,6 @@ const Inicio = () => {
         
     }, [])
     const clasesRef = useRef(null)
-    const [clases,setClases] = useState()
     const [error,setError] = useState("")
     const token = decodeToken(localStorage.getItem("token"))   
     let history = useHistory();

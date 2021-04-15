@@ -1,4 +1,4 @@
-import { host,server } from "./global";
+import {server,gymName } from "./global";
 
 /**
  * 
@@ -24,10 +24,10 @@ export const userLoggin = async(usuario,password)=>{
                 if(res.exito){
                     localStorage.setItem("nombre",`${res.exito.user.nombre} ${res.exito.user.apellido}`)
                     localStorage.setItem("token",res.exito.token)
-                    respuestaFetch=true
+                    respuestaFetch=false
                 }
                 else{
-                    respuestaFetch=false
+                    respuestaFetch=true
                 }
             })
     return respuestaFetch
@@ -136,16 +136,18 @@ export function horarios(horasRef,setTurno) {
         let div = document.createElement('div')
         div.classList.add("calendar__Item")
         p.classList.add("parrafoCalendar", "parrafoCalendar2")
-        p2.classList.add("parrafoCalendar")
+        p2.classList.add("parrafoCalendar", "parrafoCalendar1")
         p3.classList.add("parrafoCalendar", "parrafoCalendar3")
         p.innerHTML = `Disponibles: ${element.disponibles}`
-        if(element.teacher===null) element.teacher = "" 
-        p2.innerHTML = `${element.teacher}`
+        
         p3.innerHTML = `${element.horarios}:00 `
         div.onclick = (e) => seleccionaTurno(e.target,horasRef,setTurno)
         div.appendChild(p3)
         div.appendChild(p)
-        div.appendChild(p2)
+        if(element.teacher) {
+            p2.innerHTML = `${element.teacher}`
+            div.appendChild(p2)
+        } 
         horasRef.current.appendChild(div)
     }
 }
@@ -171,7 +173,7 @@ export function seleccionaTurno(e,horasRef,setTurno) {
     setTurno(e)
 }
 
-export function crearClases(ref,arrayClases) {
+export function crearClases(ref,arrayClases,history) {
     ref.current.innerHTML = ""
     for (let i = 0; i < arrayClases.length; i++) {
         const element = arrayClases[i];
@@ -179,8 +181,7 @@ export function crearClases(ref,arrayClases) {
         let img = document.createElement("img")
         let p = document.createElement("p")
         div.classList.add("cuadro","cuadro2")
-        div.setAttribute("data-aos","fade-down")
-        div.onclick = ()=>{window.location = `${host}/calendar/${element.id}`}
+        div.onclick = ()=>{history.push(`/calendar/${element.id}`)}
         p.innerHTML = element.clase.toUpperCase()
         img.classList.add("noImg")
         img.src = element.img
@@ -196,7 +197,7 @@ export function capitalize(word) {
   
 let arrayClases = []
 export async function obtenerClases(ref) {
-    await fetch(`http://localhost:5000/clases`)
+    await fetch(`${server}/clases`)
     .then(response => response.json()) 
     .then(data => { arrayClases=[]
         data.forEach(element => arrayClases.push(element))
@@ -217,4 +218,30 @@ function crearCheckbox(ref) {
         ref.current.appendChild(input)
         ref.current.appendChild(p)
     }
+}
+
+export function bookShift(hook,setHook,ref,nombreClase) {
+    ref.current.style.opacity= "0.6"
+    document.body.style.overflow = "hidden"
+    return  <div className="confirmTurnoContainer" id="containerTurno" data-aos="flip-down">
+            <div className="confirmTurno">
+                <p>¿Deseas Reservar el siguiente turno?</p>
+            <div className="datosTurno">
+                <p>{gymName}</p>
+                <p> {capitalize(nombreClase)}</p>
+                <p>{hook.firstChild.textContent}hs</p>
+                <p>{hook.lastChild.textContent}</p>
+            </div>
+            <div className="buttonsConfirmTurno">
+                <button className="btn btn-secondary" onClick= {()=> {setHook("") ;document.body.style.overflow = "";ref.current.style.opacity= "1"}}>CERRAR</button>
+                <button className="btn btn-success">RESERVAR</button>
+            </div>
+            </div>
+            </div>
+            
+}
+
+export  function setDays(expiration) {
+    let newDate = new Date(expiration) 
+    return ((newDate.getTime() -  hoy.getTime())/86400000).toString().split('.')[0]
 }

@@ -1,16 +1,27 @@
 import React, { useRef, useState, useEffect} from 'react'
-import {contador,turnosCalendario} from '../utils/functions'
+import {contador,turnosCalendario,bookShift} from '../utils/functions'
 import { useParams } from "react-router-dom";
+import { server } from "../utils/global";
 import Nav from "./Nav";
+
+
 const Calendar = () => {
     const {clase} = useParams()
     const [tope, setTope] = useState(0)
     useEffect(() => {
         contador(contadorMax,numeroMes)
         turnosCalendario(diaTurnosApi,clase,numeroMes,horasRef,setTurno)
+        async function obtenerClase() {
+            const nombreClase = await fetch(`${server}/clases/claseId/${clase}`)
+            .then(response => response.json()) 
+            setNombreClase(nombreClase)
+        }
+        obtenerClase()
     }, [])
     const horasRef = useRef(null)
+    const containerAllRef = useRef(null)
     const [turno, setTurno] = useState("")
+    const [nombreClase, setNombreClase] = useState("")
     const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
     const dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"]
     const hoy = new Date()
@@ -81,22 +92,25 @@ const Calendar = () => {
     }
     return (
 
-        <div className="containerInicio flex">
-
+        <div>
+            <div  ref={containerAllRef} className="flex column">
             <Nav />
             <div className="calendar" >
-                <div className="calendar__Info">
+                <div className="calendar__Info" >
                     <div className="calendar__Prev" onClick={() => { retrocederDia() }}>&#9664;</div>
                     <div className="calendar__Day">{dias[nombreDia - 1].substr(0, 3)}</div>
                     <div className="calendar__Day">{numeroDia}</div>
                     <div className="calendar__Month" >{meses[numeroMes]}</div>
                     <div className="calendar__Next" onClick={() => { aumentarDia() }}>&#9654;</div>
                 </div>
-                <div className="calendar__Dia" ref={horasRef} data-aos="flip-up" ></div>
-                {
-                    turno !== "" ? <button className="btn btn-success btn-block mt-3" data-aos="flip-up">Confirmar Turno  {turno.innerHTML.substr(0, 5)}hs</button> : ""
-                }
+                <div className="calendar__Dia" ref={horasRef} ></div>
+                
+                <div className="endCalendar"> __________________________</div>
             </div>
+            </div>
+            {
+                turno !== "" ? bookShift(turno,setTurno,containerAllRef,nombreClase) : ""
+            }
         </div>
     )
 }

@@ -1,5 +1,9 @@
 body{
     background-color: black !important;
     font-family: 'Roboto', sans-serif !important;
-    
+    background-image: url(../assets/img1.jpg);
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
+    height: 100%;
 }

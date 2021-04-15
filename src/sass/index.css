@@ -11,29 +11,52 @@ a:hover {
   text-decoration: none !important;
 }
 
-.nav-lik {
-  z-index: 100;
-}
-
 .flex {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
+.center {
+  text-align: center;
+}
+
+.column {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
 p {
-  margin-bottom: 0px  !important;
+  margin-bottom: 0px;
+}
+
+.fondoImg {
+  background-image: url(../assets/img1.jpg);
+  background-position: center;
+  /* Center the image */
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
+  background-size: cover;
 }
 
 body {
   background-color: black !important;
   font-family: 'Roboto', sans-serif !important;
+  background-image: url(../assets/img1.jpg);
+  background-position: center;
+  /* Center the image */
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
+  background-size: cover;
+  height: 100%;
 }
 
 .containerNav {
-  position: absolute;
-  width: 60vw;
-  margin: 0 20vw 0 20vw;
+  position: relative;
+  width: 100%;
+  z-index: 3;
   top: 0;
   background-color: #2b2222;
 }
@@ -42,6 +65,9 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -55,7 +81,6 @@ body {
 .nav-link {
   color: white;
   font-family: 'Roboto', sans-serif;
-  z-index: 100;
 }
 
 .nav-link:hover {
@@ -68,18 +93,26 @@ body {
   list-style: none;
 }
 
-.botonNav button {
-  height: 100%;
-}
-
-.nombre {
+.profile {
   margin: auto;
   color: white;
   font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+
+.vencimiento {
+  width: 20%;
+  font-style: italic;
+  margin: auto;
+  color: #f02f2f !important;
+  font-family: 'Roboto', sans-serif;
+}
+
+.burgerMenu {
+  display: none;
 }
 
 .divLogin {
-  background-image: url(../assets/img2.jpg);
   background-position: center;
   /* Center the image */
   background-repeat: no-repeat;
@@ -149,32 +182,27 @@ body {
 }
 
 .containerInicio {
-  background-image: url(../assets/img1.jpg);
-  background-position: center;
-  /* Center the image */
-  background-repeat: no-repeat;
-  /* Do not repeat the image */
-  background-size: cover;
   height: auto;
-  min-height: 100vh;
   width: 100%;
 }
 
 .divInicio {
+  position: relative;
   margin: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  height: 90vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   width: 70%;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-top: 15vh;
+  margin-top: 10vh;
 }
 
 h1 {
@@ -195,10 +223,10 @@ h1 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 35%;
-  height: 40%;
+  height: 20vh;
   border: 2px solid white;
-  cursor: pointer;
+  width: 90%;
+  margin-bottom: 30px;
   position: relative;
 }
 
@@ -216,30 +244,12 @@ h1 {
 }
 
 .cuadro2 img {
-  -webkit-filter: grayscale(80%);
-          filter: grayscale(80%);
-  -webkit-filter: saturate(0%);
-          filter: saturate(0%);
   -o-object-fit: fill;
      object-fit: fill;
   position: absolute;
-  -webkit-filter: blur(8px);
-          filter: blur(8px);
-  -webkit-transform: scale(1.2);
-  transform: scale(1.2);
-  -webkit-transition-duration: 1s;
-          transition-duration: 1s;
-}
-
-.cuadro2 img:hover {
-  -webkit-transition-duration: 2s;
-          transition-duration: 2s;
-  -webkit-transform: scale(1.6);
-  transform: scale(1.6);
-  -webkit-filter: grayscale(0);
-          filter: grayscale(0);
-  -webkit-filter: saturate(180%);
-          filter: saturate(180%);
+  width: 100%;
+  -webkit-filter: blur(4px);
+          filter: blur(4px);
 }
 
 .calendar {
@@ -253,11 +263,8 @@ h1 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  left: 160px;
-  right: 160px;
-  margin: 5em auto;
+  margin: 4em auto;
   color: white;
-  height: auto;
 }
 
 .calendar__Info {
@@ -325,7 +332,7 @@ h1 {
 .parrafoCalendar {
   width: 35%;
   font-size: .8rem;
-  margin-top: 4px;
+  margin-top: 1rem;
   text-align: center;
 }
 
@@ -334,10 +341,91 @@ h1 {
   width: 15%;
 }
 
+.parrafoCalendar2 {
+  text-align: left;
+  width: 30%;
+}
+
+.parrafoCalendar1 {
+  width: 20%;
+}
+
 .calendar__Item:hover {
   -webkit-box-shadow: 0 4px 8px 0 rgba(80, 79, 79, 0.2), 0 6px 20px 0 rgba(80, 79, 79, 0.19);
           box-shadow: 0 4px 8px 0 rgba(80, 79, 79, 0.2), 0 6px 20px 0 rgba(80, 79, 79, 0.19);
   background-color: #5f5d5d;
+}
+
+.endCalendar {
+  margin-top: 10px;
+}
+
+.confirmTurnoContainer {
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  width: 100%;
+  top: 0;
+}
+
+.confirmTurno {
+  border-radius: 10px;
+  width: 75vw;
+  height: 45vh;
+  background-color: #646363;
+  opacity: 1;
+  color: white;
+}
+
+.confirmTurno p {
+  margin-top: 5px;
+}
+
+.confirmTurno::before {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding-top: 10px;
+  content: "Gestion de Reservas";
+  width: 100%;
+  height: 20%;
+  background-color: #3d3c3c;
+  display: block;
+}
+
+.datosTurno {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.buttonsConfirmTurno {
+  width: 100%;
+  height: 10vh;
+  margin-top: 5vh;
+  float: right;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.buttonsConfirmTurno button {
+  -webkit-box-shadow: 0 4px 8px 0 rgba(48, 47, 47, 0.2), 0 6px 20px 0 rgba(37, 37, 37, 0.19);
+          box-shadow: 0 4px 8px 0 rgba(48, 47, 47, 0.2), 0 6px 20px 0 rgba(37, 37, 37, 0.19);
 }
 
 .divAdmin {
@@ -424,16 +512,134 @@ h1 {
   width: 80%;
 }
 
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 920px) {
   .parrafoCalendar {
     width: 30%;
     font-size: .95rem;
   }
   .parrafoCalendar2 {
     text-align: left;
+    width: 30%;
+  }
+  .parrafoCalendar1 {
+    width: 20%;
   }
   .calendar {
-    width: 60%;
+    width: 55%;
+    margin: 7em auto;
+  }
+  .confirmTurno {
+    width: 35vw;
+    height: 35vh;
+  }
+  .buttonsConfirmTurno {
+    height: 8vh;
+  }
+  .containerNav {
+    position: absolute;
+    width: 60vw;
+    margin: 0 20vw 0 20vw;
+  }
+  .divInicio {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 80%;
+    height: 90vh;
+  }
+  .cuadro {
+    height: 40%;
+    border: 2px solid white;
+    cursor: pointer;
+    width: 30%;
+    margin-top: 15px;
+    position: relative;
+  }
+  .cuadro2 img {
+    -webkit-filter: grayscale(80%);
+            filter: grayscale(80%);
+    -webkit-filter: saturate(0%);
+            filter: saturate(0%);
+    -o-object-fit: fill;
+       object-fit: fill;
+    position: absolute;
+    -webkit-filter: blur(8px);
+            filter: blur(8px);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    -webkit-transition-duration: 1s;
+            transition-duration: 1s;
+  }
+  .cuadro2 img:hover {
+    -webkit-transition-duration: 2s;
+            transition-duration: 2s;
+    -webkit-transform: scale(1.6);
+    transform: scale(1.6);
+    -webkit-filter: grayscale(0);
+            filter: grayscale(0);
+    -webkit-filter: saturate(180%);
+            filter: saturate(180%);
+  }
+  .buttonNav {
+    width: 20%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .burgerMenu {
+    display: block;
+  }
+  .burgerOpen {
+    position: absolute;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    background-color: #131212;
+  }
+  .burgerOpen p {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    font-style: italic;
+  }
+  .burgerOpen img {
+    margin: 3em 0 2em 19em;
+    width: 10%;
+  }
+  .vencimiento {
+    display: none;
+  }
+  .closeSession {
+    display: none;
+  }
+  .lista-nav {
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    height: 3em;
+  }
+  .profile {
+    margin: unset;
   }
 }
 /*# sourceMappingURL=index.css.map */

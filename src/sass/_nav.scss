@@ -1,12 +1,14 @@
 .containerNav {
-    position: absolute;
-    width: 60vw;
-    margin: 0 20vw 0 20vw;
+    position: relative;
+    width: 100%;
+    z-index: 3;
+    // margin: 0 20vw 0 20vw;
     top:0;
     background-color: rgb(43, 34, 34);
 }
 .lista-nav{
     display:flex;
+    align-items: center;
     justify-content: space-between;
     margin: auto;
     width: 100%;
@@ -16,7 +18,6 @@
 .nav-link{
     color:white;
     font-family: 'Roboto', sans-serif;
-    z-index: 100;
 }
 .nav-link:hover{
     color: rgb(189, 186, 186);
@@ -26,12 +27,21 @@
     margin-bottom:auto;  
     list-style: none; 
 }
-.botonNav button{
-
-    height:100%
-}
-.nombre{
+.profile{
+    // width: 5%;
     margin: auto;
     color: white;
     font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+.vencimiento{
+    width: 20%;
+    font-style: italic;
+    margin: auto;
+    color: rgb(240, 47, 47) !important;
+    font-family: 'Roboto', sans-serif;
+}
+.burgerMenu{
+    display: none;
+    
 }

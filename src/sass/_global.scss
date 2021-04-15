@@ -7,12 +7,24 @@ a{
 a:hover{
     text-decoration: none !important;
 }
-.nav-lik{
-    z-index: 100;
-}
+// .nav-lik{
+//     z-index: 100;
+// }
 .flex{
     display: flex;
 }
+.center{
+    text-align: center;
+}
+.column{
+    flex-direction: column;
+}
 p{
-    margin-bottom: 0px  !important;
+    margin-bottom: 0px ;
+}
+.fondoImg{
+    background-image: url(../assets/img1.jpg);
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
 }

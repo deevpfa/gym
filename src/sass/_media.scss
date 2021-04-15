@@ -1,0 +1,104 @@
+@media screen and (min-width: 920px){
+    .parrafoCalendar{
+        width: 30%;
+        font-size: .95rem;
+        &2{
+            text-align: left;
+            width: 30%;
+        }
+        &1{
+            width: 20%;
+        }
+    }
+    .calendar{
+        width: 55%;
+        margin: 7em auto;
+    }
+    .confirmTurno{
+        width: 35vw;
+        height: 35vh;
+    }
+    .buttonsConfirmTurno{
+        height: 8vh;
+    }
+    .containerNav {
+        position: absolute;
+        width: 60vw;
+        margin: 0 20vw 0 20vw;
+    }
+    .divInicio{
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 80%;
+        height:90vh;
+    }
+    .cuadro{
+        height: 40%;
+        border: 2px solid white;
+        cursor: pointer;
+        width: 30%;
+        margin-top: 15px;
+        position: relative;
+    }
+    .cuadro2 img   {
+        filter: grayscale(80%);
+        filter:saturate(0%);
+        object-fit: fill;
+        position:absolute;
+        filter:blur(8px);
+        -webkit-transform:scale(1.2);transform:scale(1.2);
+        transition-duration: 1s; 
+    }
+    .cuadro2 img:hover{
+        transition-duration: 2s; 
+        -webkit-transform:scale(1.6);transform:scale(1.6);
+        filter: grayscale(0);
+        filter:saturate(180%);
+    }
+    .buttonNav{
+        width: 20%;
+    }
+}
+
+@media screen and (max-width: 550px){
+    .burgerMenu{
+        display: block;
+    }
+    .burgerOpen{
+        position: absolute;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        // height: 30vh;
+        background-color: rgb(19, 18, 18);
+    }
+    .burgerOpen p{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1em;
+        margin-bottom: 2em;
+        color: white;
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.2rem;
+        font-style: italic;
+    }
+    .burgerOpen img{
+        margin:3em 0 2em 19em;
+        width: 10%;
+    }
+    .vencimiento{
+        display: none;
+    }
+    .closeSession{
+        display: none;
+    }
+    .lista-nav{
+        justify-content: space-evenly;
+        height: 3em;
+    }
+    .profile{
+        margin: unset;
+    }
+}
