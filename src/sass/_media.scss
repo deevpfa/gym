@@ -16,7 +16,7 @@
     }
     .confirmTurno{
         width: 35vw;
-        height: 35vh;
+        height: 40%;
     }
     .buttonsConfirmTurno{
         height: 8vh;
@@ -58,47 +58,53 @@
     .buttonNav{
         width: 20%;
     }
-}
-
-@media screen and (max-width: 550px){
+    .whatsapp{
+        width:3em;
+        height:3em;
+        right:3em;
+        bottom:5em;
+    }
+    .divAdmin{
+        margin: 6em auto;
+    }
+    .form-container-user{
+        width: 50em;
+        margin: 6em auto;
+    }
+    .turnos-container{
+        margin-top: 6em;
+    }
+    .turnos-container h2{
+        font-size: 1.5rem;
+        font-weight: 300;
+    }
+    .turnos-container input {
+        margin-top: 4em;
+    }
+    .turnos-container button{
+        margin-top: 4em;
+    }
     .burgerMenu{
-        display: block;
-    }
-    .burgerOpen{
-        position: absolute;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        // height: 30vh;
-        background-color: rgb(19, 18, 18);
-    }
-    .burgerOpen p{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 1em;
-        margin-bottom: 2em;
-        color: white;
-        font-family: 'Roboto', sans-serif;
-        font-size: 1.2rem;
-        font-style: italic;
-    }
-    .burgerOpen img{
-        margin:3em 0 2em 19em;
-        width: 10%;
-    }
-    .vencimiento{
         display: none;
     }
     .closeSession{
-        display: none;
+        display:block;
+    }
+    .vencimiento{
+        display: block;
     }
     .lista-nav{
-        justify-content: space-evenly;
-        height: 3em;
+        height: unset;
+        justify-content: space-between;
     }
     .profile{
-        margin: unset;
+        margin: auto;
+    }
+    .divAdmin{
+        width: 30em;
+    }
+    .btn-turnos{
+        font-size: 1rem !important;
     }
 }
+

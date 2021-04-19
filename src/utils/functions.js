@@ -1,4 +1,4 @@
-import {server,gymName } from "./global";
+import { server, gymName } from "./global";
 
 /**
  * 
@@ -6,30 +6,30 @@ import {server,gymName } from "./global";
  * @param {passwordUsuario} password 
  * @returns setea el token en localstorage y devuelve true = admin o false != admin
  */
-export const userLoggin = async(usuario,password)=>{
+export const userLoggin = async (usuario, password) => {
     var respuestaFetch;
     var data = {
         usuario,
         password
     }
     await fetch(`${server}/usuarios/login`, {
-        method: 'POST', 
+        method: 'POST',
         body: JSON.stringify(data),
-        headers:{
+        headers: {
             'Content-Type': 'application/json'
         }
     })
-    .then(response => response.json()) 
-    .then(res=>{ 
-                if(res.exito){
-                    localStorage.setItem("nombre",`${res.exito.user.nombre} ${res.exito.user.apellido}`)
-                    localStorage.setItem("token",res.exito.token)
-                    respuestaFetch=false
-                }
-                else{
-                    respuestaFetch=true
-                }
-            })
+        .then(response => response.json())
+        .then(res => {
+            if (res.exito) {
+                localStorage.setItem("nombre", `${res.exito.user.nombre} ${res.exito.user.apellido}`)
+                localStorage.setItem("token", res.exito.token)
+                respuestaFetch = true
+            }
+            else {
+                respuestaFetch = false
+            }
+        })
     return respuestaFetch
 }
 /**
@@ -38,13 +38,18 @@ export const userLoggin = async(usuario,password)=>{
 export const ValidateUser = async () => {
     const valor = fetch(`${server}/usuarios/validacion`, {
         method: 'POST',
-        body: JSON.stringify({token: localStorage.getItem("token")}),
+        body: JSON.stringify({ token: localStorage.getItem("token") }),
         headers: {
             'Content-Type': 'application/json'
         }
     })
-    .then(response => response.json())
+        .then(response => response.json())
     return valor
+}
+
+export async function getData() {
+    const userData = await ValidateUser()
+    return userData
 }
 
 /**
@@ -52,7 +57,7 @@ export const ValidateUser = async () => {
  * @param {contador} contadorMax 
  * @param {useState} numeroMes 
  */
-export function contador(contadorMax,numeroMes) {
+export function contador(contadorMax, numeroMes) {
     if (numeroMes === 0 || numeroMes === 2 || numeroMes === 4 || numeroMes === 6 || numeroMes === 7 || numeroMes === 9 || numeroMes === 11) {
         contadorMax = 1
     }
@@ -77,16 +82,21 @@ export function datosClases(usuario) {
         usuario
     }
     const datos = fetch(`${server}/usuarios/clases`, {
-        method: 'POST', 
+        method: 'POST',
         body: JSON.stringify(data),
-        headers:{
+        headers: {
             'Content-Type': 'application/json'
         }
     })
-    .then(response => response.json()) 
+        .then(response => response.json())
     return datos
 }
-
+function pad(number) {
+    if (number < 10) {
+        return '0' + (number + 1);
+    }
+    return number;
+}
 
 
 let arrayTurnos = []
@@ -101,10 +111,10 @@ var hoy = new Date()
  * @param {parametro de horarios} param4 
  * @returns peticion a api para los horarios
  */
-export function turnosCalendario(diaTurnosApi,param1,param2,param3,param4) {
+export function turnosCalendario(diaTurnosApi, param1, param2, param3, param4,admin) {
     var data = {
-        claseId:param1,
-        date: `${diaTurnosApi}-${param2 + 1}-${hoy.getFullYear()}`
+        claseId: param1,
+        date: `${hoy.getFullYear()}-${pad(param2)}-${diaTurnosApi}`
     }
     fetch(`${server}/turnos/consulta`, {
         method: 'POST',
@@ -114,10 +124,19 @@ export function turnosCalendario(diaTurnosApi,param1,param2,param3,param4) {
         }
     })
         .then(response => response.json())
-        .then(data => { arrayTurnos=[]
+        .then(data => {
+            arrayTurnos = []
             data.forEach(element => { arrayTurnos.push(element) })
         })
-        .then(() => horarios(param3,param4))
+        .then(() => horarios(param3, param4,admin))
+}
+
+async function deleteClass(id) {
+    const response = fetch(`${server}/turnos/${id}`, {
+        method: 'DELETE',
+    })
+    .then(res => res.json()) 
+    window.location.reload()
 }
 
 /**
@@ -126,28 +145,36 @@ export function turnosCalendario(diaTurnosApi,param1,param2,param3,param4) {
  * @param {useState} setTurno 
  * @returns crear los horarios en el calendario
  */
-export function horarios(horasRef,setTurno) {
+export function horarios(horasRef, setTurno,admin) {
     horasRef.current.innerHTML = ""
+    let adminState
+    
+    if(admin===true) adminState=1
     for (let i = 0; i < arrayTurnos.length; i++) {
         let element = arrayTurnos[i]
         let p = document.createElement("p")
         let p2 = document.createElement("p")
         let p3 = document.createElement("p")
         let div = document.createElement('div')
+        let button = document.createElement("button")
+        button.innerHTML = "BORRAR"
+        button.classList.add("btn","btn-danger","btn-turnos")
+        button.setAttribute("id" , element.id)
         div.classList.add("calendar__Item")
         p.classList.add("parrafoCalendar", "parrafoCalendar2")
         p2.classList.add("parrafoCalendar", "parrafoCalendar1")
         p3.classList.add("parrafoCalendar", "parrafoCalendar3")
         p.innerHTML = `Disponibles: ${element.disponibles}`
-        
         p3.innerHTML = `${element.horarios}:00 `
-        div.onclick = (e) => seleccionaTurno(e.target,horasRef,setTurno)
+        button.onclick= (e) => {e.stopPropagation(); deleteClass(e.target.id);}
+        div.onclick = (e) => seleccionaTurno(e.target, horasRef, setTurno)
         div.appendChild(p3)
         div.appendChild(p)
-        if(element.teacher) {
+        if (element.teacher) {
             p2.innerHTML = `${element.teacher}`
             div.appendChild(p2)
-        } 
+        }
+        if(adminState===1) div.appendChild(button)
         horasRef.current.appendChild(div)
     }
 }
@@ -159,7 +186,7 @@ export function horarios(horasRef,setTurno) {
  * @param {useState} setTurno 
  * @returns setea los hover de los horarios
  */
-export function seleccionaTurno(e,horasRef,setTurno) {
+export function seleccionaTurno(e, horasRef, setTurno) {
     let arrayChilds = horasRef.current.childNodes
     arrayChilds.forEach(element => {
         element.style.background = 'transparent'
@@ -173,15 +200,15 @@ export function seleccionaTurno(e,horasRef,setTurno) {
     setTurno(e)
 }
 
-export function crearClases(ref,arrayClases,history) {
+export function crearClases(ref, arrayClases,history) {
     ref.current.innerHTML = ""
     for (let i = 0; i < arrayClases.length; i++) {
         const element = arrayClases[i];
         let div = document.createElement("div")
         let img = document.createElement("img")
         let p = document.createElement("p")
-        div.classList.add("cuadro","cuadro2")
-        div.onclick = ()=>{history.push(`/calendar/${element.id}`)}
+        div.classList.add("cuadro", "cuadro2")
+        div.onclick = () => { history.push(`/calendar/${element.id}`) }
         p.innerHTML = element.clase.toUpperCase()
         img.classList.add("noImg")
         img.src = element.img
@@ -193,39 +220,39 @@ export function crearClases(ref,arrayClases,history) {
 
 export function capitalize(word) {
     return word[0].toUpperCase() + word.slice(1);
-  }
-  
-let arrayClases = []
-export async function obtenerClases(ref) {
-    await fetch(`${server}/clases`)
-    .then(response => response.json()) 
-    .then(data => { arrayClases=[]
-        data.forEach(element => arrayClases.push(element))
-    })
-    .then(()=> crearCheckbox(ref))
 }
 
-function crearCheckbox(ref) {
-    console.log(arrayClases);
+let arrayClases = []
+export async function obtenerClases(ref,arrayClasesUser) {
+    await fetch(`${server}/clases`)
+        .then(response => response.json())
+        .then(data => {
+            arrayClases = []
+            data.forEach(element => arrayClases.push(element))
+        })
+        .then(() => crearCheckbox(ref,arrayClasesUser))
+}
+
+function crearCheckbox(ref,arrayClasesUser) {
     for (let i = 0; i < arrayClases.length; i++) {
         const element = arrayClases[i];
         let input = document.createElement("input")
         let p = document.createElement("p")
-        input.setAttribute("ref", `checkbox${(i+1)}Ref`)
         input.setAttribute("type", "checkbox")
-        input.setAttribute("name", i+1)
-        p.innerHTML= capitalize(element.clase)
+        input.setAttribute("id", i + 1)
+        input.onclick = (e)=>{arrayClasesUser.push(e.target.id)}
+        p.innerHTML = capitalize(element.clase)
         ref.current.appendChild(input)
         ref.current.appendChild(p)
     }
 }
 
-export function bookShift(hook,setHook,ref,nombreClase) {
-    ref.current.style.opacity= "0.6"
+export function bookShift(hook, setHook, ref, nombreClase) {
+    ref.current.style.opacity = "0.6"
     document.body.style.overflow = "hidden"
-    return  <div className="confirmTurnoContainer" id="containerTurno" data-aos="flip-down">
-            <div className="confirmTurno">
-                <p>¿Deseas Reservar el siguiente turno?</p>
+    return <div className="confirmTurnoContainer" id="containerTurno" data-aos="flip-down">
+        <div className="confirmTurno">
+            <p>¿Deseas Reservar el siguiente turno?</p>
             <div className="datosTurno">
                 <p>{gymName}</p>
                 <p> {capitalize(nombreClase)}</p>
@@ -233,15 +260,15 @@ export function bookShift(hook,setHook,ref,nombreClase) {
                 <p>{hook.lastChild.textContent}</p>
             </div>
             <div className="buttonsConfirmTurno">
-                <button className="btn btn-secondary" onClick= {()=> {setHook("") ;document.body.style.overflow = "";ref.current.style.opacity= "1"}}>CERRAR</button>
+                <button className="btn btn-secondary" onClick={() => { setHook(""); document.body.style.overflow = ""; ref.current.style.opacity = "1" }}>CERRAR</button>
                 <button className="btn btn-success">RESERVAR</button>
             </div>
-            </div>
-            </div>
-            
+        </div>
+    </div>
+
 }
 
-export  function setDays(expiration) {
-    let newDate = new Date(expiration) 
-    return ((newDate.getTime() -  hoy.getTime())/86400000).toString().split('.')[0]
+export function setDays(expiration) {
+    let newDate = new Date(expiration)
+    return ((newDate.getTime() - hoy.getTime()) / 86400000).toString().split('.')[0]
 }

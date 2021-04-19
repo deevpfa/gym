@@ -1,24 +1,24 @@
 .form-container-user{
     width: 50em;
-    margin: auto;
+    margin: 4em auto;
     display: flex;
     justify-content:space-around;
     flex-wrap: wrap;
     height:60vh;
-    // width:70%;
 }
 .checkbox{
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     color: white;
 }
 .checkbox input{
-    margin: auto;
+    margin: auto 0 auto 0 ;
     cursor: pointer;
     width: 8% !important;
 }
 .checkbox p{
-    margin: auto;
+    margin: auto 0 auto 0 ;
 }
 .form-container-user input{
     width: 70%;

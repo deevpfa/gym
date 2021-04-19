@@ -1,13 +1,13 @@
 .divAdmin{
-    margin: auto;
+    margin: 4em 1em auto 1em;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     height: 60vh;
-    width: 30em;
 }
 .divAdmin div{
     height: 10vh;
+    font-family: $font;
 }
 .divAdmin div button{
     height: 100%;

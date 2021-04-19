@@ -1,21 +1,22 @@
 import React, { useRef, useState, useEffect} from 'react'
-import {contador,turnosCalendario,bookShift} from '../utils/functions'
+import {contador,turnosCalendario,bookShift,getData} from '../utils/functions'
 import { useParams } from "react-router-dom";
 import { server } from "../utils/global";
 import Nav from "./Nav";
+import WhatsApp from "./WhatsApp";
+
 
 
 const Calendar = () => {
+    async function loadButton() {
+        getData().then((res)=>{setAdmin(res.isAdmin);turnosCalendario(diaTurnosApi,clase,numeroMes,horasRef,setTurno,res.isAdmin)})
+    }
     const {clase} = useParams()
     const [tope, setTope] = useState(0)
+    const [admin, setAdmin] = useState()
     useEffect(() => {
         contador(contadorMax,numeroMes)
-        turnosCalendario(diaTurnosApi,clase,numeroMes,horasRef,setTurno)
-        async function obtenerClase() {
-            const nombreClase = await fetch(`${server}/clases/claseId/${clase}`)
-            .then(response => response.json()) 
-            setNombreClase(nombreClase)
-        }
+        loadButton()
         obtenerClase()
     }, [])
     const horasRef = useRef(null)
@@ -29,6 +30,11 @@ const Calendar = () => {
     const [numeroDia, setNumeroDia] = useState(hoy.getDate())
     var diaTurnosApi = hoy.getDate() 
     const [numeroMes, setNumeroMes] = useState(hoy.getMonth())
+    async function obtenerClase() {
+        const nombreClase = await fetch(`${server}/clases/claseId/${clase}`)
+        .then(response => response.json()) 
+        setNombreClase(nombreClase)
+    }
     let contadorMax = 1
     function aumentarDia() {
         if (tope < 1) {
@@ -56,7 +62,7 @@ const Calendar = () => {
                 
             }
             
-            turnosCalendario(diaTurnosApi,clase,numeroMes,horasRef,setTurno)
+            turnosCalendario(diaTurnosApi,clase,numeroMes,horasRef,setTurno,admin)
             
         }
         else {}
@@ -86,7 +92,7 @@ const Calendar = () => {
                 setNumeroDia(numeroDia -1)
             }
 
-            turnosCalendario(diaTurnosApi,clase,numeroMes,horasRef,setTurno)
+            turnosCalendario(diaTurnosApi,clase,numeroMes,horasRef,setTurno,admin)
         }
         else { }
     }
@@ -111,6 +117,7 @@ const Calendar = () => {
             {
                 turno !== "" ? bookShift(turno,setTurno,containerAllRef,nombreClase) : ""
             }
+            <WhatsApp/>
         </div>
     )
 }

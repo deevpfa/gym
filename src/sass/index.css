@@ -28,6 +28,10 @@ a:hover {
           flex-direction: column;
 }
 
+.none {
+  display: none;
+}
+
 p {
   margin-bottom: 0px;
 }
@@ -43,7 +47,7 @@ p {
 
 body {
   background-color: black !important;
-  font-family: 'Roboto', sans-serif !important;
+  font-family: "Courier New", Courier, monospace;
   background-image: url(../assets/img1.jpg);
   background-position: center;
   /* Center the image */
@@ -61,16 +65,27 @@ body {
   background-color: #2b2222;
 }
 
+.letterAdmin a {
+  font-style: italic;
+  font-family: "Courier New", Courier, monospace;
+  color: white;
+}
+
+.letterAdmin a:hover {
+  color: #818181;
+}
+
 .lista-nav {
+  height: 3em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   margin: auto;
   width: 100%;
   -webkit-padding-start: 0;
@@ -80,7 +95,7 @@ body {
 
 .nav-link {
   color: white;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .nav-link:hover {
@@ -94,22 +109,67 @@ body {
 }
 
 .profile {
-  margin: auto;
   color: white;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Courier New", Courier, monospace;
   text-align: center;
 }
 
+.closeSession {
+  display: none;
+}
+
 .vencimiento {
+  display: none;
   width: 20%;
   font-style: italic;
   margin: auto;
   color: #f02f2f !important;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .burgerMenu {
-  display: none;
+  display: block;
+}
+
+.burgerOpen {
+  position: absolute;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: #131212;
+}
+
+.burgerOpen a {
+  color: white;
+}
+
+.burgerOpen p {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 1em;
+  margin-bottom: 2em;
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+.burgerOpen img {
+  margin: 3em 0 2em 19em;
+  width: 10%;
 }
 
 .divLogin {
@@ -150,7 +210,7 @@ body {
 }
 
 .form-container-login input {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .form-container-login img {
@@ -159,26 +219,26 @@ body {
 }
 
 .form-container-login input::-webkit-input-placeholder {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .form-container-login input:-ms-input-placeholder {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .form-container-login input::-ms-input-placeholder {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .form-container-login input::placeholder {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .invalid {
   color: #ee3333;
   font-size: 15px;
   font-weight: bold;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .containerInicio {
@@ -209,7 +269,7 @@ h1 {
   color: white;
   padding-top: 3%;
   z-index: 5;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Courier New", Courier, monospace;
   letter-spacing: 5px;
 }
 
@@ -231,11 +291,12 @@ h1 {
 }
 
 .cuadro p {
-  color: #0d0135;
+  color: #340249;
   font-size: 20px;
   z-index: 2;
   letter-spacing: 3px;
   font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
   margin-block: 0px;
 }
 
@@ -248,8 +309,9 @@ h1 {
      object-fit: fill;
   position: absolute;
   width: 100%;
-  -webkit-filter: blur(4px);
-          filter: blur(4px);
+  -webkit-filter: blur(3px);
+          filter: blur(3px);
+  opacity: 1;
 }
 
 .calendar {
@@ -379,7 +441,7 @@ h1 {
 .confirmTurno {
   border-radius: 10px;
   width: 75vw;
-  height: 45vh;
+  height: 45%;
   background-color: #646363;
   opacity: 1;
   color: white;
@@ -429,7 +491,7 @@ h1 {
 }
 
 .divAdmin {
-  margin: auto;
+  margin: 4em 1em auto 1em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -440,11 +502,11 @@ h1 {
   -ms-flex-pack: distribute;
       justify-content: space-around;
   height: 60vh;
-  width: 30em;
 }
 
 .divAdmin div {
   height: 10vh;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .divAdmin div button {
@@ -454,7 +516,7 @@ h1 {
 
 .form-container-user {
   width: 50em;
-  margin: auto;
+  margin: 4em auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -469,6 +531,8 @@ h1 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -476,13 +540,13 @@ h1 {
 }
 
 .checkbox input {
-  margin: auto;
+  margin: auto 0 auto 0;
   cursor: pointer;
   width: 8% !important;
 }
 
 .checkbox p {
-  margin: auto;
+  margin: auto 0 auto 0;
 }
 
 .form-container-user input {
@@ -512,6 +576,65 @@ h1 {
   width: 80%;
 }
 
+.turnos-container {
+  margin: 4em auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.turnos-container h2 {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.1rem;
+  color: white;
+  font-weight: 200;
+}
+
+.btn-turnos {
+  font-size: 0.7rem !important;
+}
+
+.turnos-container input {
+  color: white;
+  margin-top: 2em;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.turnos-container button {
+  margin-top: 2em;
+  font-family: "Courier New", Courier, monospace;
+  width: 7em;
+}
+
+.whatsapp {
+  display: block;
+  width: 2em;
+  height: 2em;
+  color: #fff;
+  position: fixed;
+  right: 1em;
+  bottom: 3em;
+  border-radius: 50%;
+  line-height: 80px;
+  text-align: center;
+  z-index: 999;
+}
+
+.whatsapp img {
+  width: 100%;
+  height: 100%;
+}
+
 @media screen and (min-width: 920px) {
   .parrafoCalendar {
     width: 30%;
@@ -530,7 +653,7 @@ h1 {
   }
   .confirmTurno {
     width: 35vw;
-    height: 35vh;
+    height: 40%;
   }
   .buttonsConfirmTurno {
     height: 8vh;
@@ -586,60 +709,55 @@ h1 {
   .buttonNav {
     width: 20%;
   }
-}
-
-@media screen and (max-width: 550px) {
+  .whatsapp {
+    width: 3em;
+    height: 3em;
+    right: 3em;
+    bottom: 5em;
+  }
+  .divAdmin {
+    margin: 6em auto;
+  }
+  .form-container-user {
+    width: 50em;
+    margin: 6em auto;
+  }
+  .turnos-container {
+    margin-top: 6em;
+  }
+  .turnos-container h2 {
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
+  .turnos-container input {
+    margin-top: 4em;
+  }
+  .turnos-container button {
+    margin-top: 4em;
+  }
   .burgerMenu {
-    display: block;
-  }
-  .burgerOpen {
-    position: absolute;
-    width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    background-color: #131212;
-  }
-  .burgerOpen p {
-    width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    margin-top: 1em;
-    margin-bottom: 2em;
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.2rem;
-    font-style: italic;
-  }
-  .burgerOpen img {
-    margin: 3em 0 2em 19em;
-    width: 10%;
-  }
-  .vencimiento {
     display: none;
   }
   .closeSession {
-    display: none;
+    display: block;
+  }
+  .vencimiento {
+    display: block;
   }
   .lista-nav {
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
-    height: 3em;
+    height: unset;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
   }
   .profile {
-    margin: unset;
+    margin: auto;
+  }
+  .divAdmin {
+    width: 30em;
+  }
+  .btn-turnos {
+    font-size: 1rem !important;
   }
 }
 /*# sourceMappingURL=index.css.map */

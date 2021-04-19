@@ -1,0 +1,17 @@
+.whatsapp{
+    display:block;
+    width:2em;
+    height:2em;
+    color:#fff;
+    position: fixed;
+    right:1em;
+    bottom:3em;
+    border-radius:50%;
+    line-height:80px;
+    text-align:center;
+    z-index:999;
+}
+.whatsapp img{
+    width: 100%;
+    height: 100%;
+}

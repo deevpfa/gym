@@ -2,14 +2,22 @@
     position: relative;
     width: 100%;
     z-index: 3;
-    // margin: 0 20vw 0 20vw;
     top:0;
     background-color: rgb(43, 34, 34);
 }
+.letterAdmin a{
+    font-style: italic;
+    font-family: $font;
+    color: white;
+}
+.letterAdmin a:hover{
+    color: rgb(129, 129, 129);
+}
 .lista-nav{
+    height: 3em;
     display:flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin: auto;
     width: 100%;
     padding-inline-start: 0;
@@ -17,7 +25,7 @@
 }
 .nav-link{
     color:white;
-    font-family: 'Roboto', sans-serif;
+    font-family: $font;
 }
 .nav-link:hover{
     color: rgb(189, 186, 186);
@@ -28,20 +36,47 @@
     list-style: none; 
 }
 .profile{
-    // width: 5%;
-    margin: auto;
     color: white;
-    font-family: 'Roboto', sans-serif;
+    font-family: $font;
     text-align: center;
 }
+.closeSession{
+    display: none;
+}
 .vencimiento{
+    display: none;
     width: 20%;
     font-style: italic;
     margin: auto;
     color: rgb(240, 47, 47) !important;
-    font-family: 'Roboto', sans-serif;
+    font-family: $font;
 }
 .burgerMenu{
-    display: none;
-    
+    display: block;   
+}
+.burgerOpen{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(19, 18, 18);
+}
+.burgerOpen a{
+    color: white;
+}
+.burgerOpen p{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    color: white;
+    font-family: $font;
+    font-size: 1.2rem;
+    font-style: italic;
+}
+.burgerOpen img{
+    margin:3em 0 2em 19em;
+    width: 10%;
 }

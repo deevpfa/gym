@@ -1,0 +1,26 @@
+.turnos-container{
+    margin: 4em auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.turnos-container h2{
+    font-family: $font;
+    font-size: 1.1rem;
+    color: white;
+    font-weight: 200;
+}
+.btn-turnos{
+    font-size: 0.7rem !important;
+}
+.turnos-container input {
+    color: white;
+    margin-top: 2em;
+    font-family: $font;
+}
+.turnos-container button{
+    margin-top: 2em;
+    font-family: $font;
+    width: 7em;
+}
