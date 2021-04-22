@@ -11,6 +11,9 @@ const Calendar = () => {
     async function loadButton() {
         getData().then((res)=>{setAdmin(res.isAdmin);turnosCalendario(diaTurnosApi,clase,numeroMes,horasRef,setTurno,res.isAdmin)})
     }
+    // setTimeout(() => {
+    //     window.location.reload()
+    // }, 100000);
     const {clase} = useParams()
     const [tope, setTope] = useState(0)
     const [admin, setAdmin] = useState()
@@ -96,6 +99,9 @@ const Calendar = () => {
         }
         else { }
     }
+
+
+
     return (
 
         <div>

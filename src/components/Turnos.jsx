@@ -4,7 +4,7 @@ import { server } from "../utils/global";
 import xlsx from 'xlsx'
 
 const Turnos = () => {
-    const [datosExcel,setDatosExcel] = useState()
+    // const [datosExcel,setDatosExcel] = useState()
     const [archivos,setArchivos] = useState()
     const subirArchivos = e =>{setArchivos(e)}
     async function addFile() {
@@ -18,8 +18,7 @@ const Turnos = () => {
             var data ={
                 datosExcel
             }
-            console.log(data);
-            const respuesta =  fetch(`${server}/turnos/agregarTurno`, {
+            fetch(`${server}/turnos/agregarTurno`, {
                 method: 'POST', 
                 body: JSON.stringify(data),
                 headers:{
@@ -27,15 +26,17 @@ const Turnos = () => {
                 }
             })
             .then(response => response.json()) 
-            return respuesta
-        }}
+            .then(res => { res.error ? alert("Ha ocurrido un error, vuelve a intentarlo") : alert("Cargado con exito")
+                if(window.confirm) window.location.reload()
+            })
+    }}
     return (
         <div>
             <Nav/>
             <div className="turnos-container">
                 <h2>Elija el archivo excel a subir:</h2>
                 <input type="file" accept=".xlsx" name="files" onChange={(e)=>subirArchivos(e.target.files[0])} />
-                <button className="btn btn-success" onClick={()=> addFile()}>Cargar</button>
+                <button className="btn btn-success" onClick={()=> addFile()}>CARGAR</button>
             </div>
         </div>
     )

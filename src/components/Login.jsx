@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { userLoggin } from '../utils/functions'
 import { useHistory } from "react-router-dom";
+import logo from "../assets/logo3.png";
 
 
 const Login = () => {
@@ -11,6 +12,9 @@ const Login = () => {
     const passwordRef = useRef(null)
     return (
         <div className="m-auto divLogin">
+            <div className="logoLogin">
+                <img src={logo} alt=""/>
+            </div>
             <form className="form-group form-container-login" data-aos="zoom-in">
                 <input ref={usuarioRef} className="form-control" placeholder="USUARIO" type="text" />
                 <input ref={passwordRef} className="form-control mt-3" placeholder="PASSWORD" type="password" />

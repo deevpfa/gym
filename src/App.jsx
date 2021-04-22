@@ -8,8 +8,10 @@ import Inicio from "./components/Inicio";
 import Calendar from "./components/Calendar";
 import Admin from "./components/Admin";
 import Profile from "./components/Profile";
+import AddClass from "./components/AddClass";
 import Turnos from "./components/Turnos";
 import CrearUsuario from "./components/CrearUsuario";
+import ViewReservas from "./components/ViewReservas";
 import { UserContext } from "./components/UserContext";
 
 
@@ -22,7 +24,6 @@ function App() {
   useEffect(() => {
     Aos.init()
   }, [])
-  let history = useHistory(null);
   const [user,setUser] = useState()
   const providerValue = useMemo(()=>({user,setUser}),[user,setUser])
   
@@ -33,8 +34,10 @@ function App() {
           <UserContext.Provider value={providerValue}>
             <Route path="/calendar/:clase" component={Calendar}></Route>
             <Route path="/admin" component={Admin}></Route>
+            <Route path="/viewReservas" component={ViewReservas}></Route>
             <Route path="/inicio" component={Inicio}></Route>
             <Route path="/crearUsuario" component={CrearUsuario}></Route>
+            <Route path="/addclass" component={AddClass}></Route>
             <Route path="/profile" component={Profile}></Route>
             <Route path="/turnos" component={Turnos}></Route>
             <Route exact path="/" component={Login}></Route>

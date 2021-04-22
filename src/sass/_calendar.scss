@@ -1,9 +1,11 @@
 
 .calendar{
+    border-radius: 10px;
     background-color: rgb(34, 33, 33);
     width:100%;
     display: flex;
     flex-wrap:wrap;
+    flex-direction: column;
     justify-content: center;
     margin: 4em auto;
     color: white;
@@ -15,6 +17,7 @@
         padding:  0 2em;
         font-size: 1.2em;
         text-transform: uppercase;
+        font-family: $font;
     }
     &__Prev, &__Next{
         color: rgb(241, 240, 240);
@@ -36,7 +39,7 @@
         flex-wrap: wrap;
         margin: 15px 10px 0px 10px;
         cursor: pointer;
-        // height:21em;
+        font-family: $font;
     }
     &__Item{
         width: 100%;
@@ -48,11 +51,13 @@
         text-align:left;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         font-size:1rem;
+        
     }
     
 }
 .parrafoCalendar{
     width: 35%;
+    font-family: $font;
     font-size: .8rem;
     margin-top: 1rem;
     text-align: center;
@@ -62,7 +67,7 @@
     }
     &2{
         text-align: left;
-        width: 30%;
+        width: 33%;
     }
     &1{
         width: 20%;

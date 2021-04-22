@@ -91,6 +91,25 @@ export function datosClases(usuario) {
         .then(response => response.json())
     return datos
 }
+
+async function deleteTurno(id) {
+    await fetch(`${server}/turnos/${id}`, {
+        method: 'DELETE',
+    })
+    .then(res => res.json()) 
+    window.location.reload()
+}
+
+async function deleteReservation(id) {
+    await fetch(`${server}/turnos/reservation/${id}`, {
+        method: 'DELETE',
+    })
+    .then(res => res.json()) 
+    window.location.reload()
+}
+
+
+
 function pad(number) {
     if (number < 10) {
         return '0' + (number + 1);
@@ -99,9 +118,10 @@ function pad(number) {
 }
 
 
+
 let arrayTurnos = []
 var hoy = new Date()
-
+let reservation
 
 /**
  * 
@@ -111,12 +131,13 @@ var hoy = new Date()
  * @param {parametro de horarios} param4 
  * @returns peticion a api para los horarios
  */
-export function turnosCalendario(diaTurnosApi, param1, param2, param3, param4,admin) {
+export async function turnosCalendario(diaTurnosApi, param1, param2, param3, param4,admin) {
     var data = {
+        token:localStorage.getItem("token"),
         claseId: param1,
         date: `${hoy.getFullYear()}-${pad(param2)}-${diaTurnosApi}`
     }
-    fetch(`${server}/turnos/consulta`, {
+    await fetch(`${server}/turnos/consulta`, {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
@@ -126,18 +147,17 @@ export function turnosCalendario(diaTurnosApi, param1, param2, param3, param4,ad
         .then(response => response.json())
         .then(data => {
             arrayTurnos = []
-            data.forEach(element => { arrayTurnos.push(element) })
+            data.turno.forEach(e => { arrayTurnos.push(e) })
+            reservation=false
+            data.turno.forEach(e => e.id === data.reservacion ? reservation = data.reservacion : "")
+            
         })
-        .then(() => horarios(param3, param4,admin))
+        .then(() => {
+            horarios(param3, param4,admin)
+        })
 }
 
-async function deleteClass(id) {
-    const response = fetch(`${server}/turnos/${id}`, {
-        method: 'DELETE',
-    })
-    .then(res => res.json()) 
-    window.location.reload()
-}
+
 
 /**
  * 
@@ -148,7 +168,6 @@ async function deleteClass(id) {
 export function horarios(horasRef, setTurno,admin) {
     horasRef.current.innerHTML = ""
     let adminState
-    
     if(admin===true) adminState=1
     for (let i = 0; i < arrayTurnos.length; i++) {
         let element = arrayTurnos[i]
@@ -156,25 +175,48 @@ export function horarios(horasRef, setTurno,admin) {
         let p2 = document.createElement("p")
         let p3 = document.createElement("p")
         let div = document.createElement('div')
-        let button = document.createElement("button")
-        button.innerHTML = "BORRAR"
-        button.classList.add("btn","btn-danger","btn-turnos")
-        button.setAttribute("id" , element.id)
         div.classList.add("calendar__Item")
+        div.setAttribute("id",element.id)
         p.classList.add("parrafoCalendar", "parrafoCalendar2")
         p2.classList.add("parrafoCalendar", "parrafoCalendar1")
         p3.classList.add("parrafoCalendar", "parrafoCalendar3")
+        if(element.disponibles<=0){
+            div.style.cursor = "not-allowed"
+            div.style.opacity = "0.2"
+        }
+        else{
+            div.onclick = (e) => seleccionaTurno(e.target, horasRef, setTurno)
+        }
         p.innerHTML = `Disponibles: ${element.disponibles}`
         p3.innerHTML = `${element.horarios}:00 `
-        button.onclick= (e) => {e.stopPropagation(); deleteClass(e.target.id);}
-        div.onclick = (e) => seleccionaTurno(e.target, horasRef, setTurno)
         div.appendChild(p3)
         div.appendChild(p)
         if (element.teacher) {
-            p2.innerHTML = `${element.teacher}`
+            p2.innerHTML = capitalize(`${element.teacher}`);
             div.appendChild(p2)
         }
-        if(adminState===1) div.appendChild(button)
+        if(adminState===1){
+            let button = document.createElement("button")
+            button.innerHTML = "BORRAR"
+            button.classList.add("btn","btn-danger","btn-turnos")
+            button.setAttribute("id" , element.id)
+            button.onclick= (e) => {e.stopPropagation(); deleteTurno(e.target.id);}
+            div.appendChild(button)
+        }
+        if(reservation!==false) {
+            div.style.cursor = "not-allowed"
+            div.style.opacity = "0.2"
+            if(reservation===element.id){
+                div.style.cursor = "pointer"
+                div.style.opacity = "1"
+                let button = document.createElement("button")
+                button.innerHTML = "CANCELAR"
+                button.classList.add("btn","btn-danger","btn-turnos")
+                button.setAttribute("id" , element.id)
+                button.onclick= (e) => {e.stopPropagation(); deleteReservation(e.target.id)}
+                div.appendChild(button)
+            }
+        }
         horasRef.current.appendChild(div)
     }
 }
@@ -228,7 +270,7 @@ export async function obtenerClases(ref,arrayClasesUser) {
         .then(response => response.json())
         .then(data => {
             arrayClases = []
-            data.forEach(element => arrayClases.push(element))
+            data.forEach(e => arrayClases.push(e))
         })
         .then(() => crearCheckbox(ref,arrayClasesUser))
 }
@@ -247,6 +289,8 @@ function crearCheckbox(ref,arrayClasesUser) {
     }
 }
 
+
+
 export function bookShift(hook, setHook, ref, nombreClase) {
     ref.current.style.opacity = "0.6"
     document.body.style.overflow = "hidden"
@@ -257,15 +301,31 @@ export function bookShift(hook, setHook, ref, nombreClase) {
                 <p>{gymName}</p>
                 <p> {capitalize(nombreClase)}</p>
                 <p>{hook.firstChild.textContent}hs</p>
-                <p>{hook.lastChild.textContent}</p>
+                <p>{hook.childNodes[2].textContent}</p>
             </div>
             <div className="buttonsConfirmTurno">
                 <button className="btn btn-secondary" onClick={() => { setHook(""); document.body.style.overflow = ""; ref.current.style.opacity = "1" }}>CERRAR</button>
-                <button className="btn btn-success">RESERVAR</button>
+                <button className="btn btn-success" onClick={()=>bookConfirm(hook.id,localStorage.getItem("token"))}>RESERVAR</button>
             </div>
         </div>
     </div>
 
+}
+
+async function bookConfirm(idTurno,token) {
+    var data = {
+        idTurno,
+        token
+    }
+    await fetch(`${server}/turnos/bookConfirm`, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .then(data => data.success ? window.location.reload() : "")
 }
 
 export function setDays(expiration) {

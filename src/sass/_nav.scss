@@ -3,7 +3,15 @@
     width: 100%;
     z-index: 3;
     top:0;
-    background-color: rgb(43, 34, 34);
+    background: linear-gradient(#272727, #0f0f0f);;
+}
+.spanIcon{
+    width: 3em;
+    height: 2px;
+    background-color: white;
+    position: absolute;
+    bottom: 6px;
+    margin-left: -2.2em;
 }
 .letterAdmin a{
     font-style: italic;
@@ -31,18 +39,13 @@
     color: rgb(189, 186, 186);
 }
 .lista-nav li{
-    margin-top: auto;
-    margin-bottom:auto;  
+    margin-top: auto 0 auto 0; 
     list-style: none; 
-}
-.profile{
-    color: white;
-    font-family: $font;
-    text-align: center;
 }
 .closeSession{
     display: none;
 }
+
 .vencimiento{
     display: none;
     width: 20%;
@@ -50,6 +53,11 @@
     margin: auto;
     color: rgb(240, 47, 47) !important;
     font-family: $font;
+}
+.nombreNav{
+    color: white;
+    font-family: $font;
+    display: none;
 }
 .burgerMenu{
     display: block;   
@@ -59,7 +67,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    background-color: rgb(19, 18, 18);
+    background-color: #130e0e;
 }
 .burgerOpen a{
     color: white;

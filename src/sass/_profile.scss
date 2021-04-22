@@ -1,0 +1,73 @@
+.map-container{
+    margin: 7em auto 0 auto;
+}
+.profile-container{
+    margin: 7em auto 0 auto;
+}
+.profile-container h2{
+    font-size: 1.4rem;
+    color: white;
+    font-family: $font;
+    text-align: left;
+    margin: 0 0 1em 10vw;;
+}
+.map{
+    width: 80vw;
+    height: 40vh;
+}
+.reservationList{
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    font-family: $font;
+}
+.reservationList div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+.reservationList input{
+    width: 100vw;
+    margin: 1em 45% 2em 45%;
+}
+.reservationList p{
+    font-family: $font;
+    letter-spacing: 2.5px;
+    font-size: 0.9rem;
+}
+.parrafoList{
+    font-size: 0.7rem !important;
+    font-style: italic;
+}
+input[type=date] {
+    font-size: 0.95rem;
+  text-transform: uppercase;;
+  outline: none;
+  border: 0;
+  border-radius: 3px;
+  padding: 0 3px;
+  height: 2em;
+}
+
+input[type=date]::-webkit-clear-button {
+
+  font-size: 18px;
+  height: 30px;
+  position: relative;
+  right: 5px;
+  margin-right: 4px;
+}
+input[type=date]::-webkit-inner-spin-button {
+  height: 30px;
+}
+input[type=date]::-webkit-calendar-picker-indicator {
+  font-size: 18px;
+}
+input[type=date]::-webkit-calendar-picker-indicator:hover {
+  background-color: #cecccc;
+  color: #e6e6e6;
+  cursor: pointer;
+}

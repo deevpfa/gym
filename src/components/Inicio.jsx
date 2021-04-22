@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef, useContext } from 'react'
+import React, { useState, useEffect, useRef} from 'react'
 import Nav from "./Nav";
+import Footer from "./Footer";
 import WhatsApp from "./WhatsApp";
 import { useHistory } from "react-router-dom";
 import { decodeToken } from "react-jwt";
@@ -31,9 +32,10 @@ const Inicio = () => {
     const token = decodeToken(localStorage.getItem("token"))
     return (
         <div className="containerInicio">
-            <Nav />
+            <Nav active="home"/>
             <div className="divInicio" ref={clasesRef}></div>
             <WhatsApp />
+            <Footer/>
         </div>
     )
 }

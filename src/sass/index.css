@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Antonio:wght@300;400;700&display=swap");
 root {
   font-size: 16px;
 }
@@ -45,9 +46,29 @@ p {
   background-size: cover;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #646363;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #3d3c3c;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #3d3c3c;
+}
+
 body {
   background-color: black !important;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Roboto", sans-serif;
   background-image: url(../assets/img1.jpg);
   background-position: center;
   /* Center the image */
@@ -55,6 +76,8 @@ body {
   /* Do not repeat the image */
   background-size: cover;
   height: 100%;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
 .containerNav {
@@ -62,12 +85,22 @@ body {
   width: 100%;
   z-index: 3;
   top: 0;
-  background-color: #2b2222;
+  background: -webkit-gradient(linear, left top, left bottom, from(#272727), to(#0f0f0f));
+  background: linear-gradient(#272727, #0f0f0f);
+}
+
+.spanIcon {
+  width: 3em;
+  height: 2px;
+  background-color: white;
+  position: absolute;
+  bottom: 6px;
+  margin-left: -2.2em;
 }
 
 .letterAdmin a {
   font-style: italic;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Roboto", sans-serif;
   color: white;
 }
 
@@ -95,7 +128,7 @@ body {
 
 .nav-link {
   color: white;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Roboto", sans-serif;
 }
 
 .nav-link:hover {
@@ -103,15 +136,8 @@ body {
 }
 
 .lista-nav li {
-  margin-top: auto;
-  margin-bottom: auto;
+  margin-top: auto 0 auto 0;
   list-style: none;
-}
-
-.profile {
-  color: white;
-  font-family: "Courier New", Courier, monospace;
-  text-align: center;
 }
 
 .closeSession {
@@ -124,7 +150,13 @@ body {
   font-style: italic;
   margin: auto;
   color: #f02f2f !important;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Roboto", sans-serif;
+}
+
+.nombreNav {
+  color: white;
+  font-family: "Roboto", sans-serif;
+  display: none;
 }
 
 .burgerMenu {
@@ -141,7 +173,7 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background-color: #131212;
+  background-color: #130e0e;
 }
 
 .burgerOpen a {
@@ -162,7 +194,7 @@ body {
   margin-top: 1em;
   margin-bottom: 2em;
   color: white;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Roboto", sans-serif;
   font-size: 1.2rem;
   font-style: italic;
 }
@@ -182,6 +214,10 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -189,6 +225,17 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   z-index: -1;
+}
+
+.logoLogin {
+  width: 10em;
+  height: 10em;
+  margin-top: 30px auto;
+}
+
+.logoLogin img {
+  width: 100%;
+  height: 100%;
 }
 
 .form-container-login {
@@ -202,15 +249,13 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   width: 15em;
   height: 20em;
+  margin-top: 2em;
 }
 
 .form-container-login input {
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Roboto", sans-serif;
 }
 
 .form-container-login img {
@@ -219,26 +264,60 @@ body {
 }
 
 .form-container-login input::-webkit-input-placeholder {
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Roboto", sans-serif;
 }
 
 .form-container-login input:-ms-input-placeholder {
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Roboto", sans-serif;
 }
 
 .form-container-login input::-ms-input-placeholder {
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Roboto", sans-serif;
 }
 
 .form-container-login input::placeholder {
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Roboto", sans-serif;
 }
 
 .invalid {
   color: #ee3333;
   font-size: 15px;
   font-weight: bold;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Roboto", sans-serif;
+}
+
+.addClass-container {
+  width: 100%;
+  height: 80vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Roboto", sans-serif;
+}
+
+.addClass-container h2 {
+  color: white;
+}
+
+.addClass-container div {
+  margin-top: 3em;
+}
+
+.addClass-container > input {
+  color: white;
+  margin-top: 3em;
+  cursor: pointer;
+  outline: none;
 }
 
 .containerInicio {
@@ -269,11 +348,12 @@ h1 {
   color: white;
   padding-top: 3%;
   z-index: 5;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Roboto", sans-serif;
   letter-spacing: 5px;
 }
 
 .cuadro {
+  border-radius: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -296,7 +376,7 @@ h1 {
   z-index: 2;
   letter-spacing: 3px;
   font-weight: bold;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Roboto", sans-serif;
   margin-block: 0px;
 }
 
@@ -315,6 +395,7 @@ h1 {
 }
 
 .calendar {
+  border-radius: 10px;
   background-color: #222121;
   width: 100%;
   display: -webkit-box;
@@ -322,6 +403,10 @@ h1 {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -343,6 +428,7 @@ h1 {
   padding: 0 2em;
   font-size: 1.2em;
   text-transform: uppercase;
+  font-family: "Roboto", sans-serif;
 }
 
 .calendar__Prev, .calendar__Next {
@@ -371,6 +457,7 @@ h1 {
       flex-wrap: wrap;
   margin: 15px 10px 0px 10px;
   cursor: pointer;
+  font-family: "Roboto", sans-serif;
 }
 
 .calendar__Item {
@@ -393,6 +480,7 @@ h1 {
 
 .parrafoCalendar {
   width: 35%;
+  font-family: "Roboto", sans-serif;
   font-size: .8rem;
   margin-top: 1rem;
   text-align: center;
@@ -405,7 +493,7 @@ h1 {
 
 .parrafoCalendar2 {
   text-align: left;
-  width: 30%;
+  width: 33%;
 }
 
 .parrafoCalendar1 {
@@ -490,6 +578,233 @@ h1 {
           box-shadow: 0 4px 8px 0 rgba(48, 47, 47, 0.2), 0 6px 20px 0 rgba(37, 37, 37, 0.19);
 }
 
+.map-container {
+  margin: 7em auto 0 auto;
+}
+
+.profile-container {
+  margin: 7em auto 0 auto;
+}
+
+.profile-container h2 {
+  font-size: 1.4rem;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  text-align: left;
+  margin: 0 0 1em 10vw;
+}
+
+.map {
+  width: 80vw;
+  height: 40vh;
+}
+
+.reservationList {
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  font-family: "Roboto", sans-serif;
+}
+
+.reservationList div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.reservationList input {
+  width: 100vw;
+  margin: 1em 45% 2em 45%;
+}
+
+.reservationList p {
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 2.5px;
+  font-size: 0.9rem;
+}
+
+.parrafoList {
+  font-size: 0.7rem !important;
+  font-style: italic;
+}
+
+input[type=date] {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  outline: none;
+  border: 0;
+  border-radius: 3px;
+  padding: 0 3px;
+  height: 2em;
+}
+
+input[type=date]::-webkit-clear-button {
+  font-size: 18px;
+  height: 30px;
+  position: relative;
+  right: 5px;
+  margin-right: 4px;
+}
+
+input[type=date]::-webkit-inner-spin-button {
+  height: 30px;
+}
+
+input[type=date]::-webkit-calendar-picker-indicator {
+  font-size: 18px;
+}
+
+input[type=date]::-webkit-calendar-picker-indicator:hover {
+  background-color: #cecccc;
+  color: #e6e6e6;
+  cursor: pointer;
+}
+
+.reservation-container {
+  margin-top: 5em;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.selectVR select {
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  font-family: "Roboto", sans-serif;
+  outline: none;
+}
+
+.selectVR option {
+  font-size: 0.9rem;
+  font-family: "Roboto", sans-serif;
+  cursor: pointer;
+}
+
+.buttonVR {
+  width: 100%;
+  margin: 4vh auto;
+}
+
+.listVR {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin: auto;
+}
+
+.listVR > div {
+  width: 18%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.listVR p {
+  color: white;
+  font-family: "Roboto", sans-serif;
+}
+
+.moreReservation {
+  cursor: pointer;
+}
+
+.dispVR {
+  width: 8% !important;
+}
+
+.moreReservation:hover {
+  color: #6b6868;
+}
+
+.hr {
+  margin-bottom: 1.45rem;
+}
+
+.divMoreVR {
+  color: white;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  top: 0;
+  background-color: transparent;
+  z-index: 2;
+  font-family: "Roboto", sans-serif;
+}
+
+.divMoreVR > div {
+  width: 60%;
+  border-radius: 10px;
+  height: 50%;
+  overflow-y: scroll;
+  background-color: #646363;
+}
+
+.divMoreVR > div > p {
+  z-index: 3;
+  position: absolute;
+  width: 60%;
+  background-color: #3d3c3c;
+  margin: 0 auto 0 auto;
+  height: 2.5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.listNames {
+  margin: 54px auto 0 auto;
+}
+
+.divMoreVR img {
+  position: absolute;
+  margin: 7px 0 0 25%;
+  cursor: pointer;
+  z-index: 4;
+}
+
+.divMoreVR button {
+  bottom: 0;
+}
+
 .divAdmin {
   margin: 4em 1em auto 1em;
   display: -webkit-box;
@@ -506,7 +821,7 @@ h1 {
 
 .divAdmin div {
   height: 10vh;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Roboto", sans-serif;
 }
 
 .divAdmin div button {
@@ -594,7 +909,7 @@ h1 {
 }
 
 .turnos-container h2 {
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Roboto", sans-serif;
   font-size: 1.1rem;
   color: white;
   font-weight: 200;
@@ -607,12 +922,14 @@ h1 {
 .turnos-container input {
   color: white;
   margin-top: 2em;
-  font-family: "Courier New", Courier, monospace;
+  cursor: pointer;
+  outline: none;
+  font-family: "Roboto", sans-serif;
 }
 
 .turnos-container button {
   margin-top: 2em;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Roboto", sans-serif;
   width: 7em;
 }
 
@@ -635,6 +952,58 @@ h1 {
   height: 100%;
 }
 
+.footer {
+  width: 100%;
+  height: 10vh;
+  background-color: transparent;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.8rem;
+}
+
+.footer ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 70%;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  list-style: none;
+  -webkit-padding-start: 0px;
+          padding-inline-start: 0px;
+}
+
+.footer div {
+  width: 50%;
+}
+
+.footer ul li {
+  width: 2em;
+  height: 2em;
+  cursor: pointer;
+}
+
+.footer p {
+  margin-bottom: 0px;
+}
+
 @media screen and (min-width: 920px) {
   .parrafoCalendar {
     width: 30%;
@@ -649,7 +1018,7 @@ h1 {
   }
   .calendar {
     width: 55%;
-    margin: 7em auto;
+    margin: 6.5em auto 0px auto;
   }
   .confirmTurno {
     width: 35vw;
@@ -715,6 +1084,39 @@ h1 {
     right: 3em;
     bottom: 5em;
   }
+  .reservationList p {
+    font-family: "Roboto", sans-serif;
+    letter-spacing: 2.5px;
+    font-size: 1.2rem;
+  }
+  .parrafoList {
+    font-size: 0.96rem !important;
+    font-style: italic;
+  }
+  .reservationList input {
+    width: unset;
+    margin: unset;
+  }
+  .reservation-container {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .spaceDiv {
+    width: 10vw;
+  }
+  .listVR {
+    width: 80%;
+  }
+  .divMoreVR > div {
+    width: 40%;
+  }
+  .divMoreVR > div > p {
+    width: 40%;
+  }
+  .divMoreVR img {
+    margin: 7px 0 0 16%;
+  }
   .divAdmin {
     margin: 6em auto;
   }
@@ -735,6 +1137,9 @@ h1 {
   .turnos-container button {
     margin-top: 4em;
   }
+  .nombreNav {
+    display: block;
+  }
   .burgerMenu {
     display: none;
   }
@@ -745,7 +1150,7 @@ h1 {
     display: block;
   }
   .lista-nav {
-    height: unset;
+    height: 57px;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
@@ -753,11 +1158,35 @@ h1 {
   .profile {
     margin: auto;
   }
+  .underline::after {
+    content: "";
+    width: 3em;
+    height: 2px;
+    position: absolute;
+    bottom: 6px;
+    margin-left: -2.2em;
+  }
+  .underline:hover::after {
+    background-color: #747373;
+  }
   .divAdmin {
     width: 30em;
   }
   .btn-turnos {
-    font-size: 1rem !important;
+    font-size: 0.8rem !important;
+    font-family: "Roboto", sans-serif;
+  }
+  .footer {
+    -webkit-box-orient: unset;
+    -webkit-box-direction: unset;
+        -ms-flex-direction: unset;
+            flex-direction: unset;
+  }
+  .footer ul {
+    width: 30%;
+  }
+  ::-webkit-scrollbar {
+    width: 5px;
   }
 }
 /*# sourceMappingURL=index.css.map */
