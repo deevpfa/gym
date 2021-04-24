@@ -11,11 +11,10 @@ const Admin = () => {
         <div className="containerInicio flex column">
             <Nav/>
             <div className="divAdmin" data-aos="zoom-in">
-                <div ><button className="btn btn-dark" onClick={()=>{history.push("/crearUsuario")}}>Crear Usuario</button></div>
+                <div ><button className="btn btn-dark" onClick={()=>{history.push("/crearUsuario")}}>Crear / Modificar Usuario</button></div>
                 <div ><button className="btn btn-danger" onClick={()=>{history.push("/addClass")}}>Agregar Clase</button></div>
                 <div ><button className="btn btn-info" onClick={()=>{history.push("/turnos")}}>Agregar Turno</button></div>
                 <div ><button className="btn btn-primary" onClick={()=>{history.push("/ViewReservas")}}>Ver Reservas</button></div>
-                <div ><button className="btn btn-primary" onClick={()=>{history.push("/ViewReservas")}}>Actualizar Usuario</button></div>
             </div>
         </div>
     )

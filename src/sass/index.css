@@ -66,6 +66,10 @@ p {
   background: #3d3c3c;
 }
 
+input {
+  outline: none;
+}
+
 body {
   background-color: black !important;
   font-family: "Roboto", sans-serif;
@@ -76,6 +80,7 @@ body {
   /* Do not repeat the image */
   background-size: cover;
   height: 100%;
+  min-height: 90vh;
   font-weight: 700;
   letter-spacing: 1px;
 }
@@ -326,6 +331,7 @@ body {
 }
 
 .divInicio {
+  min-height: 72vh;
   position: relative;
   margin: auto;
   display: -webkit-box;
@@ -840,6 +846,7 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   height: 60vh;
+  font-family: "Roboto", sans-serif;
 }
 
 .checkbox {
@@ -955,6 +962,7 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
 .footer {
   width: 100%;
   height: 10vh;
+  bottom: 0;
   background-color: transparent;
   bottom: 0;
   display: -webkit-box;
@@ -1040,10 +1048,10 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     width: 80%;
-    height: 90vh;
+    min-height: 75vh;
   }
   .cuadro {
-    height: 40%;
+    height: 30vh;
     border: 2px solid white;
     cursor: pointer;
     width: 30%;

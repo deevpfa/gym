@@ -35,7 +35,6 @@ const Inicio = () => {
             <Nav active="home"/>
             <div className="divInicio" ref={clasesRef}></div>
             <WhatsApp />
-            <Footer/>
         </div>
     )
 }

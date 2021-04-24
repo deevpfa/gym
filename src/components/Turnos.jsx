@@ -7,7 +7,8 @@ const Turnos = () => {
     // const [datosExcel,setDatosExcel] = useState()
     const [archivos,setArchivos] = useState()
     const subirArchivos = e =>{setArchivos(e)}
-    async function addFile() {
+    async function addFile(e) {
+        e.preventDefault()
         let newReader = new FileReader()
         newReader.readAsBinaryString(archivos)
         newReader.onload= (e)=>{
@@ -36,7 +37,7 @@ const Turnos = () => {
             <div className="turnos-container">
                 <h2>Elija el archivo excel a subir:</h2>
                 <input type="file" accept=".xlsx" name="files" onChange={(e)=>subirArchivos(e.target.files[0])} />
-                <button className="btn btn-success" onClick={()=> addFile()}>CARGAR</button>
+                <button className="btn btn-success" onClick={(e)=> addFile(e)}>CARGAR</button>
             </div>
         </div>
     )

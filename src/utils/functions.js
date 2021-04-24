@@ -282,7 +282,7 @@ function crearCheckbox(ref,arrayClasesUser) {
         let p = document.createElement("p")
         input.setAttribute("type", "checkbox")
         input.setAttribute("id", i + 1)
-        input.onclick = (e)=>{arrayClasesUser.push(e.target.id)}
+        input.onclick = (e)=>{ arrayClasesUser.includes(`${e.target.id}`)===false ? arrayClasesUser.push(e.target.id) : arrayClasesUser.splice(arrayClasesUser.indexOf(e.target.id),1); console.log(arrayClasesUser);}
         p.innerHTML = capitalize(element.clase)
         ref.current.appendChild(input)
         ref.current.appendChild(p)

@@ -5,7 +5,8 @@ import Nav from "./Nav";
 const AddClass = () => {
     const nombreRef = useRef(null)
     const imgRef = useRef(null)
-   async function sendInfo(nombreClase,imagen) {
+   async function sendInfo(e,nombreClase,imagen) {
+       e.preventDefault()
         var data = {
             clase:nombreClase,
             img:imagen
@@ -30,7 +31,7 @@ const AddClass = () => {
                 <div className="addClass-name"><input ref={nombreRef} className="form-control" placeholder="Nombre" type="text" /></div>
                 <div className="addClass-name"><input ref={imgRef} className="form-control" placeholder="URL Imagen" type="text" /></div>
                 {/* <input  placeholder="Nombre" type="text"/>   */}
-                <div><button className="btn btn-success" onClick={()=> sendInfo(nombreRef.current.value,imgRef.current.value)}>CARGAR</button></div> 
+                <div><button className="btn btn-success" onClick={(e)=> sendInfo(e,nombreRef.current.value,imgRef.current.value)}>CARGAR</button></div> 
             </div>
         </div>
     )

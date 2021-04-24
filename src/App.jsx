@@ -12,6 +12,7 @@ import AddClass from "./components/AddClass";
 import Turnos from "./components/Turnos";
 import CrearUsuario from "./components/CrearUsuario";
 import ViewReservas from "./components/ViewReservas";
+import Footer from "./components/Footer";
 import { UserContext } from "./components/UserContext";
 
 
@@ -44,6 +45,7 @@ function App() {
           </UserContext.Provider>
         </Switch>
       </Router>
+      <Footer/>
     </div>
   );
 }
