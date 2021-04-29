@@ -312,10 +312,16 @@ body {
 
 .addClass-container h2 {
   color: white;
+  font-size: 1.7rem;
 }
 
 .addClass-container div {
   margin-top: 3em;
+}
+
+.addClass-container div button {
+  width: 7.5em;
+  height: 2.5em;
 }
 
 .addClass-container > input {
@@ -689,6 +695,10 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -ms-flex-pack: distribute;
       justify-content: space-around;
 }
@@ -699,6 +709,10 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
   color: black;
   font-family: "Roboto", sans-serif;
   outline: none;
+  height: 2.1em;
+  padding: 4px;
+  border-radius: 5px;
+  margin-top: 1.5em;
 }
 
 .selectVR option {
@@ -720,6 +734,7 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   margin: auto;
+  font-size: 0.7rem;
 }
 
 .listVR > div {
@@ -747,7 +762,7 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
 }
 
 .hr {
-  margin-bottom: 1.45rem;
+  margin-bottom: 0.8rem;
 }
 
 .divMoreVR {
@@ -813,6 +828,28 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
 
 .divAdmin {
   margin: 4em 1em auto 1em;
+  width: 80%;
+  margin: 3em auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Roboto", sans-serif;
+}
+
+.divAdmin div {
+  color: white;
+  width: 60%;
+  margin: 2em;
+  font-family: "Roboto", sans-serif;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -820,19 +857,29 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  height: 60vh;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 15px 0;
 }
 
-.divAdmin div {
-  height: 10vh;
-  font-family: "Roboto", sans-serif;
+.divAdmin img {
+  width: 3em;
+  height: 3em;
 }
 
 .divAdmin div button {
   height: 100%;
   width: 100%;
+}
+
+.adminParrafo1 {
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.adminParrafo2 {
+  font-size: 0.7rem;
 }
 
 .form-container-user {
@@ -962,7 +1009,6 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
 .footer {
   width: 100%;
   height: 10vh;
-  bottom: 0;
   background-color: transparent;
   bottom: 0;
   display: -webkit-box;
@@ -989,7 +1035,7 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 70%;
+  width: 30em;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
@@ -1003,16 +1049,21 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
 }
 
 .footer ul li {
-  width: 2em;
-  height: 2em;
-  cursor: pointer;
+  width: 1.3em;
+  height: 1.6em;
 }
 
 .footer p {
   margin-bottom: 0px;
 }
 
-@media screen and (min-width: 920px) {
+@media screen and (max-width: 414px) {
+  .form-container-user div button {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (min-width: 900px) {
   .parrafoCalendar {
     width: 30%;
     font-size: .95rem;
@@ -1109,12 +1160,28 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    -webkit-box-orient: unset;
+    -webkit-box-direction: unset;
+        -ms-flex-direction: unset;
+            flex-direction: unset;
+    margin-top: 8em;
+  }
+  .selectVR select {
+    margin-top: unset;
+  }
+  .hr {
+    margin-bottom: 1.45rem;
   }
   .spaceDiv {
     width: 10vw;
   }
   .listVR {
-    width: 80%;
+    width: 100%;
+    font-size: 1rem;
+  }
+  .addClass-container div button {
+    width: 8em;
+    height: 2.8em;
   }
   .divMoreVR > div {
     width: 40%;
@@ -1127,6 +1194,12 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
   }
   .divAdmin {
     margin: 6em auto;
+  }
+  .divAdmin div {
+    width: 35%;
+    cursor: pointer;
+    -webkit-box-shadow: 0 4px 8px 0 rgba(80, 79, 79, 0.2), 0 6px 20px 0 rgba(80, 79, 79, 0.19);
+            box-shadow: 0 4px 8px 0 rgba(80, 79, 79, 0.2), 0 6px 20px 0 rgba(80, 79, 79, 0.19);
   }
   .form-container-user {
     width: 50em;
@@ -1177,9 +1250,6 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
   .underline:hover::after {
     background-color: #747373;
   }
-  .divAdmin {
-    width: 30em;
-  }
   .btn-turnos {
     font-size: 0.8rem !important;
     font-family: "Roboto", sans-serif;
@@ -1191,7 +1261,12 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
             flex-direction: unset;
   }
   .footer ul {
-    width: 30%;
+    width: 35%;
+  }
+  .footer ul li {
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
   }
   ::-webkit-scrollbar {
     width: 5px;

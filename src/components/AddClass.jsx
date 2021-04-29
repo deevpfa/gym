@@ -1,13 +1,23 @@
 import React, { useRef} from 'react'
 import { server } from "../utils/global";
 import Nav from "./Nav";
+import swal from 'sweetalert'
 
 const AddClass = () => {
     const nombreRef = useRef(null)
     const imgRef = useRef(null)
    async function sendInfo(e,nombreClase,imagen) {
        e.preventDefault()
+       if(!imagen || !nombreClase){
+            swal({
+            title:"Falta nombre o imagen",
+            icon:"error",
+            buttons:"Ok"
+       })
+       return
+    }
         var data = {
+            token:localStorage.getItem("token"),
             clase:nombreClase,
             img:imagen
         }
@@ -19,8 +29,19 @@ const AddClass = () => {
             }
         })
             .then(response => response.json())
-            .then(res => {res.success ? alert("Cargado con exito") : alert("Ha ocurrido un error, vuelve a intentarlo")
-                if(window.confirm) window.location.reload()
+            .then(res => {res.success ? 
+                swal({
+                title:"Clase cargada con exito",
+                text:`ID CLASE : ${res.success.id}`,
+                icon:"success",
+                buttons:"Ok"
+            }).then(resp=> resp ? window.location.reload() : "") 
+            :  
+            swal({
+                title:"Ha ocurrido un error, vuelve a intentarlo",
+                icon:"error",
+                buttons:"Ok"
+            }).then(resp=> resp ? window.location.reload() : "")
             })
     }
     return (

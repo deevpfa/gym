@@ -4,6 +4,8 @@ import WhatsApp from "./WhatsApp";
 import { obtenerClases,getData } from "../utils/functions";
 import { useHistory } from "react-router-dom";
 import { server } from "../utils/global";
+import swal from 'sweetalert'
+
 
 const CrearUsuario = () => {
 
@@ -12,10 +14,12 @@ const CrearUsuario = () => {
     }, [])
     let history = useHistory();
     getData().then((res)=>{if(res.isAdmin ===false) history.push("/")})
+    if(!arrayClasesUser) {
+        var arrayClasesUser=[]
+    }
     const [error, setError] = useState("")
     const [searchOn, setSearchOn] = useState(false)
     const [array, setarray] = useState([])
-    let arrayClasesUser = []
     function nuevoUsuario(e) {
         e.preventDefault()
         var data = {
@@ -39,8 +43,11 @@ const CrearUsuario = () => {
             .then(response => response.json())
             .then(res => {
                 if (res.Usuario) {
-                    alert("Usuario Creado con exito") 
-                    if(window.confirm) window.location.reload()
+                    swal({
+                        title:"Usuario creado con exito",
+                        icon:"success",
+                        buttons:"Ok"
+                    }).then(resp=> resp ? window.location.reload() : "") 
                 }
                 else {
                     setError(res.error)
@@ -78,7 +85,6 @@ const CrearUsuario = () => {
                 const includes = user.clases.includes(element.id)
                 if(includes===true) {
                     element.checked=true
-                    // setarray(element.id)
                     arrayClasesUser.push(element.id)
                     setarray(arrayClasesUser)
                 }
@@ -86,8 +92,8 @@ const CrearUsuario = () => {
         }
         
     }
-    console.log(array);
-    async function modifyUser(e,arrayClasesUser) {
+    async function modifyUser(e) {
+        const myArrClean = array.filter(Boolean)
         e.preventDefault()
         var data = {
             usuario:usuarioRef.current.value,
@@ -97,9 +103,8 @@ const CrearUsuario = () => {
             telefono:telefonoRef.current.value,
             direccion:direccionRef.current.value,
             password:passwordRef.current.value,
-            clases: arrayClasesUser
+            clases: myArrClean.toString()
         }
-        console.log(arrayClasesUser);
         await fetch(`${server}/usuarios/miUsuario`, {
             method: 'PUT',
             body: JSON.stringify(data),
@@ -108,7 +113,21 @@ const CrearUsuario = () => {
             }
         })
             .then(response => response.json())
-            .then(data => console.log(data))
+            .then(res =>{ if (res.exito) {
+                swal({
+                    title:"Usuario actualizado con exito",
+                    icon:"success",
+                    buttons:"Ok"
+                }).then(resp=> resp ? window.location.reload() : "") 
+            }
+            else {
+                swal({
+                    title:"No se pudo actualizar el usuario, vuelve a intentarlo...",
+                    icon:"error",
+                    buttons:"Ok"
+                }).then(resp=> resp ? window.location.reload() : "")
+            }
+        })
     }
     
     return (

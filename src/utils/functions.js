@@ -89,6 +89,7 @@ export function datosClases(usuario) {
         }
     })
         .then(response => response.json())
+        .catch(err => console.log(err))
     return datos
 }
 
@@ -254,7 +255,7 @@ export function crearClases(ref, arrayClases,history) {
         p.innerHTML = element.clase.toUpperCase()
         img.classList.add("noImg")
         img.src = element.img
-        div.appendChild(img)
+        div.appendChild(img)    
         div.appendChild(p)
         ref.current.appendChild(div)
     }
@@ -282,7 +283,7 @@ function crearCheckbox(ref,arrayClasesUser) {
         let p = document.createElement("p")
         input.setAttribute("type", "checkbox")
         input.setAttribute("id", i + 1)
-        input.onclick = (e)=>{ arrayClasesUser.includes(`${e.target.id}`)===false ? arrayClasesUser.push(e.target.id) : arrayClasesUser.splice(arrayClasesUser.indexOf(e.target.id),1); console.log(arrayClasesUser);}
+        input.onclick = (e)=>{ arrayClasesUser.includes(`${e.target.id}`)===false ? arrayClasesUser.push(e.target.id) : arrayClasesUser.splice(arrayClasesUser.indexOf(e.target.id),1)}
         p.innerHTML = capitalize(element.clase)
         ref.current.appendChild(input)
         ref.current.appendChild(p)

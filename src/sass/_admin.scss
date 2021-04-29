@@ -1,15 +1,39 @@
+
 .divAdmin{
     margin: 4em 1em auto 1em;
+    width: 80%;
+    margin: 3em auto;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: space-around;
-    height: 60vh;
+    align-items: center;
+    font-family: $font;
 }
 .divAdmin div{
-    height: 10vh;
+    color: white;
+    width: 60%;
+    // border: 2px solid white;
+    margin: 2em;
     font-family: $font;
+    background-color:rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 0;
+}
+.divAdmin img{
+    width: 3em;
+    height: 3em;
 }
 .divAdmin div button{
     height: 100%;
     width: 100%;
+}
+.adminParrafo1{
+    font-size: 1rem;
+    margin-top: 10px;
+}
+.adminParrafo2{
+    font-size: 0.7rem;
 }

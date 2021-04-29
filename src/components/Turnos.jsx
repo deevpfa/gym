@@ -2,9 +2,10 @@ import React,{useState} from 'react'
 import Nav from "./Nav";
 import { server } from "../utils/global";
 import xlsx from 'xlsx'
+import swal from 'sweetalert'
+
 
 const Turnos = () => {
-    // const [datosExcel,setDatosExcel] = useState()
     const [archivos,setArchivos] = useState()
     const subirArchivos = e =>{setArchivos(e)}
     async function addFile(e) {
@@ -27,8 +28,19 @@ const Turnos = () => {
                 }
             })
             .then(response => response.json()) 
-            .then(res => { res.error ? alert("Ha ocurrido un error, vuelve a intentarlo") : alert("Cargado con exito")
-                if(window.confirm) window.location.reload()
+            .then(res => { res.error ?
+                swal({
+                    title:"Ha ocurrido un error, vuelve a intentarlo",
+                    icon:"error",
+                    buttons:"Ok"
+                }).then(resp=> resp ? window.location.reload() : "")
+            
+            : 
+                swal({
+                    title:"Turno cargado con exito",
+                    icon:"success",
+                    buttons:"Ok"
+                }).then(resp=> resp ? window.location.reload() : "")
             })
     }}
     return (

@@ -3,6 +3,7 @@ import {getData} from '../utils/functions'
 import Nav from "./Nav";
 import WhatsApp from "./WhatsApp";
 import { map,gymName,server} from "../utils/global";
+import Footer from "./Footer";
 
 
 const Profile = () => {
@@ -91,7 +92,7 @@ const Profile = () => {
             </div>
             </div>
             <WhatsApp/>
-            
+            <Footer/>
         </div>
     )
 }

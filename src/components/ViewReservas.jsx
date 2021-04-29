@@ -85,10 +85,10 @@ const ViewReservas = () => {
             p5.classList.add("parrafoList","moreReservation")
             p.innerHTML = `${dias[dia].slice(0,3)} ${element.date.slice(8)}`
             p1.innerHTML = element.Clase.clase.toUpperCase()
-            p2.innerHTML = `${element.horarios} hs`
+            p2.innerHTML = `${element.horarios}hs`
             p3.innerHTML = element.teacher.toUpperCase()
             p4.innerHTML = element.disponibles
-            p5.innerHTML = "+ Ver reserva"
+            p5.innerHTML = "+ Ver"
             p5.onclick = ()=> moreReservation(element.id);
             fechaRef.current.appendChild(p)
             claseRef.current.appendChild(p1)
@@ -129,12 +129,15 @@ const ViewReservas = () => {
                 
                 <div className="dateVR"><input  ref={dateRef}  type="date" name="" id=""/></div>
                 <div className="spaceDiv"></div>
-                <div className="selectVR"><select  ref={selectRef} name="Clases" id="">
-                </select></div>
+                
+                <div className="selectVR">
+                <select  ref={selectRef} name="Clases" id="">
+                </select>
+                </div>
             
             </div>
-                <div className="buttonVR"onClick={()=>addReservation(selectRef.current.value,dateRef.current.value)} >
-                    <button className="btn btn-success">Buscar Reservas</button>
+                <div className="buttonVR">
+                    <button onClick={()=>addReservation(selectRef.current.value,dateRef.current.value)}  className="btn btn-success">Buscar Reservas</button>
                 </div>
                 <div className="listVR">
                     <div className="flex column" ><p>Fecha</p><div ref={fechaRef}></div></div>

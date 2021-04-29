@@ -9,6 +9,7 @@ import { datosClases, crearClases } from '../utils/functions'
 
 
 
+
 const Inicio = () => {
     let history = useHistory();
 
@@ -16,7 +17,9 @@ const Inicio = () => {
         let arrayClases = []
         async function obtenerDatos() {
             let datos = await datosClases(token.nombreUser)
+            if(!datos) setError("No hay clases")
             if (datos.exito) {
+                if(datos.exito[0]===null) return
                 datos.exito.forEach(element => { arrayClases.push(element) })
                 crearClases(clasesRef, arrayClases, history)
             }
@@ -35,6 +38,7 @@ const Inicio = () => {
             <Nav active="home"/>
             <div className="divInicio" ref={clasesRef}></div>
             <WhatsApp />
+            <Footer/>
         </div>
     )
 }

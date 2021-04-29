@@ -3,6 +3,7 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     justify-content: space-around;
 }
 
@@ -12,6 +13,10 @@
     color: black;
     font-family: $font;
     outline: none;
+    height: 2.1em;
+    padding: 4px;
+    border-radius: 5px;
+    margin-top: 1.5em;
 }
 
 .selectVR option{
@@ -29,6 +34,7 @@
     display: flex;
     justify-content: space-evenly;
     margin: auto;
+    font-size: 0.7rem;
 }
 .listVR > div{
     width: 18%;
@@ -48,7 +54,7 @@
     color: rgb(107, 104, 104);
 }
 .hr{
-    margin-bottom: 1.45rem;
+    margin-bottom: 0.8rem;
 }
 .divMoreVR{
     color: white;

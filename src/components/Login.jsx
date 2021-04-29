@@ -12,12 +12,24 @@ const Login = () => {
     const passwordRef = useRef(null)
     return (
         <div className="m-auto divLogin">
+            
             <div className="logoLogin">
                 <img src={logo} alt=""/>
             </div>
+
             <form className="form-group form-container-login" data-aos="zoom-in">
-                <input ref={usuarioRef} className="form-control" placeholder="USUARIO" type="text" />
-                <input ref={passwordRef} className="form-control mt-3" placeholder="PASSWORD" type="password" />
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@</span>
+                </div>
+                <input type="text" class="form-control" ref={usuarioRef} placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" ref={passwordRef} id="basic-addon1">&#128274;</span>
+                </div>
+                <input type="password" class="form-control" ref={passwordRef} placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" />
+            </div>
                 <p className="invalid">{
                     validateUser===false ? "Usuario o password incorrecto" : ""
                 }</p>

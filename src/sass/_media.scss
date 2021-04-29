@@ -1,5 +1,10 @@
 
-@media screen and (min-width: 920px){
+@media screen and (max-width: 414px){
+    .form-container-user div button{
+        font-size: 0.9rem;
+    }
+}
+@media screen and (min-width: 900px){
 
     .parrafoCalendar{
         width: 30%;
@@ -71,6 +76,7 @@
         letter-spacing: 2.5px;
         font-size: 1.2rem;
     }
+    
     .parrafoList{
         font-size: 0.96rem !important;
         font-style: italic;
@@ -81,12 +87,27 @@
     }
     .reservation-container{
         justify-content: center;
+        flex-direction: unset;
+        margin-top: 8em;
+    }
+    .selectVR select{
+        margin-top: unset;
+    }
+    .hr{
+        margin-bottom: 1.45rem;
     }
     .spaceDiv{
         width: 10vw;
     }
     .listVR{
-        width: 80%;
+        width: 100%;
+        font-size: 1rem;
+    }
+    .addClass-container div button{
+        // margin-bottom: 2em;
+        width: 8em;
+        height: 2.8em;
+        // margin-top: 3em;
     }
     .divMoreVR > div{
         width:40%;
@@ -99,6 +120,13 @@
     }
     .divAdmin{
         margin: 6em auto;
+    }
+    .divAdmin div{
+        width: 35%;
+        cursor: pointer;
+        // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        box-shadow: 0 4px 8px 0 rgba(80, 79, 79, 0.2), 0 6px 20px 0 rgba(80, 79, 79, 0.19);
+        // box-shadow: 0 4px 8px 0 rgba(48, 47, 47, 0.2), 0 6px 20px 0 rgba(37, 37, 37, 0.19);
     }
     .form-container-user{
         width: 50em;
@@ -148,9 +176,6 @@
     .underline:hover::after{
         background-color: rgb(116, 115, 115);
     }
-    .divAdmin{
-        width: 30em;
-    }
     .btn-turnos{
         font-size: 0.8rem !important;
         font-family: $font;
@@ -159,7 +184,12 @@
         flex-direction: unset;
     }
     .footer ul{
-        width: 30%;
+        width: 35%;
+    }
+    .footer ul li{
+        width: 2em;
+        height: 2em;
+        cursor: pointer;
     }
     ::-webkit-scrollbar {
         width: 5px;
