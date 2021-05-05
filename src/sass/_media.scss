@@ -4,8 +4,16 @@
         font-size: 0.9rem;
     }
 }
-@media screen and (min-width: 900px){
 
+@media screen and (min-width: 900px){
+    .form-container-user button{
+        width: 70%;
+    }
+    .socialMedia{
+        margin-bottom: unset;
+        display: flex;
+        // justify-content: u;
+    }
     .parrafoCalendar{
         width: 30%;
         font-size: .95rem;
@@ -76,6 +84,34 @@
         letter-spacing: 2.5px;
         font-size: 1.2rem;
     }
+    .nuevoUSER{
+        font-family: $font;
+        color: white;
+        font-style: italic;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1em;
+        cursor: pointer;
+    }
+    .nuevoUSER:hover,.backArrow:hover{
+        color: rgb(167, 166, 166);
+    }
+    .nuevoUSER img{
+        margin-right: 0.5em;
+        width: 2.5em;
+        height: 2.5em;
+    }
+    .backArrow {
+        cursor: pointer;
+        font-size: 1rem;
+        margin-top: 10px;
+        margin-left: 15px;
+    }
+    .container-newUser{
+        font-size: 0.9rem;
+        margin-top: 7%;
+    }
     
     .parrafoList{
         font-size: 0.96rem !important;
@@ -111,18 +147,21 @@
     }
     .divMoreVR > div{
         width:40%;
+        height: 43%;
+        border-radius: unset;
     }
     .divMoreVR > div > p{
         width:40%;
     }
     .divMoreVR img{
-        margin: 7px 0 0 16%;
+        margin: 7px 0 0 17%;
     }
     .divAdmin{
         margin: 6em auto;
     }
     .divAdmin div{
-        width: 35%;
+        height: unset;
+        width: 30%;
         cursor: pointer;
         // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         box-shadow: 0 4px 8px 0 rgba(80, 79, 79, 0.2), 0 6px 20px 0 rgba(80, 79, 79, 0.19);
@@ -161,6 +200,11 @@
         height: 57px;
         justify-content: space-between;
     }
+    .divMoreVR h6:hover{
+        color: rgb(20, 20, 20);
+        cursor: pointer;
+        text-decoration: underline;
+    }
     .profile{
         margin: auto;
     }
@@ -176,6 +220,13 @@
     .underline:hover::after{
         background-color: rgb(116, 115, 115);
     }
+    .div-newUser  div  p{
+        font-size: 0.9rem;
+    }
+    .div-newUser > div > p{
+        font-size: 1rem;
+        height: 20px;
+    }
     .btn-turnos{
         font-size: 0.8rem !important;
         font-family: $font;
@@ -184,7 +235,8 @@
         flex-direction: unset;
     }
     .footer ul{
-        width: 35%;
+        width: 43%;
+        flex-direction: unset;
     }
     .footer ul li{
         width: 2em;

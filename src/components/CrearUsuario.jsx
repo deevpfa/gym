@@ -5,35 +5,61 @@ import { obtenerClases,getData } from "../utils/functions";
 import { useHistory } from "react-router-dom";
 import { server } from "../utils/global";
 import swal from 'sweetalert'
+import iconClose from "../assets/iconClose.svg";
+import addUser from "../assets/addUser.svg";
+import back from "../assets/back.svg";
 
 
 const CrearUsuario = () => {
 
     useEffect(() => {
-        obtenerClases(divCheckboxRef,arrayClasesUser)
+        obtenerUsuarios()
     }, [])
     let history = useHistory();
     getData().then((res)=>{if(res.isAdmin ===false) history.push("/")})
-    if(!arrayClasesUser) {
-        var arrayClasesUser=[]
-    }
+    if(!arrayClasesUser)  var arrayClasesUser=[]
+    
     const [error, setError] = useState("")
-    const [searchOn, setSearchOn] = useState(false)
+    const [searchOn, setSearchOn] = useState()
+    const [user, setUser] = useState({user:""})
     const [array, setarray] = useState([])
-    function nuevoUsuario(e) {
+    const [modify, setModify] = useState(false)
+    const [listDatos,setListDatos] = useState(false)
+    const containerRef = useRef(null)
+    const usuarioRef = useRef(null)
+    const usuarioChangeRef = useRef(null)
+    const nombreRef = useRef(null)
+    const nombreChangeRef = useRef(null)
+    const apellidoRef = useRef(null)
+    const apellidoChangeRef = useRef(null)
+    const emailRef = useRef(null)
+    const telefonoRef = useRef(null)
+    const direccionRef = useRef(null)
+    const passwordRef = useRef(null)
+    const dateRef = useRef(null)
+    const altaRef = useRef(null)
+    const vencRef = useRef(null)
+    const plusRef = useRef(null)
+    const MoreRef = useRef(null)
+    const divCheckboxRef = useRef(null)
+
+
+    async function nuevoUsuario(e) {
         e.preventDefault()
+        setSearchOn(false)
         var data = {
-            usuario:usuarioRef.current.value,
-            nombre:nombreRef.current.value,
-            apellido:apellidoRef.current.value,
+            usuario:usuarioChangeRef.current.value,
+            nombre:nombreChangeRef.current.value,
+            apellido:apellidoChangeRef.current.value,
             email:emailRef.current.value,
             telefono:telefonoRef.current.value,
             direccion:direccionRef.current.value,
             password:passwordRef.current.value,
             isAdmin: false,
-            clases: arrayClasesUser
+            clases: arrayClasesUser,
+            expirationDay:dateRef.current.value
         }
-        fetch(`${server}/usuarios`, {
+        await fetch(`${server}/usuarios`, {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
@@ -54,56 +80,46 @@ const CrearUsuario = () => {
                 }
             })
     }
-    const containerRef = useRef(null)
-    const usuarioRef = useRef(null)
-    const nombreRef = useRef(null)
-    const apellidoRef = useRef(null)
-    const emailRef = useRef(null)
-    const telefonoRef = useRef(null)
-    const direccionRef = useRef(null)
-    const passwordRef = useRef(null)
-    const divCheckboxRef = useRef(null)
 
-    async function obtenerUser(e,nameUser) {
+    async function obtenerUser(e) {
         e.preventDefault()
-        const user = await fetch(`${server}/usuarios/${nameUser}`)
-            .then(response => response.json())
-    
+        setModify(true)
+        setListDatos(false)
+        await obtenerClases(divCheckboxRef,arrayClasesUser)
         const arrayNodes = [...divCheckboxRef.current.childNodes]
         arrayNodes.forEach(e => e.checked=false);
-        setSearchOn(true)
-        if(user.error) setError(true)
-        else {
-            usuarioRef.current.value = user.usuario 
-            nombreRef.current.value = user.nombre 
-            apellidoRef.current.value = user.apellido 
-            emailRef.current.value = user.email
-            telefonoRef.current.value = user.telefono
-            direccionRef.current.value = user.direccion
+            usuarioChangeRef.current.value = user.user.usuario 
+            nombreChangeRef.current.value = user.user.nombre 
+            apellidoChangeRef.current.value = user.user.apellido 
+            emailRef.current.value = user.user.email
+            telefonoRef.current.value = user.user.telefono
+            direccionRef.current.value = user.user.direccion
+            dateRef.current.value = user.user.expiration
             for (let i = 0; i < arrayNodes.length; i++) {
                 const element = arrayNodes[i];
-                const includes = user.clases.includes(element.id)
+                const includes = user.user.clases.includes(element.id)
                 if(includes===true) {
                     element.checked=true
                     arrayClasesUser.push(element.id)
                     setarray(arrayClasesUser)
                 }
             }
-        }
+        
         
     }
     async function modifyUser(e) {
         const myArrClean = array.filter(Boolean)
         e.preventDefault()
         var data = {
-            usuario:usuarioRef.current.value,
-            nombre:nombreRef.current.value,
-            apellido:apellidoRef.current.value,
+            usuario:usuarioChangeRef.current.value,
+            nombre:nombreChangeRef.current.value,
+            apellido:apellidoChangeRef.current.value,
             email:emailRef.current.value,
             telefono:telefonoRef.current.value,
             direccion:direccionRef.current.value,
             password:passwordRef.current.value,
-            clases: myArrClean.toString()
+            clases: myArrClean.toString(),
+            expiration:dateRef.current.value
         }
         await fetch(`${server}/usuarios/miUsuario`, {
             method: 'PUT',
@@ -129,32 +145,188 @@ const CrearUsuario = () => {
             }
         })
     }
-    
+  
+    function obtenerUsuarios() {
+        var data ={
+            token:localStorage.getItem("token")
+        }
+        fetch(`${server}/usuarios/findUSERS`, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(res => crearUSERS(res))
+    }
+    function crearUSERS(res) {
+        usuarioRef.current.innerHTML=""
+        nombreRef.current.innerHTML=""
+        altaRef.current.innerHTML=""
+        vencRef.current.innerHTML=""
+        plusRef.current.innerHTML=""
+        for (let i = 0; i < res.length; i++) {
+            const element = res[i];
+            let p1 = document.createElement("p")
+            let p2 = document.createElement("p")
+            let p3 = document.createElement("p")
+            let p4 = document.createElement("p")
+            let p5 = document.createElement("p")
+            p1.innerHTML = element.usuario
+            p2.innerHTML = `${element.apellido} ${element.nombre}`
+            p3.innerHTML = element.createdAt.substring(0,10)
+            p4.innerHTML = element.expiration
+            p5.innerHTML = "+ Ver"
+            p5.onclick = () => moreData(element.usuario);
+            p5.classList.add("moreReservation")
+            usuarioRef.current.appendChild(p1)
+            nombreRef.current.appendChild(p2)
+            altaRef.current.appendChild(p3)
+            vencRef.current.appendChild(p4)
+            plusRef.current.appendChild(p5)
+        }
+    }
+
+    function searchUSERS(e) {
+        var data ={
+            filtro:searchOn,
+            value:e.target.value
+        }
+        fetch(`${server}/usuarios/findSearchUSERS`, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(resp => crearUSERS(resp))
+
+    }
+    function moreData(usuario) {
+        setListDatos(true)
+        
+        fetch(`${server}/usuarios/${usuario}`)
+            .then(response => response.json())
+            .then(resp => crearMoreDataUSER(resp))
+    }
+    function crearMoreDataUSER(datos) {
+        setUser(datos)
+        MoreRef.current.innerHTML = ""
+        let p1 = document.createElement("p")
+        let p2 = document.createElement("p")
+        let p3 = document.createElement("p")
+        let p4 = document.createElement("p")
+        let p5 = document.createElement("p")
+        let p6 = document.createElement("p")
+        let p7 = document.createElement("p")
+        p1.innerHTML = `Nombre : ${datos.user.nombre} ${datos.user.apellido}`
+        p2.innerHTML = `Email : ${datos.user.email}`
+        p3.innerHTML = `Telefono : ${datos.user.telefono}`
+        p4.innerHTML = `Direccion : ${datos.user.direccion}`
+        p5.innerHTML = `Clases : ${datos.clases}`
+        p6.innerHTML = `Alta : ${datos.user.createdAt.substring(0,10)}`
+        p7.innerHTML = `Venc : ${datos.user.expiration}`
+        MoreRef.current.appendChild(p1)
+        MoreRef.current.appendChild(p2)
+        MoreRef.current.appendChild(p3)
+        MoreRef.current.appendChild(p4)
+        MoreRef.current.appendChild(p5)
+        MoreRef.current.appendChild(p7)
+        MoreRef.current.appendChild(p6)
+    }
     return (
         <div>
             <Nav />
+            {
+                modify===false ? 
+            
+            <div className="container-newUser">
+                <div className="searchUser">
+                    <div className="nuevoUSER" onClick={()=> {setModify(true) ;setSearchOn(false);obtenerClases(divCheckboxRef,arrayClasesUser)}}> <img src={addUser} alt=""/> Nuevo Usuario</div>
+                    <p>Buscar por : </p>
+                    <select className="selectNewUser" onChange={(e)=> setSearchOn(e.target.value)}  name="" id="">
+                        <option value=""></option>
+                        <option value="usuario">USUARIO</option>
+                        <option value="apellido" >APELLIDO</option>
+                        <option value="alta">ALTA</option>
+                        <option value="expiration">VENCIMIENTO</option>
+                    </select>
+                    <div className="searchOn">
+                    {
+                        searchOn==="usuario" || searchOn==="apellido"  ? <div className="input-group rounded inputText">
+                        <input type="search" className="form-control rounded" placeholder="Search" aria-label="Search"
+                          aria-describedby="search-addon" onChange={(e)=> searchUSERS(e)} />
+                      </div> : ""
+                    }
+                    {
+                        searchOn==="alta" || searchOn==="expiration" ? <input type="date" name="" onChange={(e)=> searchUSERS(e)} id=""/>  : ""
+                    }
+                    </div>
+                </div>
+                <div className="div-newUser">
+                    <div>
+                    <p>Usuario</p>
+                    <div ref={usuarioRef}></div>
+                    </div>
+                    <div>
+                    <p>Nombre</p>
+                    <div ref={nombreRef}></div>
+                    </div>
+                    <div>
+                    <p>Alta</p>
+                    <div ref={altaRef}></div>
+                    </div>
+                    <div>
+                    <p>Vencimiento</p>
+                    <div ref={vencRef}></div>
+                    </div>
+                    <div>
+                    <p></p>
+                    <div ref={plusRef}></div>
+                    </div>
+                </div>
+            </div>
+            :""}
+            {listDatos===true ?
+            <div className="divMoreVR">
+                    <div>
+                        <img src={iconClose} onClick={()=>setListDatos(false)} alt=""/ >
+                        <p>Usuario : {user.user.usuario}</p>
+                        <div ref={MoreRef} className="listNames" >
+                        </div>
+                        <h6 onClick={(e)=> obtenerUser(e,user.usuario)}>Modificar Usuario</h6>
+                    </div>
+            </div>
+            :""}
+            {
+                modify===true ?
+            
             <div className="containerInicio flex" ref={containerRef}>
+                <div className="backArrow" onClick={()=> {setModify(false);setSearchOn("");obtenerUsuarios()}}> <img src={back} alt=""/><p>Volver</p></div>
                 <form className="form-container-user" data-aos="zoom-in">
-                    <div><input ref={usuarioRef} className="form-control" placeholder="USUARIO" onChange={()=> setSearchOn(false)} type="text" /></div>
-                    <div><input ref={nombreRef} className="form-control" placeholder="Nombre" type="text" /></div>
-                    <div><input ref={apellidoRef} className="form-control" placeholder="Apellido" type="text" /></div>
+                    <div><input ref={usuarioChangeRef} className="form-control" placeholder="USUARIO"  type="text" /></div>
+                    <div><input ref={nombreChangeRef} className="form-control" placeholder="Nombre" type="text" /></div>
+                    <div><input ref={apellidoChangeRef} className="form-control" placeholder="Apellido" type="text" /></div>
                     <div><input ref={emailRef} className="form-control" placeholder="Email" type="email" /></div>
                     <div><input ref={telefonoRef} className="form-control" placeholder="Telefono" type="text" /></div>
                     <div><input ref={direccionRef} className="form-control" placeholder="Direccion" type="text" /></div>
                     <div><input ref={passwordRef} className="form-control" placeholder="PASSWORD" type="text" /></div>
+                    <div><input ref={dateRef }className="form-control" placeholder="Vencimiento" type="text" onClick={(e)=> e.target.type="date"}/></div>
                     <div className="checkbox" ref={divCheckboxRef}></div>
                     <p className="errorUser"> {
                         error ? error : ""
                     }
                     </p>
-                    <div><button className="btn btn-success btn-block" onClick={(e) => nuevoUsuario(e)}>CREAR USUARIO</button></div>
                     <div>{searchOn===false ?
-                        <button className="btn btn-secondary btn-block" onClick={(e)=>obtenerUser(e,usuarioRef.current.value)}>OBTENER USUARIO</button> :
-                        <button className="btn btn-secondary btn-block" onClick={(e)=>modifyUser(e,arrayClasesUser)}>MODIFICAR USUARIO</button>
+                        <button className="btn btn-success btn-block" onClick={(e) => nuevoUsuario(e)}>CREAR USUARIO</button> :
+                        <button className="btn btn-secondary btn-block" onClick={(e)=>modifyUser(e)}>MODIFICAR USUARIO</button>
                     }
                     </div>
                 </form>
             </div>
+            :""}
             <WhatsApp/>
         </div>
     )

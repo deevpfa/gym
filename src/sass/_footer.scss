@@ -15,13 +15,19 @@
 .footer ul{
     display: flex;
     align-items: center;
-    width: 30em;
+    width: 100%;
+    flex-direction: column-reverse;
     justify-content: space-evenly;
     list-style: none;
     padding-inline-start: 0px;
 }
 .footer div{
     width: 50%;
+}
+.socialMedia{
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-around;
 }
 .footer ul li{
     width: 1.3em;

@@ -33,10 +33,6 @@ a:hover {
   display: none;
 }
 
-p {
-  margin-bottom: 0px;
-}
-
 .fondoImg {
   background-image: url(../assets/img1.jpg);
   background-position: center;
@@ -137,7 +133,7 @@ body {
 }
 
 .nav-link:hover {
-  color: #bdbaba;
+  color: #818181;
 }
 
 .lista-nav li {
@@ -494,8 +490,9 @@ h1 {
   width: 35%;
   font-family: "Roboto", sans-serif;
   font-size: .8rem;
-  margin-top: 1rem;
   text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .parrafoCalendar3 {
@@ -540,7 +537,7 @@ h1 {
 
 .confirmTurno {
   border-radius: 10px;
-  width: 75vw;
+  width: 92vw;
   height: 45%;
   background-color: #646363;
   opacity: 1;
@@ -548,7 +545,7 @@ h1 {
 }
 
 .confirmTurno p {
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 .confirmTurno::before {
@@ -786,17 +783,18 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
 }
 
 .divMoreVR > div {
-  width: 60%;
+  width: 70%;
   border-radius: 10px;
-  height: 50%;
+  height: 46%;
   overflow-y: scroll;
   background-color: #646363;
 }
 
 .divMoreVR > div > p {
+  font-size: 1rem;
   z-index: 3;
   position: absolute;
-  width: 60%;
+  width: 70%;
   background-color: #3d3c3c;
   margin: 0 auto 0 auto;
   height: 2.5em;
@@ -812,7 +810,7 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
 }
 
 .listNames {
-  margin: 54px auto 0 auto;
+  margin: 64px auto 0 auto;
 }
 
 .divMoreVR img {
@@ -824,6 +822,11 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
 
 .divMoreVR button {
   bottom: 0;
+}
+
+.listNames p {
+  font-size: 0.8rem;
+  text-align: center;
 }
 
 .divAdmin {
@@ -945,6 +948,102 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
   width: 80%;
 }
 
+.container-newUser {
+  margin-top: 20px;
+  width: 100%;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.7rem;
+}
+
+.div-newUser {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  width: 100%;
+  height: 25em;
+  margin: 1em auto;
+  overflow-y: scroll;
+}
+
+.div-newUser > div > p {
+  margin-bottom: 18px;
+  font-style: italic;
+}
+
+.div-newUser p {
+  margin-bottom: 10px;
+  height: 16px;
+  overflow: hidden;
+}
+
+.selectNewUser {
+  font-family: "Roboto", sans-serif;
+}
+
+.selectNewUser option {
+  cursor: pointer;
+}
+
+.searchOn {
+  margin: 10px auto;
+  width: 40%;
+}
+
+.searchOn input {
+  width: 100%;
+  font-size: 0.8rem;
+  height: 100%;
+}
+
+.divMoreVR h6 {
+  font-size: 0.8rem;
+  color: red;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+}
+
+.nuevoUSER {
+  font-family: "Roboto", sans-serif;
+  color: white;
+  font-style: italic;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 1em;
+  cursor: pointer;
+}
+
+.nuevoUSER img {
+  margin-right: 0.5em;
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.backArrow {
+  color: white;
+  font-style: italic;
+  position: absolute;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.8rem;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.backArrow img {
+  width: 1.5em;
+  height: 1.5em;
+}
+
 .turnos-container {
   margin: 4em auto;
   display: -webkit-box;
@@ -989,12 +1088,12 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
 
 .whatsapp {
   display: block;
-  width: 2em;
-  height: 2em;
+  width: 2.5em;
+  height: 2.5em;
   color: #fff;
   position: fixed;
-  right: 1em;
-  bottom: 3em;
+  right: 1.5em;
+  bottom: 4em;
   border-radius: 50%;
   line-height: 80px;
   text-align: center;
@@ -1035,7 +1134,11 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 30em;
+  width: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
@@ -1046,6 +1149,15 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
 
 .footer div {
   width: 50%;
+}
+
+.socialMedia {
+  margin-bottom: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .footer ul li {
@@ -1064,6 +1176,15 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
 }
 
 @media screen and (min-width: 900px) {
+  .form-container-user button {
+    width: 70%;
+  }
+  .socialMedia {
+    margin-bottom: unset;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
   .parrafoCalendar {
     width: 30%;
     font-size: .95rem;
@@ -1148,6 +1269,40 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
     letter-spacing: 2.5px;
     font-size: 1.2rem;
   }
+  .nuevoUSER {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    font-style: italic;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin-bottom: 1em;
+    cursor: pointer;
+  }
+  .nuevoUSER:hover, .backArrow:hover {
+    color: #a7a6a6;
+  }
+  .nuevoUSER img {
+    margin-right: 0.5em;
+    width: 2.5em;
+    height: 2.5em;
+  }
+  .backArrow {
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 10px;
+    margin-left: 15px;
+  }
+  .container-newUser {
+    font-size: 0.9rem;
+    margin-top: 7%;
+  }
   .parrafoList {
     font-size: 0.96rem !important;
     font-style: italic;
@@ -1185,18 +1340,21 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
   }
   .divMoreVR > div {
     width: 40%;
+    height: 43%;
+    border-radius: unset;
   }
   .divMoreVR > div > p {
     width: 40%;
   }
   .divMoreVR img {
-    margin: 7px 0 0 16%;
+    margin: 7px 0 0 17%;
   }
   .divAdmin {
     margin: 6em auto;
   }
   .divAdmin div {
-    width: 35%;
+    height: unset;
+    width: 30%;
     cursor: pointer;
     -webkit-box-shadow: 0 4px 8px 0 rgba(80, 79, 79, 0.2), 0 6px 20px 0 rgba(80, 79, 79, 0.19);
             box-shadow: 0 4px 8px 0 rgba(80, 79, 79, 0.2), 0 6px 20px 0 rgba(80, 79, 79, 0.19);
@@ -1236,6 +1394,11 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
         -ms-flex-pack: justify;
             justify-content: space-between;
   }
+  .divMoreVR h6:hover {
+    color: #141414;
+    cursor: pointer;
+    text-decoration: underline;
+  }
   .profile {
     margin: auto;
   }
@@ -1250,6 +1413,13 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
   .underline:hover::after {
     background-color: #747373;
   }
+  .div-newUser div p {
+    font-size: 0.9rem;
+  }
+  .div-newUser > div > p {
+    font-size: 1rem;
+    height: 20px;
+  }
   .btn-turnos {
     font-size: 0.8rem !important;
     font-family: "Roboto", sans-serif;
@@ -1261,7 +1431,11 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
             flex-direction: unset;
   }
   .footer ul {
-    width: 35%;
+    width: 43%;
+    -webkit-box-orient: unset;
+    -webkit-box-direction: unset;
+        -ms-flex-direction: unset;
+            flex-direction: unset;
   }
   .footer ul li {
     width: 2em;

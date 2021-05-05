@@ -2,7 +2,7 @@ import React,{useRef,useEffect,useState} from 'react'
 import {getData} from '../utils/functions'
 import Nav from "./Nav";
 import WhatsApp from "./WhatsApp";
-import { map,gymName,server} from "../utils/global";
+import {server} from "../utils/global";
 import Footer from "./Footer";
 
 
@@ -33,9 +33,6 @@ const Profile = () => {
     }
     const dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"]
     function createReservation(data) {
-
-        // console.log(data);
-        // console.log(data.date.slice(5,-1))
         fechaRef.current.innerHTML = ""
         claseRef.current.innerHTML = ""
         horarioRef.current.innerHTML = ""
@@ -86,10 +83,10 @@ const Profile = () => {
                     <div className="flex column"><p>Profesor</p> <div  ref={profesorRef} className="flex column"></div> </div>
                 </div>
             </div>
-            <div className="map-container">
+            {/* <div className="map-container">
                 <h2>Tu sede {gymName}</h2>
                 <iframe className="map" src={map} loading="lazy"></iframe>
-            </div>
+            </div> */}
             </div>
             <WhatsApp/>
             <Footer/>

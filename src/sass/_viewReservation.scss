@@ -71,16 +71,17 @@
     font-family: $font;
 }
 .divMoreVR > div{
-    width: 60%;
+    width: 70%;
     border-radius: 10px;
-    height: 50%;
+    height: 46%;
     overflow-y: scroll;
     background-color: rgb(100, 99, 99);
 }
 .divMoreVR > div > p{
+    font-size: 1rem;
     z-index: 3;
     position: absolute;
-    width: 60%;
+    width: 70%;
     background-color: rgb(61, 60, 60);
     margin: 0 auto 0 auto;
     height: 2.5em;
@@ -89,7 +90,7 @@
     align-items: center;
 }
 .listNames{
-    margin:54px auto 0 auto;
+    margin:64px auto 0 auto;
 }
 
 .divMoreVR img{
@@ -100,4 +101,8 @@
 }
 .divMoreVR button{
     bottom: 0;
+}
+.listNames p {
+    font-size: 0.8rem;
+    text-align: center;
 }

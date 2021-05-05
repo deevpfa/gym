@@ -114,7 +114,6 @@ const ViewReservas = () => {
         listNamesRef.current.innerHTML = ""
         document.body.style.overflow = "hidden"
         divListNamesRef.current.removeAttribute("hidden");
-        console.log(array);
         for (let i = 0; i < array.length; i++) {
             const element = array[i];
             let p = document.createElement("p")

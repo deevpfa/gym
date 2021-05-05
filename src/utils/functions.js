@@ -52,22 +52,7 @@ export async function getData() {
     return userData
 }
 
-/**
- * 
- * @param {contador} contadorMax 
- * @param {useState} numeroMes 
- */
-export function contador(contadorMax, numeroMes) {
-    if (numeroMes === 0 || numeroMes === 2 || numeroMes === 4 || numeroMes === 6 || numeroMes === 7 || numeroMes === 9 || numeroMes === 11) {
-        contadorMax = 1
-    }
-    else if (numeroMes === 3 || numeroMes === 5 || numeroMes === 8 || numeroMes === 10) {
-        contadorMax = 0
-    }
-    else {
-        contadorMax = -1
-    }
-}
+
 
 /**
  * setea las clases segun las tenga pagadas o no
@@ -111,9 +96,9 @@ async function deleteReservation(id) {
 
 
 
-function pad(number) {
+function pad(number,add) {
     if (number < 10) {
-        return '0' + (number + 1);
+        return '0' + (number + add);
     }
     return number;
 }
@@ -133,10 +118,11 @@ let reservation
  * @returns peticion a api para los horarios
  */
 export async function turnosCalendario(diaTurnosApi, param1, param2, param3, param4,admin) {
+    
     var data = {
         token:localStorage.getItem("token"),
         claseId: param1,
-        date: `${hoy.getFullYear()}-${pad(param2)}-${diaTurnosApi}`
+        date: `${hoy.getFullYear()}-${pad(param2,1)}-${pad(diaTurnosApi,0)}`
     }
     await fetch(`${server}/turnos/consulta`, {
         method: 'POST',
@@ -147,6 +133,8 @@ export async function turnosCalendario(diaTurnosApi, param1, param2, param3, par
     })
         .then(response => response.json())
         .then(data => {
+    
+            if(!data || data===undefined) return
             arrayTurnos = []
             data.turno.forEach(e => { arrayTurnos.push(e) })
             reservation=false
@@ -181,7 +169,7 @@ export function horarios(horasRef, setTurno,admin) {
         p.classList.add("parrafoCalendar", "parrafoCalendar2")
         p2.classList.add("parrafoCalendar", "parrafoCalendar1")
         p3.classList.add("parrafoCalendar", "parrafoCalendar3")
-        if(element.disponibles<=0){
+        if(element.disponibles<=0 || reservation!==false){
             div.style.cursor = "not-allowed"
             div.style.opacity = "0.2"
         }
@@ -265,7 +253,7 @@ export function capitalize(word) {
     return word[0].toUpperCase() + word.slice(1);
 }
 
-let arrayClases = []
+let arrayClases 
 export async function obtenerClases(ref,arrayClasesUser) {
     await fetch(`${server}/clases`)
         .then(response => response.json())

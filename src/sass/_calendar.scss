@@ -59,8 +59,9 @@
     width: 35%;
     font-family: $font;
     font-size: .8rem;
-    margin-top: 1rem;
     text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
     &3{
         margin-left: 10px;
         width: 15%;
@@ -93,14 +94,14 @@
 }
 .confirmTurno{
     border-radius: 10px;
-    width: 75vw;
+    width: 92vw;
     height: 45%;
     background-color: rgb(100, 99, 99);
     opacity: 1;
     color: white;
 }
 .confirmTurno p{
-    margin-top: 5px;
+    margin-top: 10px;
 }
 .confirmTurno::before{
     border-top-left-radius: 10px;
