@@ -1,12 +1,18 @@
-import React,{useState} from 'react'
+import React,{useState,useRef,useEffect} from 'react'
 import Nav from "./Nav";
 import { server } from "../utils/global";
+import { allClases } from "../utils/functions";
 import xlsx from 'xlsx'
 import swal from 'sweetalert'
 
 
 const Turnos = () => {
+    useEffect(() => {
+        allClases(idRef,claseRef)
+    }, [])
     const [archivos,setArchivos] = useState()
+    const idRef = useRef(null)
+    const claseRef = useRef(null)
     const subirArchivos = e =>{setArchivos(e)}
     async function addFile(e) {
         e.preventDefault()
@@ -50,6 +56,16 @@ const Turnos = () => {
                 <h2>Elija el archivo excel a subir:</h2>
                 <input type="file" accept=".xlsx" name="files" onChange={(e)=>subirArchivos(e.target.files[0])} />
                 <button className="btn btn-success" onClick={(e)=> addFile(e)}>CARGAR</button>
+                <div className="addClass-clases mt-5">
+                    <div>
+                    <p>ID</p>
+                    <div ref={idRef}></div>
+                    </div>
+                    <div>
+                    <p>CLASE</p>
+                    <div ref={claseRef}></div>
+                    </div>
+                </div> 
             </div>
         </div>
     )

@@ -1,8 +1,9 @@
 import React,{useRef,useEffect,useState} from 'react'
 import {getData} from '../utils/functions'
 import Nav from "./Nav";
+import Map from "./Map";
 import WhatsApp from "./WhatsApp";
-import {server} from "../utils/global";
+import {server,gymName} from "../utils/global";
 import Footer from "./Footer";
 
 
@@ -12,6 +13,7 @@ const Profile = () => {
     const claseRef = useRef()
     const horarioRef = useRef()
     const profesorRef = useRef()
+    const mapUrl = "https://maps.google.com/maps/api/js?v=3.exp&key=AIzaSyCDEKn4T7koVtwqglWk8DjQAIHUw3hsIBg"
     useEffect(() => {
         getData().then((res)=>{setAdmin(res)})
     }, [])
@@ -83,10 +85,16 @@ const Profile = () => {
                     <div className="flex column"><p>Profesor</p> <div  ref={profesorRef} className="flex column"></div> </div>
                 </div>
             </div>
-            {/* <div className="map-container">
+            <div className="map-container">
                 <h2>Tu sede {gymName}</h2>
-                <iframe className="map" src={map} loading="lazy"></iframe>
-            </div> */}
+                <div className="mapProfile">
+                    <Map googleMapURL = {mapUrl}
+                    mapElement = {<div style={{height:"40vh",width:"80vw",margin:"auto"}}/>}
+                    loadingElement={<div style={{ height: `100%` }} />}
+                    containerElement = {<p>Cargando</p>}
+                    />
+                </div>
+            </div>
             </div>
             <WhatsApp/>
             <Footer/>

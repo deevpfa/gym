@@ -134,12 +134,14 @@ export async function turnosCalendario(diaTurnosApi, param1, param2, param3, par
         .then(response => response.json())
         .then(data => {
     
-            if(!data || data===undefined) return
+            if(!data || data===undefined) console.log("HOLA")
+            else{
+                console.log(data);
             arrayTurnos = []
             data.turno.forEach(e => { arrayTurnos.push(e) })
             reservation=false
             data.turno.forEach(e => e.id === data.reservacion ? reservation = data.reservacion : "")
-            
+        }
         })
         .then(() => {
             horarios(param3, param4,admin)
@@ -321,3 +323,22 @@ export function setDays(expiration) {
     let newDate = new Date(expiration)
     return ((newDate.getTime() - hoy.getTime()) / 86400000).toString().split('.')[0]
 }
+
+export async function allClases(ref1,ref2) {
+    await fetch(`${server}/clases`)
+    .then(data => data.json())
+    .then(data=> createAllClases(data,ref1,ref2))
+}
+function createAllClases(array,ref1,ref2) {
+    for (let i = 0; i < array.length; i++) {
+        const element = array[i];
+        let p = document.createElement("p")
+        let p2 = document.createElement("p")
+        p.innerHTML = element.id
+        p2.innerHTML = element.clase
+        ref1.current.appendChild(p)
+        ref2.current.appendChild(p2)
+    }
+}
+
+

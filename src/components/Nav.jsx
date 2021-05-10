@@ -20,7 +20,7 @@ const Nav = (props) => {
         })
     }, [])
     const burgerMenuRef = useRef(null)
-    const [admin, setAdmin] = useState(false)
+    const [admin, setAdmin] = useState("")
     const [burgerState, setBurgerState] = useState(false)
     const [expiration, setExpiration] = useState("")
    
@@ -48,19 +48,21 @@ const Nav = (props) => {
                 </li>
                 {
                     admin === true ?
-                        <li className="letterAdmin"><Link to="/admin">Administracion</Link></li>
+                        <div>
+                            <li className="letterAdmin underlineAdm"><Link to="/admin">Administracion</Link> 
+                            { props.active==="admin" ? <span className="spanIconAdm"></span> : ""}
+                            </li>
+                            <li className="none"></li>
+                        </div>
                         :
-                        <li className="underline profile">
-                            <Link to="/profile"  ><img src={iconProfile} alt="" /></Link>
-                            { props.active==="profile" ? <span className="spanIcon"></span> : ""}
-                        </li>
-                }
-                { admin === false ? <li className="nombreNav">{capitalize(localStorage.getItem("nombre"))}</li>: ""}
-                {
-                    admin === true ?
-                        <li className="none"></li>
-                        :
-                        <li className="vencimiento center">Vencimiento <br /> en {expiration} dias</li>
+                        <div  className="div-container-nav">
+                            <li className="underline profile">
+                                <Link to="/profile"  ><img src={iconProfile} alt="" /></Link>
+                                { props.active==="profile" ? <span className="spanIcon"></span> : ""}
+                            </li>   
+                            <li className="nombreNav">{capitalize(localStorage.getItem("nombre"))}</li>
+                            <li className="vencimiento center">Vencimiento <br /> en {expiration} dias</li>
+                        </div>
                 }
                 <li onClick={() => { history.push("/") }} className="closeSession" >
                     <div className="btn-block"><Link className="nav-link" to="/">Cerrar Sesion</Link></div>

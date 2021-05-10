@@ -10,6 +10,7 @@
 .addClass-container h2{
     color: white;
     font-size: 1.7rem;
+    margin-top: 2em;
     // margin-bottom: 2em;
 }
 .addClass-container div{
@@ -27,4 +28,16 @@
     margin-top: 3em;
     cursor: pointer;
     outline: none;
+}
+.addClass-clases {
+    color: white;
+    font-style: italic;
+    font-family: $font;
+    width: 20em;
+    display: flex;
+    justify-content: space-evenly;
+}
+.addClass-clases div{
+    flex-direction: column;
+    margin-top: 1em;
 }

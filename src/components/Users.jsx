@@ -10,7 +10,7 @@ import addUser from "../assets/addUser.svg";
 import back from "../assets/back.svg";
 
 
-const CrearUsuario = () => {
+const Users = () => {
 
     useEffect(() => {
         obtenerUsuarios()
@@ -204,12 +204,12 @@ const CrearUsuario = () => {
             .then(resp => crearUSERS(resp))
 
     }
-    function moreData(usuario) {
+    async function moreData(usuario) {
         setListDatos(true)
-        
-        fetch(`${server}/usuarios/${usuario}`)
+        await fetch(`${server}/usuarios/${usuario}`)
             .then(response => response.json())
             .then(resp => crearMoreDataUSER(resp))
+        
     }
     function crearMoreDataUSER(datos) {
         setUser(datos)
@@ -290,7 +290,7 @@ const CrearUsuario = () => {
             </div>
             :""}
             {listDatos===true ?
-            <div className="divMoreVR">
+            <div className="divMoreVR" data-aos="flip-up">
                     <div>
                         <img src={iconClose} onClick={()=>setListDatos(false)} alt=""/ >
                         <p>Usuario : {user.user.usuario}</p>
@@ -332,4 +332,4 @@ const CrearUsuario = () => {
     )
 }
 
-export default CrearUsuario
+export default Users

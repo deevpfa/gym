@@ -26,7 +26,7 @@ const Calendar = () => {
     const [turno, setTurno] = useState("")
     const [nombreClase, setNombreClase] = useState("")
     const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
-    const dias = ["Lun", "Mar", "Mier", "Jue", "Vie", "Sab", "Domingo"]
+    const dias = ["","Lun", "Mar", "Mier", "Jue", "Vie", "Sab", "Domingo"]
     const [hoy,setHoy] = useState(new Date())
     const [nombreDia, setNombreDia] = useState(hoy.getDay())
     const [numeroDia, setNumeroDia] = useState(hoy.getDate())
@@ -38,34 +38,32 @@ const Calendar = () => {
         .then(response => response.json()) 
         setNombreClase(nombreClase)
     }
-    if(nombreDia===0) {
-        setNombreDia(1)
-        setNumeroDia(numeroDia+1)
-    }
-    function changeDias(days) {
-        hoy.setDate(hoy.getDate()+ days)
+    function changeDias(days,r) {
+        if(nombreDia===6 && r==="add") hoy.setDate(hoy.getDate() + 2)
+        else if(nombreDia===1 && r==="rest") hoy.setDate(hoy.getDate() - 2)
+        else hoy.setDate(hoy.getDate() + days)
         // if (tope < 1) {
             // setTope(tope + 1)
-            setNumeroDia(hoy.getDate())
             setNumeroMes(hoy.getMonth())
             setNombreDia(hoy.getDay())
+            setNumeroDia(hoy.getDate())
             diaTurnosApi=hoy.getDate()
             mesTurnoApi=hoy.getMonth()
             turnosCalendario(diaTurnosApi,clase,mesTurnoApi,horasRef,setTurno,admin)
-        // }
-    }
-    return (
+            // }
+        }
+        return (
 
         <div>
             <div  ref={containerAllRef} className="flex column">
             <Nav />
             <div className="calendar" >
                 <div className="calendar__Info" >
-                    <div className="calendar__Prev" onClick={() => { changeDias(-1) }}>&#9664;</div>
-                    <div className="calendar__Day">{dias[nombreDia - 1 ]}</div>
+                    <div className="calendar__Prev" onClick={() => { changeDias(-1,"rest") }}>&#9664;</div>
+                    <div className="calendar__Day">{dias[nombreDia]}</div>
                     <div className="calendar__Day">{numeroDia}</div>
                     <div className="calendar__Month" >{meses[numeroMes]}</div>
-                    <div className="calendar__Next" onClick={() => { changeDias(1) }}>&#9654;</div>
+                    <div className="calendar__Next" onClick={() => { changeDias(1,"add") }}>&#9654;</div>
                 </div>
                 <div className="calendar__Dia" ref={horasRef} ></div>
                 
