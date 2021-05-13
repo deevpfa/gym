@@ -1,10 +1,14 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState,useEffect } from 'react'
 import { userLoggin } from '../utils/functions'
 import { useHistory } from "react-router-dom";
 import logo from "../assets/logo3.png";
+import Background from "./Background";
 
 
 const Login = () => {
+    useEffect(() => {
+        <Background/>
+    }, [])
     const [validateUser, setValidateUser] = useState("")
     let history = useHistory();
     if (validateUser === true) history.push("/inicio")

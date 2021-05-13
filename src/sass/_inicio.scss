@@ -27,13 +27,13 @@ h1{
     align-items: center;
     height: 20vh;
     border: 2px solid white;
-    width: 90%;
+    width: 15em;
     margin-bottom: 30px;
     position: relative;
 }
 .cuadro p{
     color: rgb(52, 2, 73);
-    font-size:20px;
+    font-size:1.2rem;
     z-index: 2;
     letter-spacing: 3px;
     font-weight: bold;
@@ -50,4 +50,21 @@ h1{
     width: 100%;
     filter:blur(3px);
     opacity: 1;
+    height: 100%;
+}
+.vencido{
+    min-height: 85vh;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    color: white;
+    font-family: $font;
+    flex-direction: column;
+}
+.vencido img{
+    width: 4em;
+    height: 4em;
+    margin-bottom: 3em;
 }

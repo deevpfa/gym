@@ -129,4 +129,28 @@
 .buttonsConfirmTurno button{
     box-shadow: 0 4px 8px 0 rgba(48, 47, 47, 0.2), 0 6px 20px 0 rgba(37, 37, 37, 0.19);
 }
+.loading-div{
+    width: 150px;
+    height: 30px;
+    margin: 1em auto 2em auto;
+}
+.loading {
+    display: flex;
+    justify-content: center;
+}
 
+.loading::after {
+    content: "";
+    width: 50px;
+    height: 50px;
+    border: 10px solid #383838;
+    border-top-color: #cdcfcf;
+    border-radius: 50%;
+    animation: loading 1s ease infinite;
+}
+
+@keyframes loading {
+    to {
+        transform: rotate(1turn);
+    }
+}

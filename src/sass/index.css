@@ -34,12 +34,14 @@ a:hover {
 }
 
 .fondoImg {
-  background-image: url(../assets/img1.jpg);
-  background-position: center;
-  /* Center the image */
-  background-repeat: no-repeat;
-  /* Do not repeat the image */
-  background-size: cover;
+  position: absolute;
+  z-index: -4;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
 }
 
 /* width */
@@ -69,7 +71,6 @@ input {
 body {
   background-color: black !important;
   font-family: "Roboto", sans-serif;
-  background-image: url(../assets/img1.jpg);
   background-position: center;
   /* Center the image */
   background-repeat: no-repeat;
@@ -112,10 +113,6 @@ body {
   font-style: italic;
   font-family: "Roboto", sans-serif;
   color: white;
-}
-
-.letterAdmin a:hover {
-  color: #818181;
 }
 
 .div-container-nav {
@@ -230,6 +227,7 @@ body {
 }
 
 .divLogin {
+  background-image: url(../assets/imgE-Gym.jpg);
   background-position: center;
   /* Center the image */
   background-repeat: no-repeat;
@@ -309,6 +307,10 @@ body {
   font-size: 15px;
   font-weight: bold;
   font-family: "Roboto", sans-serif;
+}
+
+.input-group-prepend {
+  width: 2.7em;
 }
 
 .addClass-container {
@@ -419,14 +421,14 @@ h1 {
           align-items: center;
   height: 20vh;
   border: 2px solid white;
-  width: 90%;
+  width: 15em;
   margin-bottom: 30px;
   position: relative;
 }
 
 .cuadro p {
   color: #340249;
-  font-size: 20px;
+  font-size: 1.2rem;
   z-index: 2;
   letter-spacing: 3px;
   font-weight: bold;
@@ -446,6 +448,34 @@ h1 {
   -webkit-filter: blur(3px);
           filter: blur(3px);
   opacity: 1;
+  height: 100%;
+}
+
+.vencido {
+  min-height: 85vh;
+  width: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1.2rem;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.vencido img {
+  width: 4em;
+  height: 4em;
+  margin-bottom: 3em;
 }
 
 .calendar {
@@ -633,12 +663,52 @@ h1 {
           box-shadow: 0 4px 8px 0 rgba(48, 47, 47, 0.2), 0 6px 20px 0 rgba(37, 37, 37, 0.19);
 }
 
+.loading-div {
+  width: 150px;
+  height: 30px;
+  margin: 1em auto 2em auto;
+}
+
+.loading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.loading::after {
+  content: "";
+  width: 50px;
+  height: 50px;
+  border: 10px solid #383838;
+  border-top-color: #cdcfcf;
+  border-radius: 50%;
+  -webkit-animation: loading 1s ease infinite;
+          animation: loading 1s ease infinite;
+}
+
+@-webkit-keyframes loading {
+  to {
+    -webkit-transform: rotate(1turn);
+            transform: rotate(1turn);
+  }
+}
+
+@keyframes loading {
+  to {
+    -webkit-transform: rotate(1turn);
+            transform: rotate(1turn);
+  }
+}
+
 .map-container {
   margin: 7em auto 0 auto;
 }
 
 .profile-container {
-  margin: 7em auto 0 auto;
+  margin: 2em auto 0 auto;
 }
 
 .profile-container h2 {
@@ -1221,6 +1291,9 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
 }
 
 @media screen and (min-width: 900px) {
+  .letterAdmin a:hover {
+    color: #818181;
+  }
   .form-container-user button {
     width: 70%;
   }
@@ -1476,6 +1549,9 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
     font-size: 1rem;
     height: 20px;
   }
+  .profile-container {
+    margin-top: 7em;
+  }
   .addClass-container h2 {
     margin-top: 6em;
   }
@@ -1503,6 +1579,18 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
   }
   ::-webkit-scrollbar {
     width: 5px;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  :root {
+    font-size: 18px;
+  }
+  .calendar {
+    margin: 9.5em auto 0px auto;
+  }
+  .divAdmin {
+    margin: 11em auto;
   }
 }
 /*# sourceMappingURL=index.css.map */

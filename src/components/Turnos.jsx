@@ -51,7 +51,6 @@ const Turnos = () => {
     }}
     return (
         <div>
-            <Nav/>
             <div className="turnos-container">
                 <h2>Elija el archivo excel a subir:</h2>
                 <input type="file" accept=".xlsx" name="files" onChange={(e)=>subirArchivos(e.target.files[0])} />

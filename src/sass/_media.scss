@@ -6,6 +6,9 @@
 }
 
 @media screen and (min-width: 900px){
+    .letterAdmin a:hover{
+        color: rgb(129, 129, 129);
+    }
     .form-container-user button{
         width: 70%;
     }
@@ -239,6 +242,9 @@
         font-size: 1rem;
         height: 20px;
     }
+    .profile-container{
+        margin-top: 7em;
+    }
     .addClass-container h2{
         margin-top: 6em;
     }
@@ -264,4 +270,14 @@
 }
 
 
-
+@media screen and (min-width: 1400px){
+    :root{
+        font-size: 18px;
+    }
+    .calendar {
+        margin: 9.5em auto 0px auto;
+    }
+    .divAdmin {
+        margin: 11em auto;
+    }
+}

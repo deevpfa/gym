@@ -60,7 +60,6 @@ const ViewReservas = () => {
     }
     const dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"]
     function crearDivReservation(data) {
-        console.log(data);
         fechaRef.current.innerHTML = ""
         claseRef.current.innerHTML = ""
         horarioRef.current.innerHTML = ""
@@ -123,7 +122,6 @@ const ViewReservas = () => {
     }
     return (
         <div>
-            <Nav/>
             <div className="reservation-container">
                 
                 <div className="dateVR"><input  ref={dateRef}  type="date" name="" id=""/></div>

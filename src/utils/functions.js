@@ -1,4 +1,5 @@
 import { server, gymName } from "./global";
+import swal from 'sweetalert'
 
 /**
  * 
@@ -117,7 +118,7 @@ let reservation
  * @param {parametro de horarios} param4 
  * @returns peticion a api para los horarios
  */
-export async function turnosCalendario(diaTurnosApi, param1, param2, param3, param4,admin) {
+export async function turnosCalendario(diaTurnosApi, param1, param2, param3, param4,admin,loaderRef) {
     
     var data = {
         token:localStorage.getItem("token"),
@@ -134,9 +135,8 @@ export async function turnosCalendario(diaTurnosApi, param1, param2, param3, par
         .then(response => response.json())
         .then(data => {
     
-            if(!data || data===undefined) console.log("HOLA")
+            if(!data || data===undefined) return
             else{
-                console.log(data);
             arrayTurnos = []
             data.turno.forEach(e => { arrayTurnos.push(e) })
             reservation=false
@@ -144,7 +144,7 @@ export async function turnosCalendario(diaTurnosApi, param1, param2, param3, par
         }
         })
         .then(() => {
-            horarios(param3, param4,admin)
+            horarios(param3, param4,admin,loaderRef)
         })
 }
 
@@ -156,8 +156,7 @@ export async function turnosCalendario(diaTurnosApi, param1, param2, param3, par
  * @param {useState} setTurno 
  * @returns crear los horarios en el calendario
  */
-export function horarios(horasRef, setTurno,admin) {
-    horasRef.current.innerHTML = ""
+export function horarios(horasRef, setTurno,admin,loaderRef) {
     let adminState
     if(admin===true) adminState=1
     for (let i = 0; i < arrayTurnos.length; i++) {
@@ -191,7 +190,17 @@ export function horarios(horasRef, setTurno,admin) {
             button.innerHTML = "BORRAR"
             button.classList.add("btn","btn-danger","btn-turnos")
             button.setAttribute("id" , element.id)
-            button.onclick= (e) => {e.stopPropagation(); deleteTurno(e.target.id);}
+            button.onclick= (e) => {e.stopPropagation(); swal({
+                title: "Estas seguro que deseas eliminar este turno?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+              })
+              .then((willDelete) => {
+                if (willDelete) {
+                  deleteTurno(e.target.id)
+                }
+              });}
             div.appendChild(button)
         }
         if(reservation!==false) {
@@ -204,12 +213,23 @@ export function horarios(horasRef, setTurno,admin) {
                 button.innerHTML = "CANCELAR"
                 button.classList.add("btn","btn-danger","btn-turnos")
                 button.setAttribute("id" , element.id)
-                button.onclick= (e) => {e.stopPropagation(); deleteReservation(e.target.id)}
+                button.onclick= (e) => {e.stopPropagation(); swal({
+                    title: "Estas seguro que deseas cancelar esta reserva?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                  })
+                  .then((willDelete) => {
+                    if (willDelete) {
+                      deleteReservation(e.target.id)
+                    }
+                  });}
                 div.appendChild(button)
             }
         }
         horasRef.current.appendChild(div)
     }
+    loaderRef.current.setAttribute("hidden","")
 }
 
 /**
@@ -272,7 +292,7 @@ function crearCheckbox(ref,arrayClasesUser) {
         let input = document.createElement("input")
         let p = document.createElement("p")
         input.setAttribute("type", "checkbox")
-        input.setAttribute("id", i + 1)
+        input.setAttribute("id", element.id)
         input.onclick = (e)=>{ arrayClasesUser.includes(`${e.target.id}`)===false ? arrayClasesUser.push(e.target.id) : arrayClasesUser.splice(arrayClasesUser.indexOf(e.target.id),1)}
         p.innerHTML = capitalize(element.clase)
         ref.current.appendChild(input)

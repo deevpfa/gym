@@ -1,5 +1,5 @@
 .divLogin{
-    // background-image: url(../assets/img2.jpg);
+    background-image: url(../assets/imgE-Gym.jpg);
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover;
@@ -42,4 +42,7 @@
     font-size: 15px;
     font-weight: bold;
     font-family: $font;;
+}
+.input-group-prepend {
+    width: 2.7em;
 }

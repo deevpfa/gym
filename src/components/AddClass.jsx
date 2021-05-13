@@ -53,7 +53,6 @@ const AddClass = () => {
     
     return (
         <div>
-            <Nav/>
             <div className="addClass-container">
                 <h2>Elija un nombre y una imagen para su clase:</h2>
                 <div className="addClass-name"><input ref={nombreRef} className="form-control" placeholder="Nombre" type="text" /></div>

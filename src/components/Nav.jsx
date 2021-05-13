@@ -1,4 +1,4 @@
-import React, { useState, useRef,useEffect} from 'react'
+import React, { useState, useRef,useEffect,useContext} from 'react'
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
 import { setDays,getData,capitalize } from '../utils/functions'
@@ -6,12 +6,13 @@ import iconHome from "../assets/iconHome.svg";
 import iconProfile from "../assets/iconProfile.svg";
 import iconBurger from "../assets/iconBurger.svg";
 import iconClose from "../assets/iconClose.svg";
+import { UserContext } from './UserContext';
 
 
 
 
 
-const Nav = (props) => {
+const Nav = () => {
     let history = useHistory();
     useEffect(() => {
         getData().then((res)=>{
@@ -19,6 +20,8 @@ const Nav = (props) => {
             setExpiration(setDays(res.expiration))
         })
     }, [])
+    const {stateNav,setStateNav} = useContext(UserContext)
+
     const burgerMenuRef = useRef(null)
     const [admin, setAdmin] = useState("")
     const [burgerState, setBurgerState] = useState(false)
@@ -44,13 +47,13 @@ const Nav = (props) => {
             <ul className="lista-nav">
                 <li className="underline" >
                     <Link to="/inicio" ><img src={iconHome} alt="" /></Link>
-                    { props.active==="home" ? <span className="spanIcon"></span> : ""}
+                    { stateNav==="home" ? <span className="spanIcon"></span> : ""}
                 </li>
                 {
                     admin === true ?
                         <div>
                             <li className="letterAdmin underlineAdm"><Link to="/admin">Administracion</Link> 
-                            { props.active==="admin" ? <span className="spanIconAdm"></span> : ""}
+                            { stateNav==="admin" ? <span className="spanIconAdm"></span> : ""}
                             </li>
                             <li className="none"></li>
                         </div>
@@ -58,10 +61,13 @@ const Nav = (props) => {
                         <div  className="div-container-nav">
                             <li className="underline profile">
                                 <Link to="/profile"  ><img src={iconProfile} alt="" /></Link>
-                                { props.active==="profile" ? <span className="spanIcon"></span> : ""}
+                                { stateNav==="profile" ? <span className="spanIcon"></span> : ""}
                             </li>   
                             <li className="nombreNav">{capitalize(localStorage.getItem("nombre"))}</li>
-                            <li className="vencimiento center">Vencimiento <br /> en {expiration} dias</li>
+                            {
+                                expiration<0 ? <li className="vencimiento center">Vencido</li>
+                                :<li className="vencimiento center">Vencimiento <br /> en {expiration} dias</li>
+                            }
                         </div>
                 }
                 <li onClick={() => { history.push("/") }} className="closeSession" >

@@ -8,6 +8,7 @@ import swal from 'sweetalert'
 import iconClose from "../assets/iconClose.svg";
 import addUser from "../assets/addUser.svg";
 import back from "../assets/back.svg";
+import moment from "moment";
 
 
 const Users = () => {
@@ -20,6 +21,7 @@ const Users = () => {
     if(!arrayClasesUser)  var arrayClasesUser=[]
     
     const [error, setError] = useState("")
+    const [cantidadUser, setCantidadUser] = useState("")
     const [searchOn, setSearchOn] = useState()
     const [user, setUser] = useState({user:""})
     const [array, setarray] = useState([])
@@ -37,7 +39,6 @@ const Users = () => {
     const direccionRef = useRef(null)
     const passwordRef = useRef(null)
     const dateRef = useRef(null)
-    const altaRef = useRef(null)
     const vencRef = useRef(null)
     const plusRef = useRef(null)
     const MoreRef = useRef(null)
@@ -47,6 +48,7 @@ const Users = () => {
     async function nuevoUsuario(e) {
         e.preventDefault()
         setSearchOn(false)
+        // const expirationDay = Date(dateRef.current.value)
         var data = {
             usuario:usuarioChangeRef.current.value,
             nombre:nombreChangeRef.current.value,
@@ -163,9 +165,9 @@ const Users = () => {
     function crearUSERS(res) {
         usuarioRef.current.innerHTML=""
         nombreRef.current.innerHTML=""
-        altaRef.current.innerHTML=""
         vencRef.current.innerHTML=""
         plusRef.current.innerHTML=""
+        setCantidadUser(res.length)
         for (let i = 0; i < res.length; i++) {
             const element = res[i];
             let p1 = document.createElement("p")
@@ -175,14 +177,12 @@ const Users = () => {
             let p5 = document.createElement("p")
             p1.innerHTML = element.usuario
             p2.innerHTML = `${element.apellido} ${element.nombre}`
-            p3.innerHTML = element.createdAt.substring(0,10)
-            p4.innerHTML = element.expiration
+            p4.innerHTML = moment(element.expiration).format('DD-MM-YYYY')
             p5.innerHTML = "+ Ver"
             p5.onclick = () => moreData(element.usuario);
             p5.classList.add("moreReservation")
             usuarioRef.current.appendChild(p1)
             nombreRef.current.appendChild(p2)
-            altaRef.current.appendChild(p3)
             vencRef.current.appendChild(p4)
             plusRef.current.appendChild(p5)
         }
@@ -204,6 +204,7 @@ const Users = () => {
             .then(resp => crearUSERS(resp))
 
     }
+
     async function moreData(usuario) {
         setListDatos(true)
         await fetch(`${server}/usuarios/${usuario}`)
@@ -226,8 +227,8 @@ const Users = () => {
         p3.innerHTML = `Telefono : ${datos.user.telefono}`
         p4.innerHTML = `Direccion : ${datos.user.direccion}`
         p5.innerHTML = `Clases : ${datos.clases}`
-        p6.innerHTML = `Alta : ${datos.user.createdAt.substring(0,10)}`
-        p7.innerHTML = `Venc : ${datos.user.expiration}`
+        p6.innerHTML = `Alta : ${moment(datos.user.createdAt).format('DD-MM-YYYY').substring(0,10)}`
+        p7.innerHTML = `Venc : ${moment(datos.user.expiration).format('DD-MM-YYYY')}`
         MoreRef.current.appendChild(p1)
         MoreRef.current.appendChild(p2)
         MoreRef.current.appendChild(p3)
@@ -238,7 +239,6 @@ const Users = () => {
     }
     return (
         <div>
-            <Nav />
             {
                 modify===false ? 
             
@@ -250,7 +250,6 @@ const Users = () => {
                         <option value=""></option>
                         <option value="usuario">USUARIO</option>
                         <option value="apellido" >APELLIDO</option>
-                        <option value="alta">ALTA</option>
                         <option value="expiration">VENCIMIENTO</option>
                     </select>
                     <div className="searchOn">
@@ -261,22 +260,18 @@ const Users = () => {
                       </div> : ""
                     }
                     {
-                        searchOn==="alta" || searchOn==="expiration" ? <input type="date" name="" onChange={(e)=> searchUSERS(e)} id=""/>  : ""
+                        searchOn==="expiration" ? <input type="date" name="" onChange={(e)=> searchUSERS(e)} id=""/>  : ""
                     }
                     </div>
                 </div>
                 <div className="div-newUser">
                     <div>
-                    <p>Usuario</p>
+                    <p>Usuarios ({cantidadUser})</p>
                     <div ref={usuarioRef}></div>
                     </div>
                     <div>
                     <p>Nombre</p>
                     <div ref={nombreRef}></div>
-                    </div>
-                    <div>
-                    <p>Alta</p>
-                    <div ref={altaRef}></div>
                     </div>
                     <div>
                     <p>Vencimiento</p>
@@ -293,7 +288,7 @@ const Users = () => {
             <div className="divMoreVR" data-aos="flip-up">
                     <div>
                         <img src={iconClose} onClick={()=>setListDatos(false)} alt=""/ >
-                        <p>Usuario : {user.user.usuario}</p>
+                        <p>{user.user.usuario}</p>
                         <div ref={MoreRef} className="listNames" >
                         </div>
                         <h6 onClick={(e)=> obtenerUser(e,user.usuario)}>Modificar Usuario</h6>
@@ -313,7 +308,7 @@ const Users = () => {
                     <div><input ref={telefonoRef} className="form-control" placeholder="Telefono" type="text" /></div>
                     <div><input ref={direccionRef} className="form-control" placeholder="Direccion" type="text" /></div>
                     <div><input ref={passwordRef} className="form-control" placeholder="PASSWORD" type="text" /></div>
-                    <div><input ref={dateRef }className="form-control" placeholder="Vencimiento" type="text" onClick={(e)=> e.target.type="date"}/></div>
+                    <div><input ref={dateRef }className="form-control" placeholder="Vencimiento" type="text" min={moment().format('YYYY-MM-DD')} onClick={(e)=> e.target.type="date"}/></div>
                     <div className="checkbox" ref={divCheckboxRef}></div>
                     <p className="errorUser"> {
                         error ? error : ""

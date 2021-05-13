@@ -9,7 +9,7 @@ import WhatsApp from "./WhatsApp";
 
 const Calendar = () => {
     async function loadButton() {
-        getData().then((res)=>{setAdmin(res.isAdmin);turnosCalendario(diaTurnosApi,clase,numeroMes,horasRef,setTurno,res.isAdmin)})
+        getData().then((res)=>{setAdmin(res.isAdmin);turnosCalendario(diaTurnosApi,clase,numeroMes,horasRef,setTurno,res.isAdmin,loaderRef)})
     }
     // setTimeout(() => {
     //     window.location.reload()
@@ -22,6 +22,7 @@ const Calendar = () => {
         obtenerClase()
     }, [])
     const horasRef = useRef(null)
+    const loaderRef = useRef(null)
     const containerAllRef = useRef(null)
     const [turno, setTurno] = useState("")
     const [nombreClase, setNombreClase] = useState("")
@@ -39,6 +40,8 @@ const Calendar = () => {
         setNombreClase(nombreClase)
     }
     function changeDias(days,r) {
+        horasRef.current.innerHTML = ""
+        loaderRef.current.removeAttribute("hidden")
         if(nombreDia===6 && r==="add") hoy.setDate(hoy.getDate() + 2)
         else if(nombreDia===1 && r==="rest") hoy.setDate(hoy.getDate() - 2)
         else hoy.setDate(hoy.getDate() + days)
@@ -49,14 +52,14 @@ const Calendar = () => {
             setNumeroDia(hoy.getDate())
             diaTurnosApi=hoy.getDate()
             mesTurnoApi=hoy.getMonth()
-            turnosCalendario(diaTurnosApi,clase,mesTurnoApi,horasRef,setTurno,admin)
+            turnosCalendario(diaTurnosApi,clase,mesTurnoApi,horasRef,setTurno,admin,loaderRef)
+           
             // }
         }
         return (
 
         <div>
             <div  ref={containerAllRef} className="flex column">
-            <Nav />
             <div className="calendar" >
                 <div className="calendar__Info" >
                     <div className="calendar__Prev" onClick={() => { changeDias(-1,"rest") }}>&#9664;</div>
@@ -66,7 +69,9 @@ const Calendar = () => {
                     <div className="calendar__Next" onClick={() => { changeDias(1,"add") }}>&#9654;</div>
                 </div>
                 <div className="calendar__Dia" ref={horasRef} ></div>
-                
+                <div className="loading-div" ref={loaderRef} >
+                    <div className="loading loading--full-height"></div>
+                </div>
                 <div className="endCalendar"> __________________________</div>
             </div>
             </div>
