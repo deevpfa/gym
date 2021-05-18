@@ -251,9 +251,9 @@ body {
 }
 
 .logoLogin {
-  width: 10em;
-  height: 10em;
-  margin-top: 30px auto;
+  width: 12em;
+  height: 12em;
+  margin: 2em auto 0 auto;
 }
 
 .logoLogin img {
@@ -315,7 +315,6 @@ body {
 
 .addClass-container {
   width: 100%;
-  height: 80vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -434,6 +433,13 @@ h1 {
   font-weight: bold;
   font-family: "Roboto", sans-serif;
   margin-block: 0px;
+}
+
+.spanCuadro {
+  position: absolute;
+  width: 3.5em;
+  height: 2px;
+  background-color: white;
 }
 
 .cuadro2 {
@@ -613,8 +619,8 @@ h1 {
 
 .confirmTurno {
   border-radius: 10px;
-  width: 92vw;
-  height: 45%;
+  width: 25em;
+  height: 15em;
   background-color: #646363;
   opacity: 1;
   color: white;
@@ -648,8 +654,8 @@ h1 {
 
 .buttonsConfirmTurno {
   width: 100%;
-  height: 10vh;
-  margin-top: 5vh;
+  height: 3em;
+  margin-top: 2vh;
   float: right;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1014,28 +1020,6 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
   font-family: "Roboto", sans-serif;
 }
 
-.checkbox {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  color: white;
-}
-
-.checkbox input {
-  margin: auto 0 auto 0;
-  cursor: pointer;
-  width: 8% !important;
-}
-
-.checkbox p {
-  margin: auto 0 auto 0;
-}
-
 .form-container-user input {
   width: 70%;
 }
@@ -1048,7 +1032,7 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
   height: 1.5vh;
 }
 
-.form-container-user div {
+.form-container-user > div {
   width: 50%;
   height: 3em;
   display: -webkit-box;
@@ -1057,6 +1041,47 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.checkbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  color: white;
+  width: 80% !important;
+  height: auto !important;
+}
+
+.checkbox > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 1em;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 12em;
+}
+
+.checkbox input[type=number] {
+  width: 3em;
+  height: 1.5em;
+}
+
+.checkbox input[type=checkbox] {
+  margin: auto 0 auto 0;
+  cursor: pointer;
+  width: 8% !important;
+  margin-left: 30px;
+}
+
+.checkbox p {
+  margin: auto auto auto 10px;
 }
 
 .form-container-user button {
@@ -1157,6 +1182,12 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
 .backArrow img {
   width: 1.5em;
   height: 1.5em;
+}
+
+.loading-div-user {
+  position: absolute;
+  width: 70%;
+  margin: 20vh auto 2em auto;
 }
 
 .turnos-container {
@@ -1288,6 +1319,9 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
   .form-container-user div button {
     font-size: 0.9rem;
   }
+  .confirmTurno {
+    width: 20em;
+  }
 }
 
 @media screen and (min-width: 900px) {
@@ -1319,8 +1353,8 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
     margin: 6.5em auto 0px auto;
   }
   .confirmTurno {
-    width: 35vw;
-    height: 40%;
+    width: 35em;
+    height: 15em;
   }
   .buttonsConfirmTurno {
     height: 8vh;
@@ -1420,6 +1454,9 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
   .container-newUser {
     font-size: 0.9rem;
     margin-top: 7%;
+  }
+  .loading-div-user {
+    width: 40%;
   }
   .parrafoList {
     font-size: 0.96rem !important;
@@ -1552,8 +1589,8 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
   .profile-container {
     margin-top: 7em;
   }
-  .addClass-container h2 {
-    margin-top: 6em;
+  .addClass-container {
+    margin-top: 2em;
   }
   .btn-turnos {
     font-size: 0.8rem !important;
@@ -1585,6 +1622,9 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
 @media screen and (min-width: 1400px) {
   :root {
     font-size: 18px;
+  }
+  .confirmTurno {
+    width: 40em;
   }
   .calendar {
     margin: 9.5em auto 0px auto;

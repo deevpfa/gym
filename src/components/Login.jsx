@@ -2,6 +2,7 @@ import React, { useRef, useState,useEffect } from 'react'
 import { userLoggin } from '../utils/functions'
 import { useHistory } from "react-router-dom";
 import logo from "../assets/logo3.png";
+import fondoIMG from "../assets/imgE-Gym.jpg";
 import Background from "./Background";
 
 
@@ -16,9 +17,8 @@ const Login = () => {
     const passwordRef = useRef(null)
     return (
         <div className="m-auto divLogin">
-            
-            <div className="logoLogin">
-                <img src={logo} alt=""/>
+            <div className="logoLogin" >
+                <img src={logo} alt="" />
             </div>
 
             <form className="form-group form-container-login" data-aos="zoom-in">

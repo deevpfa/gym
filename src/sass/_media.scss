@@ -3,6 +3,9 @@
     .form-container-user div button{
         font-size: 0.9rem;
     }
+    .confirmTurno{
+        width: 20em;
+    }
 }
 
 @media screen and (min-width: 900px){
@@ -33,8 +36,8 @@
         margin: 6.5em auto 0px auto;
     }
     .confirmTurno{
-        width: 35vw;
-        height: 40%;
+        width: 35em;
+        height: 15em;
     }
     .buttonsConfirmTurno{
         height: 8vh;
@@ -115,7 +118,9 @@
         font-size: 0.9rem;
         margin-top: 7%;
     }
-    
+    .loading-div-user{
+        width: 40%;
+    }
     .parrafoList{
         font-size: 0.96rem !important;
         font-style: italic;
@@ -245,8 +250,8 @@
     .profile-container{
         margin-top: 7em;
     }
-    .addClass-container h2{
-        margin-top: 6em;
+    .addClass-container {
+        margin-top: 2em;
     }
     .btn-turnos{
         font-size: 0.8rem !important;
@@ -273,6 +278,9 @@
 @media screen and (min-width: 1400px){
     :root{
         font-size: 18px;
+    }
+    .confirmTurno{
+        width: 40em;
     }
     .calendar {
         margin: 9.5em auto 0px auto;

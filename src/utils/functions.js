@@ -259,13 +259,16 @@ export function crearClases(ref, arrayClases,history) {
         const element = arrayClases[i];
         let div = document.createElement("div")
         let img = document.createElement("img")
+        let span = document.createElement("span")
         let p = document.createElement("p")
+        span.classList.add("spanCuadro")
         div.classList.add("cuadro", "cuadro2")
         div.onclick = () => { history.push(`/calendar/${element.id}`) }
         p.innerHTML = element.clase.toUpperCase()
         img.classList.add("noImg")
         img.src = element.img
         div.appendChild(img)    
+        div.appendChild(span)
         div.appendChild(p)
         ref.current.appendChild(div)
     }
@@ -276,27 +279,50 @@ export function capitalize(word) {
 }
 
 let arrayClases 
-export async function obtenerClases(ref,arrayClasesUser) {
+export async function obtenerClases(ref1,arrayClasesUser,setarray) {
     await fetch(`${server}/clases`)
         .then(response => response.json())
         .then(data => {
             arrayClases = []
             data.forEach(e => arrayClases.push(e))
         })
-        .then(() => crearCheckbox(ref,arrayClasesUser))
+        .then(() => crearCheckbox(ref1,arrayClasesUser,setarray))
 }
 
-function crearCheckbox(ref,arrayClasesUser) {
+function crearCheckbox(ref1,arrayClasesUser,setarray) {
     for (let i = 0; i < arrayClases.length; i++) {
         const element = arrayClases[i];
         let input = document.createElement("input")
+        let div = document.createElement("div")
+        let input2 = document.createElement("input")
         let p = document.createElement("p")
         input.setAttribute("type", "checkbox")
+        input2.setAttribute("type", "number")
+        input2.setAttribute("max", "6")
+        input2.setAttribute("min", "0")
         input.setAttribute("id", element.id)
-        input.onclick = (e)=>{ arrayClasesUser.includes(`${e.target.id}`)===false ? arrayClasesUser.push(e.target.id) : arrayClasesUser.splice(arrayClasesUser.indexOf(e.target.id),1)}
+        input2.setAttribute("id", element.id)
+        let obj = {
+            clase:element.id,
+            semanal:input2.value
+        }   
+        input2.onchange = () => {obj.semanal = input2.value}
+        input.onclick = (e)=>{ 
+            if(arrayClasesUser.some(element => element.clase == `${e.target.id}`)===false){
+                arrayClasesUser.push(obj) 
+            }
+            else {
+                const f = arrayClasesUser.find(element => element.clase==`${e.target.id}` )
+                arrayClasesUser.splice(arrayClasesUser.indexOf(f),1)
+            }
+            setarray(arrayClasesUser)
+        }
         p.innerHTML = capitalize(element.clase)
-        ref.current.appendChild(input)
-        ref.current.appendChild(p)
+        div.appendChild(input)
+        div.appendChild(p)
+        div.appendChild(input2)
+        ref1.current.appendChild(div)
+        
     }
 }
 

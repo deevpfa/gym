@@ -32,7 +32,6 @@ const Users = () => {
     const usuarioChangeRef = useRef(null)
     const nombreRef = useRef(null)
     const nombreChangeRef = useRef(null)
-    const apellidoRef = useRef(null)
     const apellidoChangeRef = useRef(null)
     const emailRef = useRef(null)
     const telefonoRef = useRef(null)
@@ -43,12 +42,10 @@ const Users = () => {
     const plusRef = useRef(null)
     const MoreRef = useRef(null)
     const divCheckboxRef = useRef(null)
-
-
+    const loaderRef = useRef(null)
     async function nuevoUsuario(e) {
         e.preventDefault()
         setSearchOn(false)
-        // const expirationDay = Date(dateRef.current.value)
         var data = {
             usuario:usuarioChangeRef.current.value,
             nombre:nombreChangeRef.current.value,
@@ -58,7 +55,7 @@ const Users = () => {
             direccion:direccionRef.current.value,
             password:passwordRef.current.value,
             isAdmin: false,
-            clases: arrayClasesUser,
+            clases: array,
             expirationDay:dateRef.current.value
         }
         await fetch(`${server}/usuarios`, {
@@ -87,7 +84,7 @@ const Users = () => {
         e.preventDefault()
         setModify(true)
         setListDatos(false)
-        await obtenerClases(divCheckboxRef,arrayClasesUser)
+        await obtenerClases(divCheckboxRef,arrayClasesUser,setarray)
         const arrayNodes = [...divCheckboxRef.current.childNodes]
         arrayNodes.forEach(e => e.checked=false);
             usuarioChangeRef.current.value = user.user.usuario 
@@ -99,10 +96,13 @@ const Users = () => {
             dateRef.current.value = user.user.expiration
             for (let i = 0; i < arrayNodes.length; i++) {
                 const element = arrayNodes[i];
-                const includes = user.user.clases.includes(element.id)
+                const includes = user.user.clases.some(e => e.clase == (element.firstChild.id))
+
                 if(includes===true) {
-                    element.checked=true
-                    arrayClasesUser.push(element.id)
+                    element.firstChild.checked=true
+                    const f = user.user.clases.find(e => e.clase == element.firstChild.id)
+                    element.lastChild.value = f.semanal
+                    arrayClasesUser.push({clase:element.firstChild.id,semanal:element.lastChild.value})
                     setarray(arrayClasesUser)
                 }
             }
@@ -120,7 +120,7 @@ const Users = () => {
             telefono:telefonoRef.current.value,
             direccion:direccionRef.current.value,
             password:passwordRef.current.value,
-            clases: myArrClean.toString(),
+            clases: JSON.stringify(myArrClean) ,
             expiration:dateRef.current.value
         }
         await fetch(`${server}/usuarios/miUsuario`, {
@@ -207,9 +207,11 @@ const Users = () => {
 
     async function moreData(usuario) {
         setListDatos(true)
+        loaderRef.current.removeAttribute("hidden")
         await fetch(`${server}/usuarios/${usuario}`)
             .then(response => response.json())
             .then(resp => crearMoreDataUSER(resp))
+            // .then( setTimeout(loaderRef.current.setAttribute("hidden",""), 3000))
         
     }
     function crearMoreDataUSER(datos) {
@@ -226,7 +228,7 @@ const Users = () => {
         p2.innerHTML = `Email : ${datos.user.email}`
         p3.innerHTML = `Telefono : ${datos.user.telefono}`
         p4.innerHTML = `Direccion : ${datos.user.direccion}`
-        p5.innerHTML = `Clases : ${datos.clases}`
+        p5.innerHTML = `Clases : ${datos.clases.toString()}`
         p6.innerHTML = `Alta : ${moment(datos.user.createdAt).format('DD-MM-YYYY').substring(0,10)}`
         p7.innerHTML = `Venc : ${moment(datos.user.expiration).format('DD-MM-YYYY')}`
         MoreRef.current.appendChild(p1)
@@ -236,6 +238,7 @@ const Users = () => {
         MoreRef.current.appendChild(p5)
         MoreRef.current.appendChild(p7)
         MoreRef.current.appendChild(p6)
+        loaderRef.current.setAttribute("hidden","")
     }
     return (
         <div>
@@ -244,7 +247,7 @@ const Users = () => {
             
             <div className="container-newUser">
                 <div className="searchUser">
-                    <div className="nuevoUSER" onClick={()=> {setModify(true) ;setSearchOn(false);obtenerClases(divCheckboxRef,arrayClasesUser)}}> <img src={addUser} alt=""/> Nuevo Usuario</div>
+                    <div className="nuevoUSER" onClick={()=> {setModify(true) ;setSearchOn(false);obtenerClases(divCheckboxRef,arrayClasesUser,setarray)}}> <img src={addUser} alt=""/> Nuevo Usuario</div>
                     <p>Buscar por : </p>
                     <select className="selectNewUser" onChange={(e)=> setSearchOn(e.target.value)}  name="" id="">
                         <option value=""></option>
@@ -287,6 +290,9 @@ const Users = () => {
             {listDatos===true ?
             <div className="divMoreVR" data-aos="flip-up">
                     <div>
+                        <div className="loading-div-user" ref={loaderRef} hidden >
+                            <div className="loading loading--full-height"></div>
+                        </div>
                         <img src={iconClose} onClick={()=>setListDatos(false)} alt=""/ >
                         <p>{user.user.usuario}</p>
                         <div ref={MoreRef} className="listNames" >
@@ -310,6 +316,7 @@ const Users = () => {
                     <div><input ref={passwordRef} className="form-control" placeholder="PASSWORD" type="text" /></div>
                     <div><input ref={dateRef }className="form-control" placeholder="Vencimiento" type="text" min={moment().format('YYYY-MM-DD')} onClick={(e)=> e.target.type="date"}/></div>
                     <div className="checkbox" ref={divCheckboxRef}></div>
+                    
                     <p className="errorUser"> {
                         error ? error : ""
                     }

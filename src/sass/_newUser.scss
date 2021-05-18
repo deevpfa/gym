@@ -7,20 +7,8 @@
     height:60vh;
     font-family: $font;
 }
-.checkbox{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    color: white;
-}
-.checkbox input{
-    margin: auto 0 auto 0 ;
-    cursor: pointer;
-    width: 8% !important;
-}
-.checkbox p{
-    margin: auto 0 auto 0 ;
-}
+
+
 .form-container-user input{
     width: 70%;
     
@@ -32,11 +20,39 @@
     font-weight: bold;
     height: 1.5vh;
 }
-.form-container-user div{
+.form-container-user > div{
     width: 50%;
     height: 3em;
     display:flex;
     justify-content: center;
+}
+.checkbox{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    color: white;
+    width: 80% !important;
+    height: auto !important;
+}
+.checkbox > div{
+    display: flex;
+    margin-top: 1em;
+    // border: 1px solid black; 
+    align-items: flex-start;
+    width: 12em;
+}
+.checkbox input[type=number]{
+    width: 3em;
+    height: 1.5em;
+}
+.checkbox input[type=checkbox]{
+    margin: auto 0 auto 0 ;
+    cursor: pointer;
+    width: 8% !important;
+    margin-left: 30px;
+}
+.checkbox p{
+    margin: auto auto auto 10px ;
 }
 .form-container-user button{
     width: 80%;
@@ -115,4 +131,9 @@
 .backArrow img{
     width: 1.5em;
     height: 1.5em;
+}
+.loading-div-user{
+    position: absolute;
+    width: 70%;
+    margin: 20vh auto 2em auto;
 }
