@@ -113,6 +113,14 @@
     background-color: rgb(61, 60, 60);
     display: block;
 }
+.semanal{
+    color: white;
+    position: absolute;
+    margin: 1.5em auto ;
+    width: 100%;
+    font-family: $font;
+    font-size: 0.9rem;
+}
 .datosTurno{
     display: flex;
     justify-content:space-evenly;

@@ -9,7 +9,7 @@ import WhatsApp from "./WhatsApp";
 
 const Calendar = () => {
     async function loadButton() {
-        getData().then((res)=>{setAdmin(res.isAdmin);turnosCalendario(diaTurnosApi,clase,numeroMes,horasRef,setTurno,res.isAdmin,loaderRef)})
+        getData().then((res)=>{setAdmin(res.isAdmin);turnosCalendario(diaTurnosApi,clase,numeroMes,horasRef,setTurno,res.isAdmin,loaderRef,setSemanal)})
     }
     // setTimeout(() => {
     //     window.location.reload()
@@ -31,6 +31,7 @@ const Calendar = () => {
     const [hoy,setHoy] = useState(new Date())
     const [nombreDia, setNombreDia] = useState(hoy.getDay())
     const [numeroDia, setNumeroDia] = useState(hoy.getDate())
+    const [semanal, setSemanal] = useState()
     var diaTurnosApi = numeroDia 
     var mesTurnoApi
     const [numeroMes, setNumeroMes] = useState(hoy.getMonth())
@@ -52,7 +53,7 @@ const Calendar = () => {
             setNumeroDia(hoy.getDate())
             diaTurnosApi=hoy.getDate()
             mesTurnoApi=hoy.getMonth()
-            turnosCalendario(diaTurnosApi,clase,mesTurnoApi,horasRef,setTurno,admin,loaderRef)
+            turnosCalendario(diaTurnosApi,clase,mesTurnoApi,horasRef,setTurno,admin,loaderRef,setSemanal)
            
             // }
         }
@@ -60,6 +61,7 @@ const Calendar = () => {
 
         <div>
             <div  ref={containerAllRef} className="flex column">
+            <p className="semanal">Te quedan {semanal} reservas semanales</p>
             <div className="calendar" >
                 <div className="calendar__Info" >
                     <div className="calendar__Prev" onClick={() => { changeDias(-1,"rest") }}>&#9664;</div>

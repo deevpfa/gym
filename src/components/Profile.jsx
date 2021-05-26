@@ -17,6 +17,7 @@ const Profile = () => {
     const mapUrl = "https://maps.google.com/maps/api/js?v=3.exp&key=AIzaSyCDEKn4T7koVtwqglWk8DjQAIHUw3hsIBg"
     useEffect(() => {
         getData().then((res)=>{setAdmin(res)})
+        setStateNav("profile")
     }, [])
     const {setStateNav} = useContext(UserContext)
     const [admin,setAdmin]  = useState()

@@ -8,6 +8,14 @@
     }
 }
 
+@media screen and (min-width: 600px){
+    .checkbox input[type=checkbox]{
+        margin-left: 24vw;
+    }
+
+}
+
+
 @media screen and (min-width: 900px){
     .letterAdmin a:hover{
         color: rgb(129, 129, 129);
@@ -256,6 +264,12 @@
     .btn-turnos{
         font-size: 0.8rem !important;
         font-family: $font;
+    }
+    .semanal{
+        margin-top: 4em; 
+    }
+    .checkbox input[type=checkbox]{
+        margin-left: 30%;
     }
     .footer{
         flex-direction: unset;

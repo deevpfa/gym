@@ -22,6 +22,7 @@ const ViewReservas = () => {
         await fetch(`${server}/clases`)
         .then(response => response.json())
         .then(data => {
+            console.log(data);
             arrayClases = []
             data.forEach(e => arrayClases.push(e))
         })

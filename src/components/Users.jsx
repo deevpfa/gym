@@ -94,17 +94,18 @@ const Users = () => {
             telefonoRef.current.value = user.user.telefono
             direccionRef.current.value = user.user.direccion
             dateRef.current.value = user.user.expiration
+            if(user.user.clases){
             for (let i = 0; i < arrayNodes.length; i++) {
                 const element = arrayNodes[i];
                 const includes = user.user.clases.some(e => e.clase == (element.firstChild.id))
-
                 if(includes===true) {
                     element.firstChild.checked=true
                     const f = user.user.clases.find(e => e.clase == element.firstChild.id)
-                    element.lastChild.value = f.semanal
+                    element.childNodes[2].value = f.semanal
                     arrayClasesUser.push({clase:element.firstChild.id,semanal:element.lastChild.value})
                     setarray(arrayClasesUser)
                 }
+            }
             }
         
         
@@ -211,8 +212,6 @@ const Users = () => {
         await fetch(`${server}/usuarios/${usuario}`)
             .then(response => response.json())
             .then(resp => crearMoreDataUSER(resp))
-            // .then( setTimeout(loaderRef.current.setAttribute("hidden",""), 3000))
-        
     }
     function crearMoreDataUSER(datos) {
         setUser(datos)

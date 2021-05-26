@@ -109,6 +109,7 @@ function pad(number,add) {
 let arrayTurnos = []
 var hoy = new Date()
 let reservation
+let semanal
 
 /**
  * 
@@ -118,7 +119,7 @@ let reservation
  * @param {parametro de horarios} param4 
  * @returns peticion a api para los horarios
  */
-export async function turnosCalendario(diaTurnosApi, param1, param2, param3, param4,admin,loaderRef) {
+export async function turnosCalendario(diaTurnosApi, param1, param2, param3, param4,admin,loaderRef,setSemanal) {
     
     var data = {
         token:localStorage.getItem("token"),
@@ -140,6 +141,8 @@ export async function turnosCalendario(diaTurnosApi, param1, param2, param3, par
             arrayTurnos = []
             data.turno.forEach(e => { arrayTurnos.push(e) })
             reservation=false
+            semanal = data.semanal
+            setSemanal(data.semanal)
             data.turno.forEach(e => e.id === data.reservacion ? reservation = data.reservacion : "")
         }
         })
@@ -170,7 +173,7 @@ export function horarios(horasRef, setTurno,admin,loaderRef) {
         p.classList.add("parrafoCalendar", "parrafoCalendar2")
         p2.classList.add("parrafoCalendar", "parrafoCalendar1")
         p3.classList.add("parrafoCalendar", "parrafoCalendar3")
-        if(element.disponibles<=0 || reservation!==false){
+        if(element.disponibles<=0 || reservation!==false  || semanal<=0){
             div.style.cursor = "not-allowed"
             div.style.opacity = "0.2"
         }
@@ -296,12 +299,14 @@ function crearCheckbox(ref1,arrayClasesUser,setarray) {
         let div = document.createElement("div")
         let input2 = document.createElement("input")
         let p = document.createElement("p")
+        let p2 = document.createElement("p")
         input.setAttribute("type", "checkbox")
         input2.setAttribute("type", "number")
         input2.setAttribute("max", "6")
         input2.setAttribute("min", "0")
         input.setAttribute("id", element.id)
         input2.setAttribute("id", element.id)
+        p2.innerHTML = "/sem"
         let obj = {
             clase:element.id,
             semanal:input2.value
@@ -321,6 +326,7 @@ function crearCheckbox(ref1,arrayClasesUser,setarray) {
         div.appendChild(input)
         div.appendChild(p)
         div.appendChild(input2)
+        div.appendChild(p2)
         ref1.current.appendChild(div)
         
     }
