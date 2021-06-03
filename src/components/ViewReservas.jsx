@@ -1,5 +1,4 @@
 import React,{useRef,useEffect} from 'react'
-import Nav from "./Nav";
 import {server} from "../utils/global";
 import iconClose from "../assets/iconClose.svg";
 

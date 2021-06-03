@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect} from 'react'
-import Nav from "./Nav";
 import WhatsApp from "./WhatsApp";
 import { obtenerClases,getData } from "../utils/functions";
 import { useHistory } from "react-router-dom";

@@ -1,7 +1,10 @@
 import React from 'react'
 import {GoogleMap,withScriptjs,withGoogleMap,Marker} from 'react-google-maps'
-import {lng,lat} from "../utils/global";
-const Map = () => {
+
+const Map = (props) => {
+    let lat = props.lat
+    let lng = props.lng
+
     return (
         <GoogleMap 
             zoom={15}

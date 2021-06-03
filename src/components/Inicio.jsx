@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef,useContext} from 'react'
-import Nav from "./Nav";
 import Footer from "./Footer";
 import WhatsApp from "./WhatsApp";
 import { useHistory } from "react-router-dom";

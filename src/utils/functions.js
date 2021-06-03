@@ -1,5 +1,16 @@
-import { server, gymName } from "./global";
+import { server} from "./global";
 import swal from 'sweetalert'
+
+let gymName
+async function datos () {
+    await fetch(`${server}/initialize`)
+    .then(res => res.json()) 
+    .then(data => {
+        gymName = data.config.gymName
+    })
+    
+}
+datos()
 
 /**
  * 
@@ -313,11 +324,11 @@ function crearCheckbox(ref1,arrayClasesUser,setarray) {
         }   
         input2.onchange = () => {obj.semanal = input2.value}
         input.onclick = (e)=>{ 
-            if(arrayClasesUser.some(element => element.clase == `${e.target.id}`)===false){
+            if(arrayClasesUser.some(element => element.clase === `${e.target.id}`)===false){
                 arrayClasesUser.push(obj) 
             }
             else {
-                const f = arrayClasesUser.find(element => element.clase==`${e.target.id}` )
+                const f = arrayClasesUser.find(element => element.clase===`${e.target.id}` )
                 arrayClasesUser.splice(arrayClasesUser.indexOf(f),1)
             }
             setarray(arrayClasesUser)

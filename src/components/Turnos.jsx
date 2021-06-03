@@ -1,5 +1,4 @@
 import React,{useState,useRef,useEffect} from 'react'
-import Nav from "./Nav";
 import { server } from "../utils/global";
 import { allClases } from "../utils/functions";
 import xlsx from 'xlsx'

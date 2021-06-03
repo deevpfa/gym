@@ -20,7 +20,7 @@ const Nav = () => {
             setExpiration(setDays(res.expiration))
         })
     }, [])
-    const {stateNav,setStateNav} = useContext(UserContext)
+    const {stateNav} = useContext(UserContext)
 
     const burgerMenuRef = useRef(null)
     const [admin, setAdmin] = useState("")

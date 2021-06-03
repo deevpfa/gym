@@ -521,6 +521,12 @@ h1 {
   font-family: "Roboto", sans-serif;
 }
 
+.calendar__Info button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
 .calendar__Prev, .calendar__Next {
   color: #f1f0f0;
   cursor: pointer;
@@ -1312,8 +1318,9 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 .footer ul li {
@@ -1349,9 +1356,12 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
   }
   .socialMedia {
     margin-bottom: unset;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+  }
+  .socialMedia li {
+    margin-left: 2.5em;
   }
   .parrafoCalendar {
     width: 30%;
@@ -1630,6 +1640,9 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
     -webkit-box-direction: unset;
         -ms-flex-direction: unset;
             flex-direction: unset;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
   .footer ul li {
     width: 2em;

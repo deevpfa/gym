@@ -25,8 +25,10 @@
     }
     .socialMedia{
         margin-bottom: unset;
-        display: flex;
-        // justify-content: u;
+        justify-content: unset;
+    }
+    .socialMedia li {
+        margin-left: 2.5em;
     }
     .parrafoCalendar{
         width: 30%;
@@ -277,6 +279,7 @@
     .footer ul{
         width: 43%;
         flex-direction: unset;
+        justify-content: center;
     }
     .footer ul li{
         width: 2em;

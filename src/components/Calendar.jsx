@@ -40,7 +40,9 @@ const Calendar = () => {
         .then(response => response.json()) 
         setNombreClase(nombreClase)
     }
-    function changeDias(days,r) {
+    function changeDias(e,days,r) {
+        e.preventDefault()
+        e.target.setAttribute("disabled","")
         horasRef.current.innerHTML = ""
         loaderRef.current.removeAttribute("hidden")
         if(nombreDia===6 && r==="add") hoy.setDate(hoy.getDate() + 2)
@@ -53,9 +55,10 @@ const Calendar = () => {
             setNumeroDia(hoy.getDate())
             diaTurnosApi=hoy.getDate()
             mesTurnoApi=hoy.getMonth()
-            turnosCalendario(diaTurnosApi,clase,mesTurnoApi,horasRef,setTurno,admin,loaderRef,setSemanal)
+            turnosCalendario(diaTurnosApi,clase,mesTurnoApi,horasRef,setTurno,admin,loaderRef,setSemanal).then(setTimeout(()=> e.target.removeAttribute("disabled"), 450))
            
             // }
+        
         }
         return (
 
@@ -64,11 +67,11 @@ const Calendar = () => {
             <p className="semanal">Te quedan {semanal} reservas semanales</p>
             <div className="calendar" >
                 <div className="calendar__Info" >
-                    <div className="calendar__Prev" onClick={() => { changeDias(-1,"rest") }}>&#9664;</div>
+                    <button className="calendar__Prev" onClick={(e) => { changeDias(e,-1,"rest") }}>&#9664;</button>
                     <div className="calendar__Day">{dias[nombreDia]}</div>
                     <div className="calendar__Day">{numeroDia}</div>
                     <div className="calendar__Month" >{meses[numeroMes]}</div>
-                    <div className="calendar__Next" onClick={() => { changeDias(1,"add") }}>&#9654;</div>
+                    <button className="calendar__Next" onClick={(e) => { changeDias(e,1,"add") }}>&#9654;</button>
                 </div>
                 <div className="calendar__Dia" ref={horasRef} ></div>
                 <div className="loading-div" ref={loaderRef} >

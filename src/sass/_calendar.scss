@@ -19,6 +19,11 @@
         text-transform: uppercase;
         font-family: $font;
     }
+    &__Info button{
+        background-color: transparent;
+        border: none;
+        outline: none;
+    }
     &__Prev, &__Next{
         color: rgb(241, 240, 240);
         cursor: pointer;

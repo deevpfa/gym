@@ -1,9 +1,8 @@
 import React,{useRef,useEffect,useState,useContext} from 'react'
 import {getData} from '../utils/functions'
-import Nav from "./Nav";
 import Map from "./Map";
 import WhatsApp from "./WhatsApp";
-import {server,gymName} from "../utils/global";
+import {server} from "../utils/global";
 import Footer from "./Footer";
 import { UserContext } from './UserContext';
 
@@ -18,9 +17,23 @@ const Profile = () => {
     useEffect(() => {
         getData().then((res)=>{setAdmin(res)})
         setStateNav("profile")
+        datos()
     }, [])
+    async function datos() {
+        await fetch(`${server}/initialize`)
+        .then(res => res.json()) 
+        .then(data => {
+            setgymName(data.config.gymName)
+            setlat(data.config.lat)
+            setlng(data.config.lng)
+        })
+        
+    }
     const {setStateNav} = useContext(UserContext)
     const [admin,setAdmin]  = useState()
+    const [gymName,setgymName]  = useState()
+    const [lat,setlat]  = useState()
+    const [lng,setlng]  = useState()
     async function reservationList(id,date) {
         var data ={
             id,
@@ -49,7 +62,6 @@ const Profile = () => {
             arrayNodes.forEach(element => element.removeAttribute("hidden"))
             for (let i = 0; i < data.length; i++) {
                 const element = data[i];
-                let mes = element.date.slice(5,7)
                 let dia = new Date (element.date).getDay()
                 let p = document.createElement("p")
                 let p1 = document.createElement("p")
@@ -101,6 +113,8 @@ const Profile = () => {
                     mapElement = {<div style={{height:"40vh",width:"80vw",margin:"auto"}}/>}
                     loadingElement={<div style={{ height: `100%` }} />}
                     containerElement = {<p>Cargando</p>}
+                    lat = {lat}
+                    lng = {lng}
                     />
                 </div>
             </div>
