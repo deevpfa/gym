@@ -313,6 +313,10 @@ body {
   width: 2.7em;
 }
 
+.input-group-prepend span {
+  width: 100%;
+}
+
 .addClass-container {
   width: 100%;
   display: -webkit-box;
@@ -425,19 +429,23 @@ h1 {
   position: relative;
 }
 
-.cuadro p {
-  color: #340249;
+.spanCuadro {
   font-size: 1.2rem;
   z-index: 2;
   letter-spacing: 3px;
   font-weight: bold;
-  font-family: "Roboto", sans-serif;
-  margin-block: 0px;
-}
-
-.spanCuadro {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   position: absolute;
-  width: 8em;
+  font-family: "Roboto", sans-serif;
+  color: #010d53;
   height: 2px;
   background-color: white;
 }
@@ -1035,6 +1043,14 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
   font-family: "Roboto", sans-serif;
 }
 
+.form-container-user span {
+  position: absolute;
+}
+
+.form-container-user input[type=tel] {
+  padding-left: 4em;
+}
+
 .form-container-user input {
   width: 70%;
 }
@@ -1044,7 +1060,7 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
   color: #f50707;
   font-size: 20px;
   font-weight: bold;
-  height: 1.5vh;
+  height: 3.5vh;
 }
 
 .form-container-user > div {
@@ -1234,9 +1250,28 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
   font-size: 0.7rem !important;
 }
 
+.turnos-container a {
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.9rem;
+  color: white !important;
+  font-weight: 200;
+  cursor: pointer;
+  margin-top: 1em;
+}
+
+.turnos-container a:hover {
+  color: #888787 !important;
+}
+
+.turnos-container img {
+  width: 1.5em;
+  height: 1.5em;
+}
+
 .turnos-container input {
   color: white;
-  margin-top: 2em;
+  margin-top: 1em;
   cursor: pointer;
   outline: none;
   font-family: "Roboto", sans-serif;
@@ -1339,6 +1374,15 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
   .confirmTurno {
     width: 20em;
   }
+  .errorUser {
+    height: 5.5vh;
+  }
+  .form-container-user div button {
+    font-size: 0.8rem;
+  }
+  .checkbox p {
+    margin: auto 10px auto 0px;
+  }
 }
 
 @media screen and (min-width: 600px) {
@@ -1401,7 +1445,7 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
     min-height: 75vh;
   }
   .cuadro {
-    height: 30vh;
+    height: 27vh;
     border: 2px solid white;
     cursor: pointer;
     width: 30%;
@@ -1552,7 +1596,7 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
     font-weight: 300;
   }
   .turnos-container input {
-    margin-top: 4em;
+    margin-top: 2em;
   }
   .turnos-container button {
     margin-top: 4em;
@@ -1607,6 +1651,7 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
   }
   .div-newUser div p {
     font-size: 0.9rem;
+    height: 20px;
   }
   .div-newUser > div > p {
     font-size: 1rem;

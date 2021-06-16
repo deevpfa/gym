@@ -35,8 +35,8 @@ const Inicio = () => {
         obtenerDatos()
 
     }, [])
-    const {setStateNav} = useContext(UserContext)
     
+    const {setStateNav} = useContext(UserContext)
     const clasesRef = useRef(null)
     const [error, setError] = useState("")
     const [vencido, setVencido] = useState("")

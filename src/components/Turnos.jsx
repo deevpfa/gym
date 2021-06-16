@@ -1,6 +1,8 @@
 import React,{useState,useRef,useEffect} from 'react'
 import { server } from "../utils/global";
 import { allClases } from "../utils/functions";
+import iconDownload from "../assets/download.png";
+import guiaExcel from "../assets/Guia.xlsx";
 import xlsx from 'xlsx'
 import swal from 'sweetalert'
 
@@ -22,6 +24,7 @@ const Turnos = () => {
             let excel = xlsx.read(d,{type:'binary'})
             let nombreHoja = excel.SheetNames
             let datosExcel = xlsx.utils.sheet_to_json(excel.Sheets[nombreHoja[0]])
+            console.log(datosExcel);
             var data ={
                 datosExcel
             }
@@ -35,7 +38,7 @@ const Turnos = () => {
             .then(response => response.json()) 
             .then(res => { res.error ?
                 swal({
-                    title:"Ha ocurrido un error, vuelve a intentarlo",
+                    title:`${res.error}`,
                     icon:"error",
                     buttons:"Ok"
                 }).then(resp=> resp ? window.location.reload() : "")
@@ -52,6 +55,7 @@ const Turnos = () => {
         <div>
             <div className="turnos-container">
                 <h2>Elija el archivo excel a subir:</h2>
+                <a href={guiaExcel}><img src={iconDownload} alt="" />Descargar guia</a>
                 <input type="file" accept=".xlsx" name="files" onChange={(e)=>subirArchivos(e.target.files[0])} />
                 <button className="btn btn-success" onClick={(e)=> addFile(e)}>CARGAR</button>
                 <div className="addClass-clases mt-5">

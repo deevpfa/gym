@@ -7,8 +7,12 @@
     height:60vh;
     font-family: $font;
 }
-
-
+.form-container-user span{
+    position: absolute;
+}
+.form-container-user input[type=tel] {
+    padding-left: 4em;
+  }
 .form-container-user input{
     width: 70%;
     
@@ -18,7 +22,7 @@
     color: rgb(245, 7, 7);
     font-size: 20px;
     font-weight: bold;
-    height: 1.5vh;
+    height: 3.5vh;
 }
 .form-container-user > div{
     width: 50%;

@@ -6,6 +6,15 @@
     .confirmTurno{
         width: 20em;
     }
+    .errorUser{
+        height: 5.5vh;
+    }
+    .form-container-user div button {
+        font-size: 0.8rem;
+    }
+    .checkbox p {
+        margin: auto 10px auto 0px;
+    }
 }
 
 @media screen and (min-width: 600px){
@@ -64,7 +73,7 @@
         min-height: 75vh;
     }
     .cuadro{
-        height: 30vh;
+        height: 27vh;
         border: 2px solid white;
         cursor: pointer;
         width: 30%;
@@ -181,9 +190,7 @@
         height: unset;
         width: 30%;
         cursor: pointer;
-        // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         box-shadow: 0 4px 8px 0 rgba(80, 79, 79, 0.2), 0 6px 20px 0 rgba(80, 79, 79, 0.19);
-        // box-shadow: 0 4px 8px 0 rgba(48, 47, 47, 0.2), 0 6px 20px 0 rgba(37, 37, 37, 0.19);
     }
     .form-container-user{
         width: 50em;
@@ -197,7 +204,7 @@
         font-weight: 300;
     }
     .turnos-container input {
-        margin-top: 4em;
+        margin-top: 2em;
     }
     .turnos-container button{
         margin-top: 4em;
@@ -252,6 +259,7 @@
     }
     .div-newUser  div  p{
         font-size: 0.9rem;
+        height: 20px;
     }
     .div-newUser > div > p{
         font-size: 1rem;

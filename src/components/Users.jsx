@@ -43,6 +43,7 @@ const Users = () => {
     const divCheckboxRef = useRef(null)
     const loaderRef = useRef(null)
     async function nuevoUsuario(e) {
+        setError()
         e.preventDefault()
         setSearchOn(false)
         var data = {
@@ -50,7 +51,7 @@ const Users = () => {
             nombre:nombreChangeRef.current.value,
             apellido:apellidoChangeRef.current.value,
             email:emailRef.current.value,
-            telefono:telefonoRef.current.value,
+            telefono:`+54${telefonoRef.current.value}`,
             direccion:direccionRef.current.value,
             password:passwordRef.current.value,
             isAdmin: false,
@@ -80,6 +81,7 @@ const Users = () => {
     }
 
     async function obtenerUser(e) {
+        setError()
         e.preventDefault()
         setModify(true)
         setListDatos(false)
@@ -90,7 +92,8 @@ const Users = () => {
             nombreChangeRef.current.value = user.user.nombre 
             apellidoChangeRef.current.value = user.user.apellido 
             emailRef.current.value = user.user.email
-            telefonoRef.current.value = user.user.telefono
+            let phone =  user.user.telefono.toString().slice(2,user.user.telefono.length)
+            telefonoRef.current.value = Number(phone)
             direccionRef.current.value = user.user.direccion
             dateRef.current.value = user.user.expiration
             if(user.user.clases){
@@ -110,17 +113,24 @@ const Users = () => {
         
     }
     async function modifyUser(e) {
-        const myArrClean = array.filter(Boolean)
+        const arrayNodes = [...divCheckboxRef.current.childNodes]
+        for (let i = 0; i < arrayNodes.length; i++) {
+            const element = arrayNodes[i];
+            if(element.firstChild.checked==true) {
+                arrayClasesUser.push({clase:element.firstChild.id,semanal:element.childNodes[2].value})
+                setarray(arrayClasesUser)
+            }
+        }
         e.preventDefault()
         var data = {
             usuario:usuarioChangeRef.current.value,
             nombre:nombreChangeRef.current.value,
             apellido:apellidoChangeRef.current.value,
             email:emailRef.current.value,
-            telefono:telefonoRef.current.value,
+            telefono:`+54${telefonoRef.current.value}`,
             direccion:direccionRef.current.value,
             password:passwordRef.current.value,
-            clases: JSON.stringify(myArrClean) ,
+            clases: JSON.stringify(arrayClasesUser) ,
             expiration:dateRef.current.value
         }
         await fetch(`${server}/usuarios/miUsuario`, {
@@ -140,10 +150,10 @@ const Users = () => {
             }
             else {
                 swal({
-                    title:"No se pudo actualizar el usuario, vuelve a intentarlo...",
+                    title:res.error,
                     icon:"error",
                     buttons:"Ok"
-                }).then(resp=> resp ? window.location.reload() : "")
+                })
             }
         })
     }
@@ -172,7 +182,6 @@ const Users = () => {
             const element = res[i];
             let p1 = document.createElement("p")
             let p2 = document.createElement("p")
-            let p3 = document.createElement("p")
             let p4 = document.createElement("p")
             let p5 = document.createElement("p")
             p1.innerHTML = element.usuario
@@ -309,7 +318,13 @@ const Users = () => {
                     <div><input ref={nombreChangeRef} className="form-control" placeholder="Nombre" type="text" /></div>
                     <div><input ref={apellidoChangeRef} className="form-control" placeholder="Apellido" type="text" /></div>
                     <div><input ref={emailRef} className="form-control" placeholder="Email" type="email" /></div>
-                    <div><input ref={telefonoRef} className="form-control" placeholder="Telefono" type="text" /></div>
+                    <div>
+                    <div>
+                        <span className="input-group-text">+54</span>
+                    </div>
+                        <input type="password" className="form-control" ref={telefonoRef}  placeholder="Telefono" type="tel" />
+                    </div>
+                    {/* <div><input ref={telefonoRef} className="form-control" placeholder="Telefono" type="text" /></div> */}
                     <div><input ref={direccionRef} className="form-control" placeholder="Direccion" type="text" /></div>
                     <div><input ref={passwordRef} className="form-control" placeholder="PASSWORD" type="text" /></div>
                     <div><input ref={dateRef }className="form-control" placeholder="Vencimiento" type="text" min={moment().format('YYYY-MM-DD')} onClick={(e)=> e.target.type="date"}/></div>

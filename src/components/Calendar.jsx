@@ -1,8 +1,7 @@
 import React, { useRef, useState, useEffect} from 'react'
-import {turnosCalendario,bookShift,getData,pad} from '../utils/functions'
+import {turnosCalendario,bookShift,getData} from '../utils/functions'
 import { useParams } from "react-router-dom";
 import { server } from "../utils/global";
-import Nav from "./Nav";
 import WhatsApp from "./WhatsApp";
 
 
@@ -55,7 +54,7 @@ const Calendar = () => {
             setNumeroDia(hoy.getDate())
             diaTurnosApi=hoy.getDate()
             mesTurnoApi=hoy.getMonth()
-            turnosCalendario(diaTurnosApi,clase,mesTurnoApi,horasRef,setTurno,admin,loaderRef,setSemanal).then(setTimeout(()=> e.target.removeAttribute("disabled"), 450))
+            turnosCalendario(diaTurnosApi,clase,mesTurnoApi,horasRef,setTurno,admin,loaderRef,setSemanal).then(setTimeout(()=> e.target.removeAttribute("disabled"), 300))
            
             // }
         

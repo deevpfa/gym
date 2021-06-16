@@ -31,18 +31,18 @@ h1{
     margin-bottom: 30px;
     position: relative;
 }
-.cuadro p{
-    color: rgb(52, 2, 73);
+
+.spanCuadro{
     font-size:1.2rem;
     z-index: 2;
     letter-spacing: 3px;
     font-weight: bold;
-    font-family: $font;
-    margin-block: 0px;
-}
-.spanCuadro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    width: 8em;
+    font-family: $font;
+    color: rgb(1, 13, 83);
     height: 2px;
     background-color: white;
 }

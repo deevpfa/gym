@@ -1,7 +1,7 @@
 import React, { useRef, useState,useEffect } from 'react'
 import { userLoggin } from '../utils/functions'
 import { useHistory } from "react-router-dom";
-import logo from "../assets/logo3.png";
+import logo from "../assets/logo3123.png";
 import Background from "./Background";
 
 
@@ -21,17 +21,17 @@ const Login = () => {
             </div>
 
             <form className="form-group form-container-login" data-aos="zoom-in">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">@</span>
+            <div className="input-group mb-3">
+                <div className="input-group-prepend">
+                    <span className="input-group-text">@</span>
                 </div>
-                <input type="text" class="form-control" ref={usuarioRef} placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+                <input type="text" className="form-control" ref={usuarioRef} placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
             </div>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" ref={passwordRef} id="basic-addon1">&#128274;</span>
+            <div className="input-group">
+                <div className="input-group-prepend">
+                    <span className="input-group-text">&#128274;</span>
                 </div>
-                <input type="password" class="form-control" ref={passwordRef} placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" />
+                <input type="password" className="form-control" ref={passwordRef} placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" />
             </div>
                 <p className="invalid">{
                     validateUser===false ? "Usuario o password incorrecto" : ""

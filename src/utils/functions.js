@@ -1,5 +1,11 @@
 import { server} from "./global";
 import swal from 'sweetalert'
+import running from '../assets/running.jpg'
+import musculacion from '../assets/musculacion.jpg'
+import crossfit from '../assets/crossfit.jpg'
+import funcional from '../assets/funcional.jpg'
+import yoga from '../assets/yoga.jpg'
+let arrayIMG = [crossfit,funcional,musculacion,yoga,running]
 
 let gymName
 async function datos () {
@@ -192,13 +198,11 @@ export function horarios(horasRef, setTurno,admin,loaderRef) {
             div.onclick = (e) => seleccionaTurno(e.target, horasRef, setTurno)
         }
         p.innerHTML = `Disponibles: ${element.disponibles}`
-        p3.innerHTML = `${element.horarios}:00 `
+        p3.innerHTML = `${element.horarios}`
         div.appendChild(p3)
         div.appendChild(p)
-        if (element.teacher) {
-            p2.innerHTML = capitalize(`${element.teacher}`);
-            div.appendChild(p2)
-        }
+        element.teacher ? p2.innerHTML = capitalize(`${element.teacher}`) : p2.innerHTML = "";
+        div.appendChild(p2)
         if(adminState===1){
             let button = document.createElement("button")
             button.innerHTML = "BORRAR"
@@ -274,16 +278,14 @@ export function crearClases(ref, arrayClases,history) {
         let div = document.createElement("div")
         let img = document.createElement("img")
         let span = document.createElement("span")
-        let p = document.createElement("p")
         span.classList.add("spanCuadro")
         div.classList.add("cuadro", "cuadro2")
         div.onclick = () => { history.push(`/calendar/${element.id}`) }
-        p.innerHTML = element.clase.toUpperCase()
+        span .innerHTML = element.clase.toUpperCase()
         img.classList.add("noImg")
-        img.src = element.img
+        img.src = arrayIMG[i]
         div.appendChild(img)    
         div.appendChild(span)
-        div.appendChild(p)
         ref.current.appendChild(div)
     }
 }
