@@ -1,5 +1,6 @@
 
 .calendar{
+    overflow: hidden;
     border-radius: 10px;
     background-color: rgb(34, 33, 33);
     width:100%;
@@ -40,6 +41,8 @@
     }
     &__Dia{
         display:flex;
+        overflow-y: scroll;
+        max-height: 25em;
         // justify-content: space-around;
         flex-wrap: wrap;
         margin: 15px 10px 0px 10px;

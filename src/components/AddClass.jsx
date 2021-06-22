@@ -1,7 +1,6 @@
 import React, { useRef,useEffect} from 'react'
 import { server } from "../utils/global";
 import { allClases } from "../utils/functions";
-import Nav from "./Nav";
 import swal from 'sweetalert'
 
 const AddClass = () => {

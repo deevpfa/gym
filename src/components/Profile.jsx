@@ -15,7 +15,7 @@ const Profile = () => {
     const profesorRef = useRef()
     const mapUrl = "https://maps.google.com/maps/api/js?v=3.exp&key=AIzaSyCDEKn4T7koVtwqglWk8DjQAIHUw3hsIBg"
     useEffect(() => {
-        getData().then((res)=>{setAdmin(res)})
+        getData().then((res)=>{setAdmin(res);reservationList(res.id)})
         setStateNav("profile")
         datos()
     }, [])
@@ -34,10 +34,18 @@ const Profile = () => {
     const [gymName,setgymName]  = useState()
     const [lat,setlat]  = useState()
     const [lng,setlng]  = useState()
-    async function reservationList(id,date) {
-        var data ={
-            id,
-            date
+    async function reservationList(id,date) { 
+        var data
+        if(!date) {
+            data = {
+                id
+            }
+        }
+        else{
+            data ={
+                id,
+                date
+            }
         }
         await fetch(`${server}/turnos/reservationProfile`, {
             method: 'POST',
@@ -74,7 +82,7 @@ const Profile = () => {
                 p.innerHTML = `${dias[dia].slice(0,3)} ${element.date.slice(8)}`
                 p1.innerHTML = element.clase.toUpperCase()
                 p2.innerHTML = `${element.horario} hs`
-                p3.innerHTML = element.teacher.toUpperCase()
+                if(element.teacher) p3.innerHTML = element.teacher.toUpperCase()
                 fechaRef.current.appendChild(p)
                 claseRef.current.appendChild(p1)
                 horarioRef.current.appendChild(p2)

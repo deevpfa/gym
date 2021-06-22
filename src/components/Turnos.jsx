@@ -14,17 +14,17 @@ const Turnos = () => {
     const [archivos,setArchivos] = useState()
     const idRef = useRef(null)
     const claseRef = useRef(null)
-    const subirArchivos = e =>{setArchivos(e)}
+    const subirArchivos = e =>setArchivos(e)
     async function addFile(e) {
         e.preventDefault()
         let newReader = new FileReader()
+        if(!archivos) return
         newReader.readAsBinaryString(archivos)
         newReader.onload= (e)=>{
             let d = e.target.result
             let excel = xlsx.read(d,{type:'binary'})
             let nombreHoja = excel.SheetNames
             let datosExcel = xlsx.utils.sheet_to_json(excel.Sheets[nombreHoja[0]])
-            console.log(datosExcel);
             var data ={
                 datosExcel
             }
@@ -57,7 +57,7 @@ const Turnos = () => {
                 <h2>Elija el archivo excel a subir:</h2>
                 <a href={guiaExcel}><img src={iconDownload} alt="" />Descargar guia</a>
                 <input type="file" accept=".xlsx" name="files" onChange={(e)=>subirArchivos(e.target.files[0])} />
-                <button className="btn btn-success" onClick={(e)=> addFile(e)}>CARGAR</button>
+                <button className="btn btn-success" onClick={(e)=> addFile(e)} >CARGAR</button>
                 <div className="addClass-clases mt-5">
                     <div>
                     <p>ID</p>

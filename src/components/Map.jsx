@@ -2,8 +2,8 @@ import React from 'react'
 import {GoogleMap,withScriptjs,withGoogleMap,Marker} from 'react-google-maps'
 
 const Map = (props) => {
-    let lat = props.lat
-    let lng = props.lng
+    let lat = Number(props.lat)
+    let lng = Number(props.lng)
 
     return (
         <GoogleMap 

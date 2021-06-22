@@ -1,11 +1,6 @@
 import { server} from "./global";
 import swal from 'sweetalert'
-import running from '../assets/running.jpg'
-import musculacion from '../assets/musculacion.jpg'
-import crossfit from '../assets/crossfit.jpg'
-import funcional from '../assets/funcional.jpg'
-import yoga from '../assets/yoga.jpg'
-let arrayIMG = [crossfit,funcional,musculacion,yoga,running]
+
 
 let gymName
 async function datos () {
@@ -24,7 +19,7 @@ datos()
  * @param {passwordUsuario} password 
  * @returns setea el token en localstorage y devuelve true = admin o false != admin
  */
-export const userLoggin = async (usuario, password) => {
+export const userLoggin = async (usuario, password,gif) => {
     var respuestaFetch;
     var data = {
         usuario,
@@ -46,6 +41,7 @@ export const userLoggin = async (usuario, password) => {
             }
             else {
                 respuestaFetch = false
+                gif.current.setAttribute("hidden","")
             }
         })
     return respuestaFetch
@@ -281,9 +277,9 @@ export function crearClases(ref, arrayClases,history) {
         span.classList.add("spanCuadro")
         div.classList.add("cuadro", "cuadro2")
         div.onclick = () => { history.push(`/calendar/${element.id}`) }
-        span .innerHTML = element.clase.toUpperCase()
+        span.innerHTML = element.clase.toUpperCase()
         img.classList.add("noImg")
-        img.src = arrayIMG[i]
+        img.src = element.img
         div.appendChild(img)    
         div.appendChild(span)
         ref.current.appendChild(div)

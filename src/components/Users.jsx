@@ -17,7 +17,7 @@ const Users = () => {
     }, [])
     let history = useHistory();
     getData().then((res)=>{if(res.isAdmin ===false) history.push("/")})
-    if(!arrayClasesUser)  var arrayClasesUser=[]
+    if(!arrayClasesUser) var arrayClasesUser=[]
     
     const [error, setError] = useState("")
     const [cantidadUser, setCantidadUser] = useState("")
@@ -26,6 +26,7 @@ const Users = () => {
     const [array, setarray] = useState([])
     const [modify, setModify] = useState(false)
     const [listDatos,setListDatos] = useState(false)
+    const [allUsers,setallUsers] = useState(false)
     const containerRef = useRef(null)
     const usuarioRef = useRef(null)
     const usuarioChangeRef = useRef(null)
@@ -40,6 +41,8 @@ const Users = () => {
     const vencRef = useRef(null)
     const plusRef = useRef(null)
     const MoreRef = useRef(null)
+    const spanUsers = useRef(null)
+    const spanVenc = useRef(null)
     const divCheckboxRef = useRef(null)
     const loaderRef = useRef(null)
     async function nuevoUsuario(e) {
@@ -99,10 +102,10 @@ const Users = () => {
             if(user.user.clases){
             for (let i = 0; i < arrayNodes.length; i++) {
                 const element = arrayNodes[i];
-                const includes = user.user.clases.some(e => e.clase == (element.firstChild.id))
+                const includes = user.user.clases.some(e => e.clase === (element.firstChild.id))
                 if(includes===true) {
                     element.firstChild.checked=true
-                    const f = user.user.clases.find(e => e.clase == element.firstChild.id)
+                    const f = user.user.clases.find(e => e.clase === element.firstChild.id)
                     element.childNodes[2].value = f.semanal
                     arrayClasesUser.push({clase:element.firstChild.id,semanal:element.lastChild.value})
                     setarray(arrayClasesUser)
@@ -116,7 +119,7 @@ const Users = () => {
         const arrayNodes = [...divCheckboxRef.current.childNodes]
         for (let i = 0; i < arrayNodes.length; i++) {
             const element = arrayNodes[i];
-            if(element.firstChild.checked==true) {
+            if(element.firstChild.checked===true) {
                 arrayClasesUser.push({clase:element.firstChild.id,semanal:element.childNodes[2].value})
                 setarray(arrayClasesUser)
             }
@@ -170,16 +173,18 @@ const Users = () => {
             }
         })
             .then(response => response.json())
-            .then(res => crearUSERS(res))
+            .then(res => crearUSERS(res,ordenarArray))
     }
-    function crearUSERS(res) {
+    function crearUSERS(res,param) {
+        setallUsers(res)
+        let arrayOrdenado = param(res)
         usuarioRef.current.innerHTML=""
         nombreRef.current.innerHTML=""
         vencRef.current.innerHTML=""
         plusRef.current.innerHTML=""
         setCantidadUser(res.length)
         for (let i = 0; i < res.length; i++) {
-            const element = res[i];
+            const element = arrayOrdenado[i];
             let p1 = document.createElement("p")
             let p2 = document.createElement("p")
             let p4 = document.createElement("p")
@@ -210,7 +215,7 @@ const Users = () => {
             }
         })
             .then(response => response.json())
-            .then(resp => crearUSERS(resp))
+            .then(resp => crearUSERS(resp,ordenarArray))
 
     }
 
@@ -220,6 +225,18 @@ const Users = () => {
         await fetch(`${server}/usuarios/${usuario}`)
             .then(response => response.json())
             .then(resp => crearMoreDataUSER(resp))
+    }
+    function ordenarArray(array) {
+        return array.sort(function (a, b) {
+            if (a.usuario > b.usuario) {
+              return 1;
+            }
+            if (a.usuario < b.usuario) {
+              return -1;
+            }
+            return 0;
+          });
+          
     }
     function crearMoreDataUSER(datos) {
         setUser(datos)
@@ -246,6 +263,17 @@ const Users = () => {
         MoreRef.current.appendChild(p7)
         MoreRef.current.appendChild(p6)
         loaderRef.current.setAttribute("hidden","")
+    }
+    function ordenXvenc() {
+        return allUsers.sort(function (a, b) {
+            if (a.expiration > b.expiration) {
+              return 1;
+            }
+            if (a.expiration < b.expiration) {
+              return -1;
+            }
+            return 0;
+          });
     }
     return (
         <div>
@@ -276,7 +304,7 @@ const Users = () => {
                 </div>
                 <div className="div-newUser">
                     <div>
-                    <p>Usuarios ({cantidadUser})</p>
+                    <p className="titlesUsers" onClick={()=> {crearUSERS(allUsers,ordenarArray);spanVenc.current.setAttribute("hidden","");spanUsers.current.removeAttribute("hidden")}}>Usuarios ({cantidadUser})<span ref={spanUsers}>&#9660;</span></p>
                     <div ref={usuarioRef}></div>
                     </div>
                     <div>
@@ -284,7 +312,7 @@ const Users = () => {
                     <div ref={nombreRef}></div>
                     </div>
                     <div>
-                    <p>Vencimiento</p>
+                    <p className="titlesUsers" onClick={()=> {crearUSERS(allUsers,ordenXvenc);spanUsers.current.setAttribute("hidden","");spanVenc.current.removeAttribute("hidden")}}>Vencimiento <span hidden ref={spanVenc}>&#9660;</span></p>
                     <div ref={vencRef}></div>
                     </div>
                     <div>
@@ -295,6 +323,7 @@ const Users = () => {
             </div>
             :""}
             {listDatos===true ?
+            
             <div className="divMoreVR" data-aos="flip-up">
                     <div>
                         <div className="loading-div-user" ref={loaderRef} hidden >
@@ -324,7 +353,6 @@ const Users = () => {
                     </div>
                         <input type="password" className="form-control" ref={telefonoRef}  placeholder="Telefono" type="tel" />
                     </div>
-                    {/* <div><input ref={telefonoRef} className="form-control" placeholder="Telefono" type="text" /></div> */}
                     <div><input ref={direccionRef} className="form-control" placeholder="Direccion" type="text" /></div>
                     <div><input ref={passwordRef} className="form-control" placeholder="PASSWORD" type="text" /></div>
                     <div><input ref={dateRef }className="form-control" placeholder="Vencimiento" type="text" min={moment().format('YYYY-MM-DD')} onClick={(e)=> e.target.type="date"}/></div>

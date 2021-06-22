@@ -30,6 +30,10 @@
     height: 20em;
     margin-top: 2em;
 }
+
+.form-container-login > div{
+    width: 100%;
+}
 .form-container-login input {
     font-family: $font;
 }
@@ -51,4 +55,15 @@
 }
 .input-group-prepend span {
     width: 100%;
+}
+.loadingGif{
+    width: 1.5em !important;
+    height: 1.5em !important;
+    position: absolute;
+}
+.lastDivLogin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
 }

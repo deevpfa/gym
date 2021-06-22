@@ -27,7 +27,10 @@ const Nav = () => {
     const [burgerState, setBurgerState] = useState(false)
     const [expiration, setExpiration] = useState("")
    
-   
+   function closeSession() {
+        localStorage.removeItem("token")
+        history.push("/")
+   }
     function burgerOn(e, setBurgerState) {
         if (burgerState === false) {
             burgerMenuRef.current.src = iconClose
@@ -70,7 +73,7 @@ const Nav = () => {
                             }
                         </div>
                 }
-                <li onClick={() => { history.push("/") }} className="closeSession" >
+                <li onClick={() => closeSession()} className="closeSession" >
                     <div className="btn-block"><Link className="nav-link" to="/">Cerrar Sesion</Link></div>
                 </li>
                 <li className="burgerMenu" onClick={(e) => burgerOn(e, setBurgerState)}>
@@ -82,7 +85,7 @@ const Nav = () => {
                 burgerState === true ? <div className="burgerOpen" data-aos="fade-down">
                     <p>{capitalize(localStorage.getItem("nombre"))}</p>
                     <p className="vencimiento">Vencimiento <br />en {expiration} dias</p>
-                    <p onClick={() => history.push("/")}><Link className="nav-link" to="/">Cerrar Sesion</Link></p>
+                    <p onClick={() => closeSession()}><Link className="nav-link" to="/">Cerrar Sesion</Link></p>
                 </div>
                     : ""
             }

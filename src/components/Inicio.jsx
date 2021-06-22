@@ -38,7 +38,7 @@ const Inicio = () => {
     
     const {setStateNav} = useContext(UserContext)
     const clasesRef = useRef(null)
-    const [error, setError] = useState("")
+    const [setError] = useState("")
     const [vencido, setVencido] = useState("")
     const token = decodeToken(localStorage.getItem("token"))
     return (
@@ -47,7 +47,7 @@ const Inicio = () => {
                 vencido===true ? <div className="vencido"><img src={sad} alt=""/><p>Lo sentimos, su cuota ha vencido, no puede seguir reservando...</p></div>
                 :<div className="divInicio" ref={clasesRef}></div>
             }
-            <WhatsApp />
+            <WhatsApp/>
             <Footer/>
         </div>
     )

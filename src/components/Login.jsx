@@ -1,7 +1,8 @@
 import React, { useRef, useState,useEffect } from 'react'
 import { userLoggin } from '../utils/functions'
 import { useHistory } from "react-router-dom";
-import logo from "../assets/logo3123.png";
+import logo from "../assets/logo.png";
+import loadingGif from "../assets/loadingGif.gif";
 import Background from "./Background";
 
 
@@ -14,6 +15,8 @@ const Login = () => {
     if (validateUser === true) history.push("/inicio")
     const usuarioRef = useRef(null)
     const passwordRef = useRef(null)
+    const gif = useRef(null)
+    const iniciarSesion = useRef(null)
     return (
         <div className="m-auto divLogin">
             <div className="logoLogin" >
@@ -36,7 +39,10 @@ const Login = () => {
                 <p className="invalid">{
                     validateUser===false ? "Usuario o password incorrecto" : ""
                 }</p>
-                <input onClick={async() => {  setValidateUser(await userLoggin(usuarioRef.current.value, passwordRef.current.value)) }} className="btn btn-dark btn-block mt-3" value="INICIAR SESION" type="button" />
+            <div className="lastDivLogin">
+                <input  ref={iniciarSesion} onClick={async(e) => {  gif.current.removeAttribute("hidden") ;setValidateUser(await userLoggin(usuarioRef.current.value, passwordRef.current.value,gif)) }} className="btn btn-dark btn-block" value="INICIAR SESION" type="button" />
+                <img src={loadingGif} ref={gif} hidden className="loadingGif" alt="" />
+            </div>
             </form>
         </div>
     )

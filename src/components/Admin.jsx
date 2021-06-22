@@ -24,7 +24,7 @@ const Admin = () => {
                 <div  onClick={()=>{history.push("/users")}}> <img src={adminUsers} alt=""/> <p className="adminParrafo1">Administrar Usuarios</p> <p className="adminParrafo2"> Administra los usuarios registrados</p></div>
                 <div  onClick={()=>{history.push("/turnos")}}><img src={newShift} alt=""/> <p className="adminParrafo1">Agregar Turno</p> <p className="adminParrafo2"> Sube un excel con las nuevas clases </p></div>
                 <div  onClick={()=>{history.push("/ViewReservas")}}><img src={calendario} alt=""/> <p className="adminParrafo1">Ver Reservas</p> <p className="adminParrafo2">Lista las reservas de un dia y clase en particular</p></div>
-                {/* <div  onClick={()=>{history.push("/addClass")}}><img src={newClass} alt=""/> <p className="adminParrafo1">Agregar Clase</p> <p className="adminParrafo2"> Carga una clase nueva </p></div> */}
+                <div  onClick={()=>{history.push("/addClass")}}><img src={newClass} alt=""/> <p className="adminParrafo1">Agregar Clase</p> <p className="adminParrafo2"> Carga una clase nueva </p></div>
             </div>
         </div>
     )
